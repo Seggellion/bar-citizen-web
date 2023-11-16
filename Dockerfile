@@ -3,8 +3,10 @@
 FROM ruby:3.2.2-slim
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
-# Install Node.js
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libpq-dev curl gnupg
+
+# Install Node.js (using NodeSource)
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
