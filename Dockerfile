@@ -20,4 +20,4 @@ EXPOSE 3000
 
 # Start the Rails app
 CMD ["rails", "server", "-b", "0.0.0.0"]
-RUN RAILS_ENV=production rails assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE=${SECRET_KEY_BASE} rails assets:precompile
