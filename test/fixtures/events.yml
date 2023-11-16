@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start_datetime: 2023-11-15 23:29:59
+  location: MyString
+  region: MyString
+  social_media_links: MyText
+  discord_link: MyString
+  creator_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  start_datetime: 2023-11-15 23:29:59
+  location: MyString
+  region: MyString
+  social_media_links: MyText
+  discord_link: MyString
+  creator_id: 1

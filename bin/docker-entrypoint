@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+# Check for the presence of Rails
+echo "Checking for Rails..."
+which rails || echo "Rails not found"
+
+# Check current directory
+echo "Current directory: $(pwd)"
+
+# If running the rails server, then prepare the database
+if [ "$1" = "rails" ] && [ "$2" = "server" ]; then
+  echo "Preparing database..."
+  bundle exec rails db:prepare
+fi
+
+# Execute the passed command
+exec "$@"
