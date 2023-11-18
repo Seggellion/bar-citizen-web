@@ -7,7 +7,7 @@ module.exports = {
     './app/helpers/**/*.rb',
 
     './app/javascript/**/*.js',
-    './app/assets/stylesheets/**/*.css',
+
     './app/views/**/*',
 
   ],
@@ -30,4 +30,3 @@ module.exports = {
   plugins: [],
 
 }
-

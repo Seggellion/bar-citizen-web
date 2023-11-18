@@ -1,0 +1,13 @@
+<!-- app/views/posts/_form.html.erb -->
+<%= form_with model: @post do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+
+  <%= form.label :region_id, 'Region' %>
+  <%= form.collection_select :region_id, @regions, :id, :name, prompt: 'Select a Region' %>
+
+  <%= form.submit %>
+<% end %>

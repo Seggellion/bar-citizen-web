@@ -1,57 +1,66 @@
-<%= form_with(model: event) do |form| %>
-  <% if event.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-        <% event.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+
+  <%= form_with(model: event, class: "space-y-4") do |form| %>
+    <% if event.errors.any? %>
+      <div class="bg-red-500 text-white p-4 rounded-lg">
+        <h2 class="font-bold"><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+        <ul class="list-disc pl-6">
+          <% event.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="flex flex-col">
+      <%= form.label :title, class: "mb-2 font-semibold" %>
+      <%= form.text_field :title, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :description, class: "mb-2 font-semibold" %>
+      <%= form.text_area :description, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :start_datetime, class: "mb-2 font-semibold" %>
+      <%= form.datetime_field :start_datetime, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :location, class: "mb-2 font-semibold" %>
+      <%= form.text_field :location, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :region, class: "mb-2 font-semibold" %>
+      <%= form.text_field :region, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :social_media_links, class: "mb-2 font-semibold" %>
+      <%= form.text_area :social_media_links, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :discord_link, class: "mb-2 font-semibold" %>
+      <%= form.text_field :discord_link, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :creator_id, class: "mb-2 font-semibold" %>
+      <%= form.number_field :creator_id, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+    <div>
+      <%= form.submit "Create Event", class: "mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+  <br>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= link_to "Back to events", events_path, class: "text-blue-400 hover:text-blue-300" %>
   </div>
 
-  <div>
-    <%= form.label :start_datetime, style: "display: block" %>
-    <%= form.datetime_field :start_datetime %>
-  </div>
-
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div>
-    <%= form.label :region, style: "display: block" %>
-    <%= form.text_field :region %>
-  </div>
-
-  <div>
-    <%= form.label :social_media_links, style: "display: block" %>
-    <%= form.text_area :social_media_links %>
-  </div>
-
-  <div>
-    <%= form.label :discord_link, style: "display: block" %>
-    <%= form.text_field :discord_link %>
-  </div>
-
-  <div>
-    <%= form.label :creator_id, style: "display: block" %>
-    <%= form.number_field :creator_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>

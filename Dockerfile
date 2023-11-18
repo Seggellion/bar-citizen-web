@@ -15,8 +15,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && apt-get install -y yarn
 
-
-ARG SECRET_KEY_BASE=defaultsecret
 # Set the working directory
 WORKDIR /app
 
@@ -27,9 +25,18 @@ RUN bundle install
 # Copy the application
 COPY . .
 
+# Install JavaScript dependencies
+RUN yarn install
+
+# ARG for SECRET_KEY_BASE
+ARG SECRET_KEY_BASE=defaultsecret
+
+# Precompile assets in production. 
+# SECRET_KEY_BASE is needed for Rails to run in production for this step.
+RUN RAILS_ENV=production SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec rake assets:precompile
+
 # Expose the port the app runs on
 EXPOSE 3000
 
 # Start the Rails app
 CMD ["rails", "server", "-b", "0.0.0.0"]
-RUN RAILS_ENV=production SECRET_KEY_BASE=${SECRET_KEY_BASE} rails assets:precompile

@@ -1,0 +1,41 @@
+<!-- app/views/home/dashboard.html.erb -->
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">User Dashboard</h1>
+  
+  <% if @username %>
+    <div class="bg-white shadow-lg rounded-lg p-4 mb-4">
+      <p class="text-lg">Welcome, <%= @username %>! You have successfully logged in with Discord.</p>
+      <!-- Display more user information if available -->
+    </div>
+
+    <div class="flex flex-wrap gap-4 mb-6">
+      <%= link_to 'Create Event', new_event_path, class: 'btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+      <%= link_to 'Find Event', find_event_path, class: 'btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' %>
+      <%= link_to 'Message Board', forum_post_categories_path, class: 'btn bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded' %>
+      <%= button_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+
+    <!-- Additional Dashboard Sections -->
+    <div class="grid md:grid-cols-2 gap-4">
+      <!-- Upcoming Events Section -->
+      <div class="bg-white shadow-lg rounded-lg p-4">
+        <h2 class="text-xl font-semibold mb-3">Upcoming Events</h2>
+        <!-- List of upcoming events -->
+      </div>
+
+      <!-- Event Recommendations Section -->
+      <div class="bg-white shadow-lg rounded-lg p-4">
+        <h2 class="text-xl font-semibold mb-3">Event Recommendations</h2>
+        <!-- List of recommended events -->
+      </div>
+
+      <!-- User Participation Statistics -->
+      <div class="bg-white shadow-lg rounded-lg p-4 md:col-span-2">
+        <h2 class="text-xl font-semibold mb-3">Your Participation</h2>
+        <!-- Statistics and graphs about the user's event participation -->
+      </div>
+    </div>
+  <% else %>
+    <p class="text-lg">You are not logged in.</p>
+  <% end %>
+</div>

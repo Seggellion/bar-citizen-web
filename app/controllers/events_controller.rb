@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /events or /events.json
   def index
@@ -66,5 +67,9 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:title, :description, :start_datetime, :location, :region, :social_media_links, :discord_link, :creator_id)
+    end
+
+    def authenticate_user!
+      redirect_to root_path, alert: 'You must be signed in to access this page.' unless user_signed_in?
     end
 end

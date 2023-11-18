@@ -1,42 +1,8 @@
-<div id="<%= dom_id event %>">
-  <p>
-    <strong>Title:</strong>
-    <%= event.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= event.description %>
-  </p>
-
-  <p>
-    <strong>Start datetime:</strong>
-    <%= event.start_datetime %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= event.location %>
-  </p>
-
-  <p>
-    <strong>Region:</strong>
-    <%= event.region %>
-  </p>
-
-  <p>
-    <strong>Social media links:</strong>
-    <%= event.social_media_links %>
-  </p>
-
-  <p>
-    <strong>Discord link:</strong>
-    <%= event.discord_link %>
-  </p>
-
-  <p>
-    <strong>Creator:</strong>
-    <%= event.creator_id %>
-  </p>
-
-</div>
+<h2 class="text-xl font-semibold mb-2"><%= event.title %></h2>
+<p class="mb-4"><strong>Description:</strong> <%= event.description %></p>
+<p class="mb-4"><strong>Start datetime:</strong> <%= event.start_datetime %></p>
+<p class="mb-4"><strong>Location:</strong> <%= event.location %></p>
+<p class="mb-4"><strong>Region:</strong> <%= event.region %></p>
+<p class="mb-4"><strong>Social media links:</strong> <%= event.social_media_links %></p>
+<p class="mb-4"><strong>Discord link:</strong> <%= event.discord_link %></p>
+<p class="mb-4"><strong>Creator:</strong> <%= event.creator_id %></p>

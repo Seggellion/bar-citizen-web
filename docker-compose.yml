@@ -8,11 +8,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   web:
-    build: .
+    build:
       context: .
       args:            
         - SECRET_KEY_BASE=${SECRET_KEY_BASE}
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: ./start.sh
     volumes:
       - .:/app
     ports:
@@ -22,6 +22,8 @@ services:
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
     depends_on:
       - db
 

@@ -8,3 +8,22 @@ h1{
 </style>
 
 <h1>Bar Citizen Global</h1>
+
+
+  
+  <%= button_to 'Login with Discord', '/auth/discord', method: :post, class: 'discord-login-button',  data: { turbo: false } %>
+
+
+<!-- Add your own styling for the login button -->
+<style>
+  .discord-login-button {
+    /* Style your button here */
+    background-color: #7289DA; /* Discord's brand color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+</style>

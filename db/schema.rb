@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_16_073016) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_17_045007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_073016) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "post_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "post_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_category_id"], name: "index_posts_on_post_category_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -56,6 +71,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_073016) do
     t.integer "fame"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image"
+    t.string "twitch_id"
+    t.string "twitch_channel"
+    t.string "discord_channel"
   end
 
+  add_foreign_key "posts", "post_categories"
 end

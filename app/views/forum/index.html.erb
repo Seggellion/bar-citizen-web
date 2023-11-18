@@ -1,0 +1,8 @@
+<!-- Example in app/views/posts/index.html.erb -->
+<% @post_categories.each do |category| %>
+  <h3><%= category.name %></h3>
+  <% category.posts.each do |post| %>
+    <p><%= link_to post.title, post_path(post) %></p>
+    <!-- Other post details -->
+  <% end %>
+<% end %>
