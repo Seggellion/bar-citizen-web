@@ -1,8 +1,11 @@
 #!/bin/bash
 # start.sh
+# Create the Google credentials file
+echo "$GOOGLE_CREDENTIALS" > /app/google-credentials.json
 
-# Start Webpack Dev Server in the background
-# ./bin/dev &
+# Set GOOGLE_APPLICATION_CREDENTIALS environment variable
+# export GOOGLE_APPLICATION_CREDENTIALS=/app/google-credentials.json
+
 
 rm -f tmp/pids/server.pid
 

@@ -24,6 +24,7 @@ services:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
+      - GOOGLE_CREDENTIALS=${GOOGLE_CREDENTIALS}
     depends_on:
       - db
     stdin_open: true
