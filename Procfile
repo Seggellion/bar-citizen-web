@@ -1,4 +1,4 @@
-web: env RUBY_DEBUG_OPEN=true bin/rails server
+web: ./start.sh
 js: yarn build --watch
 css: yarn build:css --watch
 css: bin/rails tailwindcss:watch
