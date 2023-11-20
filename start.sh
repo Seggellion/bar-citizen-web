@@ -6,6 +6,8 @@ echo "$GOOGLE_CREDENTIALS" > /app/google-credentials.json
 # Set GOOGLE_APPLICATION_CREDENTIALS environment variable
 # export GOOGLE_APPLICATION_CREDENTIALS=/app/google-credentials.json
 
+# List files in /app directory for debugging
+ls -l /app
 
 rm -f tmp/pids/server.pid
 
