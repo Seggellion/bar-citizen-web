@@ -39,4 +39,5 @@ google-credentials.json
 
 /node_modules
 .Identifier
+.jsonZone.Identifier
 .env

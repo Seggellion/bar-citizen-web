@@ -1,5 +1,9 @@
 #!/bin/bash
-# start.sh
+# start.sh4
+
+echo "Debug: Content of GOOGLE_CREDENTIALS:"
+echo "$GOOGLE_CREDENTIALS"
+
 # Create the Google credentials file
 echo "$GOOGLE_CREDENTIALS" > /app/google-credentials.json
 
