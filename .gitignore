@@ -41,3 +41,4 @@ google-credentials.json
 .Identifier
 .jsonZone.Identifier
 .env
+.byebug_history

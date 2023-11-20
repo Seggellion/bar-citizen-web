@@ -5,7 +5,7 @@ echo "Debug: Content of GOOGLE_CREDENTIALS:"
 echo "$GOOGLE_CREDENTIALS"
 
 # Create the Google credentials file
-echo "$GOOGLE_CREDENTIALS" > /app/google-credentials.json
+echo "$GOOGLE_CREDENTIALS" > google-credentials.json
 
 # Set GOOGLE_APPLICATION_CREDENTIALS environment variable
 # export GOOGLE_APPLICATION_CREDENTIALS=/app/google-credentials.json
