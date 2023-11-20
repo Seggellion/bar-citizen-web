@@ -28,12 +28,25 @@ COPY . .
 # Install JavaScript dependencies
 RUN yarn install
 
+
+# Copy the script to the container
+COPY add-google-credentials.sh /app/add-google-credentials.sh
+
+# Make sure the script is executable
+RUN chmod +x /app/add-google-credentials.sh
+
+# Set the script as the entrypoint
+ENTRYPOINT ["sh", "/app/add-google-credentials.sh"]
+
+
 # ARG for SECRET_KEY_BASE
 ARG SECRET_KEY_BASE=defaultsecret
 
 # Precompile assets in production. 
 # SECRET_KEY_BASE is needed for Rails to run in production for this step.
 RUN RAILS_ENV=production SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec rake assets:precompile
+
+
 
 # Expose the port the app runs on
 EXPOSE 3000
