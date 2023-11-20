@@ -10,10 +10,14 @@
 
     <div class="flex flex-wrap gap-4 mb-6">
       <%= link_to 'Create Event', new_event_path, class: 'btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
-      <%= link_to 'Find Event', find_event_path, class: 'btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' %>
-      <%= link_to 'Message Board', forum_post_categories_path, class: 'btn bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded' %>
+      <%= link_to 'Find Event', events_path, class: 'btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' %>
+      <%= link_to 'Message Board', forum_path, class: 'btn bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded' %>
+      <% if current_user&.user_type <= 1 %>
+      <%= link_to 'Admin Dashboard', admin_root_path,  class: 'btn bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded'  %>
+    <% end %>
       <%= button_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' %>
-    </div>
+
+      </div>
 
     <!-- Additional Dashboard Sections -->
     <div class="grid md:grid-cols-2 gap-4">

@@ -1,0 +1,14 @@
+<div class="bg-black text-white">
+  <h2 class="text-xl font-bold p-4">Posts in <%= @category.name %></h2>
+  <div>
+    <% @posts.each do |post| %>
+      <div class="p-4 border-b border-gray-800">
+        <p class="text-lg"><%= link_to post.title, forum_post_category_post_path(@category, post) %></p>
+        <!-- Other post details -->
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'Create New Post', new_forum_post_category_post_path(@post_category), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+
+
+</div>

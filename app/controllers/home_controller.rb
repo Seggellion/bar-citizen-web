@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def dashboard
+    
     # Ensure that the user is authenticated before showing the dashboard
     redirect_to root_path unless user_signed_in?
 

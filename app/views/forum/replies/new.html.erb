@@ -1,0 +1,17 @@
+<!-- app/views/forum/replies/new.html.erb -->
+
+<div class="bg-black text-white p-4">
+  <h1 class="text-xl font-bold">New Reply</h1>
+
+  <%= form_with(model: @reply, url: forum_post_category_post_replies_path(@post.post_category, @post), local: true) do |form| %>
+
+  <div class="mb-4">
+      <%= form.label :content, class: "block text-gray-300 text-sm font-bold mb-2" %>
+      <%= form.text_area :content, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-black leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div>
+      <%= form.submit "Post Reply", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  <% end %>
+</div>

@@ -9,6 +9,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
+    @photo = Photo.new
   end
 
   # GET /events/new
@@ -23,6 +24,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+    @event.creator_id = current_user.id # Set the creator_id to current_user's id
 
     respond_to do |format|
       if @event.save
@@ -66,7 +68,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :start_datetime, :location, :region, :social_media_links, :discord_link, :creator_id)
+      params.require(:event).permit(:title, :description, :start_datetime, :location, :region, :social_media_links, :discord_link, :creator_id,  images: [])
     end
 
     def authenticate_user!

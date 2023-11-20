@@ -1,0 +1,35 @@
+<div
+class="rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark"
+>
+<div class="py-6 px-4 md:px-6 xl:px-7.5">
+  <h4 class="text-xl font-bold  dark:text-white">Unapproved Photos</h4>
+</div>
+
+<div
+  class="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+>
+  <div class="col-span-3 flex items-center dark:text-white">
+    <p class="font-medium">Event Name</p>
+  </div>
+  <div class="col-span-2 hidden items-center sm:flex dark:text-white">
+    <p class="font-medium">Posted by</p>
+  </div>
+  <div class="col-span-1 flex items-center dark:text-white">
+    <p class="font-medium">Date</p>
+  </div>
+  <div class="col-span-1 flex items-center dark:text-white">
+    <p class="font-medium">Action</p>
+  </div>
+  <div class="col-span-1 flex items-center dark:text-white">
+    <p class="font-medium">Up/Down</p>
+  </div>
+</div>
+
+<% if @photos.count > 0 %>
+<% @photos.each do |photo| %>
+<%= render 'photo', photo: photo %>
+    <% end %>
+    <% end %>
+
+    
+</div>

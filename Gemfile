@@ -32,8 +32,8 @@ gem "jbuilder"
 gem 'omniauth'
 gem 'omniauth-discord'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
-
-
+gem 'byebug'
+gem 'google-cloud-storage'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

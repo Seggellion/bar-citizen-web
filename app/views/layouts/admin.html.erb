@@ -1,0 +1,51 @@
+<!-- app/views/layouts/admin.html.erb -->
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <title>Barcitizen</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbo-track': 'reload' %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body class="bg-gray-900 dark:bg-gray-900">
+
+<style>
+.logo-class {
+  height: 50px;
+  width: auto;
+}
+h1{
+    color:white;
+}
+</style>
+
+<div class="flex h-screen w-full overflow-hidden">
+  <!-- Sidebar -->
+  <%= render 'admin/shared/sidebar' %>
+
+  <!-- Content Area -->
+  <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden w-full">
+    <!-- Header -->
+    <%= render 'admin/shared/header' %>
+
+    <!-- Main Content -->
+    <main class="w-full">
+      <%= yield %>
+    </main>
+
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

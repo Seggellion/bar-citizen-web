@@ -25,7 +25,7 @@ class EventParticipationsController < ApplicationController
 
     respond_to do |format|
       if @event_participation.save
-        format.html { redirect_to event_participation_url(@event_participation), notice: "Event participation was successfully created." }
+        format.html { redirect_to event_url(@event_participation.event), notice: "Joined Event" }
         format.json { render :show, status: :created, location: @event_participation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class EventParticipationsController < ApplicationController
     @event_participation.destroy!
 
     respond_to do |format|
-      format.html { redirect_to event_participations_url, notice: "Event participation was successfully destroyed." }
+      format.html { redirect_to event_url(@event_participation.event), notice: "Successfully left event.." }     
       format.json { head :no_content }
     end
   end

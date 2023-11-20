@@ -1,0 +1,55 @@
+<!-- app/views/forum/posts/show.html.erb -->
+
+<div class="bg-gray-900 text-white p-4 min-h-screen">
+  <!-- Post Block -->
+  <div class="bg-gray-800 p-4 rounded mb-6">
+    <div class="grid grid-cols-3 gap-4">
+      <!-- Left Column: Author -->
+      <div class="col-span-1">
+        <h2 class="text-xl font-bold text-blue-400 mb-2">Author</h2>
+        <div class="mb-4"><%= @post.user.username %></div>
+        <div class="mb-2"><img src="<%= @post.user.profile_image %>" alt="Profile Image" class="w-20 h-20 rounded-full"></div>
+        <div class="mb-2">Joined: <%= @post.user.created_at.strftime("%b %d, %Y") %></div>
+        <div class="mb-2">Member #: <%= @post.user.id %></div>
+        <div class="mb-2">Posts: <%= @post.user.total_posts %></div>
+        <div class="mb-2">Location: <%= @post.user.location %></div>
+      </div>
+
+      <!-- Right Column: Message -->
+      <div class="col-span-2">
+        <h2 class="text-xl font-bold text-blue-400 mb-2">Message</h2>
+        <div>Posted: <%= @post.created_at.strftime("%B %d, %Y") %></div>
+        <hr class="my-2 border-gray-600">
+        <div class="mb-2"><strong>Subject:</strong> <%= @post.title %></div>
+        <div><%= simple_format(@post.content) %></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Replies Section -->
+  <% @post.replies.each do |reply| %>
+    <div class="bg-gray-700 p-4 rounded mb-4">
+      <div class="grid grid-cols-3 gap-4">
+        <!-- Left Column: Author -->
+        <div class="col-span-1">
+          <div><img src="<%= reply.user.profile_image %>" alt="Profile Image" class="w-14 h-14 rounded-full"></div>
+          <div class="mb-2"><%= reply.user.username %></div>
+          <div class="text-sm">Joined: <%= reply.user.created_at.strftime("%b %d, %Y") %></div>
+          <div class="text-sm">Posts: <%= reply.user.total_posts %></div>
+        </div>
+
+        <!-- Right Column: Message -->
+        <div class="col-span-2">
+          <div class="text-sm text-gray-400">Replied on: <%= reply.created_at.strftime("%B %d, %Y") %></div>
+          <hr class="my-2 border-gray-600">
+          <div><%= simple_format(reply.content) %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Create Reply Button -->
+  <div class="mt-4">
+    <%= link_to 'Create Reply', new_forum_post_category_post_reply_path(@post_category, @post), class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>

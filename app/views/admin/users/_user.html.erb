@@ -1,0 +1,34 @@
+
+<div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
+<div class="flex items-center gap-3 p-2.5 xl:p-5">
+  <div class="flex-shrink-1">
+    <img src="<%= user.profile_image %>" alt="User" />
+  </div>
+  <p class="hidden font-medium  dark:text-white sm:block">
+    <%= user.username %>
+  </p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= user.karma %>/<%= user.fame %></p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium text-meta-3"><%= user.location %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium dark:text-white"><%= user.created_at %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white"> <%= user.user_type %></p>
+</div>
+
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+<% unless user.username == "Seggellion" %>
+  <p class="font-medium text-meta-5 text-white">Block</p>
+  <% end %>
+</div>
+</div>

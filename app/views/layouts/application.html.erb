@@ -25,14 +25,22 @@ h1{
 }
 </style>
 
-  <header class="justify-center container mx-auto mt-2 px-5 flex">
-  <h1>Bar Citizen Global</h1>
+<% unless request.fullpath.include?('/admin') %>
+<!-- Main Site Header -->
+<header class="justify-center container mx-auto mt-2 px-5 flex">
   <%= link_to root_path do %>
     <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class' %>
   <% end %>
 </header>
-    <main class="justify-center container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+<main class="justify-center container mx-auto mt-28 px-5 flex">
+<%= yield %>
+</main>
+<% else %>
+<main class="flex">
+<%= yield %>
+</main>
+<% end %>
+
+
   </body>
 </html>

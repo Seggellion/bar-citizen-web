@@ -26,6 +26,8 @@ services:
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
     depends_on:
       - db
+    stdin_open: true
+    tty: true
 
 volumes:
   postgres_data: {}

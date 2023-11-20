@@ -1,0 +1,12 @@
+<div class="text-center">
+<%= form_with model: [@event, @event.photos.build], local: true do |form| %>
+
+    <%= form.file_field :image %>
+    <%= form.check_box :published %>
+    <%= form.text_field :category %>
+    <%= form.text_field :region %>
+    <!-- Additional fields as needed -->
+    <%= form.submit "Upload Photo", class: "bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600" %>
+  <% end %>
+</div>
+

@@ -1,6 +1,7 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @event %>
+<p style="color: green; position:absolute;top:0px; background-color:black;"><%= notice %></p>
+
+<%= render 'show_event', event:@event %>
 
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |

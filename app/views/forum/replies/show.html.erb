@@ -1,0 +1,7 @@
+<!-- app/views/forum/replies/show.html.erb -->
+
+<div class="bg-black text-white p-4">
+  <h1 class="text-xl font-bold">Reply by <%= @reply.user.name %></h1>
+  <p><%= simple_format(@reply.content) %></p>
+  <!-- Add more details if needed -->
+</div>

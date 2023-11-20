@@ -1,8 +1,17 @@
-<!-- Example in app/views/posts/index.html.erb -->
-<% @post_categories.each do |category| %>
-  <h3><%= category.name %></h3>
-  <% category.posts.each do |post| %>
-    <p><%= link_to post.title, post_path(post) %></p>
-    <!-- Other post details -->
+<!-- app/views/forum/post_categories/index.html.erb -->
+
+<div class="bg-black text-white">
+  <!-- New Category Button -->
+  <div class="p-4">
+  <%= link_to 'Create New Category', forum_new_category_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+
+
+  </div>
+
+  <!-- Existing Categories -->
+  <% @post_categories.each do |category| %>
+    <div class="p-4 border-b border-gray-800">
+      <h3 class="text-lg font-bold"><%= link_to category.name, forum_post_category_path(category) %></h3>
+    </div>
   <% end %>
-<% end %>
+</div>
