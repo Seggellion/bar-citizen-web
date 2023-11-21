@@ -10,6 +10,10 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
     @photo = Photo.new
+    @current_event = Event.find(params[:id])
+
+    @current_event.increment!(:views_count)
+
   end
 
   # GET /events/new

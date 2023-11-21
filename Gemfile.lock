@@ -154,6 +154,8 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (>= 0.16, < 2.a)
+    graphql (2.1.6)
+      racc (~> 1.4)
     hashie (5.0.0)
     httpclient (2.8.3)
     i18n (1.14.1)
@@ -338,6 +340,7 @@ DEPENDENCIES
   dockerfile-rails (~> 1.5)
   dotenv-rails
   google-cloud-storage
+  graphql
   jbuilder
   jsbundling-rails
   omniauth
