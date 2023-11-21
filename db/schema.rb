@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_20_033526) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_042534) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_033526) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_comments", force: :cascade do |t|
@@ -129,6 +137,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_033526) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "user_badges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "earned_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_user_badges_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_user_badges_on_user_id_and_badge_id", unique: true
+    t.index ["user_id"], name: "index_user_badges_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -145,6 +164,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_033526) do
     t.string "discord_channel"
     t.string "location"
     t.string "rsi_account"
+    t.datetime "last_login"
+    t.string "title"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -156,4 +177,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_033526) do
   add_foreign_key "posts", "post_categories"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
+  add_foreign_key "user_badges", "badges"
+  add_foreign_key "user_badges", "users"
 end

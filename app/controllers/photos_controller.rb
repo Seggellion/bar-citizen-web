@@ -27,6 +27,7 @@ class PhotosController < ApplicationController
     
     #@photo = @event.photos.build(photo_params.except(:image).merge(user: current_user))
     @photo = @event.photos.build(photo_params.merge(user: current_user))
+
     respond_to do |format|
       if @photo.save
         @photo.image.attach(photo_params[:image]) if photo_params[:image].present?
