@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     
     # Ensure that the user is authenticated before showing the dashboard
     redirect_to root_path unless user_signed_in?
-
+current_user.update(last_login: DateTime.now)
     @username = current_user.username
     # Load more user data as needed
   end
