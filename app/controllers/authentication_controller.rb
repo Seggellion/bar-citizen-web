@@ -7,22 +7,23 @@
       token = exchange_code_for_token(code)
       user_info = fetch_user_info(token)
       user = find_or_create_user(user_info)
-  
+      byebug
       # Generate a session token or JWT
-      session_token = generate_session_token(user)
+      #session_token = generate_session_token(user)
+      jwt = generate_jwt(user)
+      render json: { jwt: jwt }
   
       # Send token to Flutter app (consider a secure method to do this)
-      render json: { token: session_token }
+     # render json: { token: session_token }
     end
-
 
     def redirect_to_discord
         client_id = ENV['DISCORD_CLIENT_ID']
-        redirect_uri = 'https://barcitizen.altama.energy/auth/discord/callback'
+        redirect_uri = CGI.escape('https://barcitizen.altama.energy/api/discord/callback')
         scope = 'identify email'
     
-        oauth_url = "https://discord.com/api/oauth2/authorize?client_id=#{client_id}&redirect_uri=#{URI.encode(redirect_uri)}&response_type=code&scope=#{scope}"
-        redirect_to oauth_url
+        oauth_url = "https://discord.com/api/oauth2/authorize?client_id=#{client_id}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}"
+        redirect_to oauth_url, allow_other_host: true
       end
   
     private
@@ -34,7 +35,7 @@
         client_secret: ENV['DISCORD_CLIENT_SECRET'],
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: 'http://your-backend.com/auth/discord/callback'
+        redirect_uri: 'https://barcitizen.altama.energy/api/discord/callback'
       }, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
   
       response.parsed_response['access_token']
@@ -59,10 +60,22 @@
         # Set other user attributes...
       end
     end
+
   
-    def generate_session_token(user)
+    def generate_jwt(user)
       # Generate a session token or JWT
-      # This is highly dependent on your authentication setup (e.g., Devise, JWT)
+      payload = {
+        user_id: user.id,
+        username: user.username,
+        exp: 24.hours.from_now.to_i, # Set an expiration time
+        # ... any other payload data ...
+      }
+  
+      secret = Rails.application.secrets.secret_key_base
+      token = JWT.encode(payload, secret, 'HS256')
+  
+      token
+   
     end
   end
   

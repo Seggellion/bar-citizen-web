@@ -347,6 +347,7 @@ DEPENDENCIES
   graphql
   jbuilder
   jsbundling-rails
+  jwt
   omniauth
   omniauth-discord
   omniauth-rails_csrf_protection (~> 1.0)
