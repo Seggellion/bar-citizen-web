@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  get '/auth/discord', to: 'authentication#redirect_to_discord'
+  get '/auth/redirect_to_discord', to: 'authentication#redirect_to_discord'
   get '/auth/discord/callback', to: 'authentication#discord_callback'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
