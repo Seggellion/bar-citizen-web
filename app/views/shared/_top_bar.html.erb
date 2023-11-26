@@ -1,0 +1,29 @@
+<div class="bg-gray-900 w-full p-2 flex justify-between items-center space-x-4 text-gray-200">
+<div class="text-gray-200">The site for your Star Citizen fan events!</div>
+  <!-- Social Links Here -->
+  <% unless @username %>
+  <%= button_to 'Login with Discord', '/auth/discord', method: :post, class: 'discord-login-button',  data: { turbo: false } %>
+<% end %>
+  <div class="social-links flex">
+  <!-- Instagram Button -->
+  <a href="https://www.instagram.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+      <i class="fa fa-instagram text-black"></i>
+  </a>
+  
+  <!-- Twitter Button -->
+  <a href="https://www.twitter.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+      <i class="fa fa-twitter text-black"></i>
+  </a>
+  
+  <!-- Facebook Button -->
+  <a href="https://www.facebook.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+      <i class="fa fa-facebook-f text-black"></i>
+  </a>
+  
+  <!-- Discord Button -->
+  <a href="https://www.discord.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+      <i class="fa fa-discord text-black"></i>
+  </a>
+  </div>
+
+</div>

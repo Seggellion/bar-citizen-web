@@ -29,14 +29,19 @@
     </div>
 
     <div class="flex flex-col">
-      <%= form.label :location, class: "mb-2 font-semibold" %>
+      <%= form.label :venue_location, class: "mb-2 font-semibold" %>
       <%= form.text_field :location, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
     <div class="flex flex-col">
-      <%= form.label :region, class: "mb-2 font-semibold" %>
-      <%= form.text_field :region, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
-    </div>
+    <%= form.label :city, class: "mb-2 font-semibold" %>
+    <%= form.text_field :city, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
+
+    <div class="flex flex-col">
+    <%= form.label :region_id, class: "mb-2 font-semibold" %>
+    <%= form.collection_select :region_id, Region.all, :id, :name, { prompt: "Select a Region" }, { class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" } %>
+  </div>
 
     <div class="flex flex-col">
       <%= form.label :social_media_links, class: "mb-2 font-semibold" %>
@@ -44,9 +49,9 @@
     </div>
 
     <div class="flex flex-col">
-      <%= form.label :discord_link, class: "mb-2 font-semibold" %>
-      <%= form.text_field :discord_link, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
-    </div>
+    <%= form.label :discord_id, class: "mb-2 font-semibold" %>
+    <%= form.collection_select :discord_id, Discord.all, :id, :server_name, { prompt: "Select a Discord" }, { class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" } %>
+  </div>
 
     <div>
       <%= form.submit "Create Event", class: "mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
@@ -54,8 +59,3 @@
   <% end %>
 
   <br>
-
-  <div>
-    <%= link_to "Back to events", events_path, class: "text-blue-400 hover:text-blue-300" %>
-  </div>
-

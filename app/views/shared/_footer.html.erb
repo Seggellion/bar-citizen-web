@@ -1,0 +1,68 @@
+
+
+<footer class="bg-gray-800 text-white p-4">
+  <div class="text-center p-4">
+    <p>If you can't find answers in our Frequently Asked Questions section, feel free to email us at support@example.com with details. We usually respond within 24 hours!</p>
+  </div>
+  
+  <!-- Footer Blocks Container -->
+  <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
+    
+    <!-- Quick Links Block -->
+    <div class="flex-1 p-2">
+      <h5 class="font-bold">Quick Links</h5>
+      <ul class="mt-2">
+        <li>About</li>
+        <li>FAQs</li>
+        <li>Privacy Policy</li>
+        <li>Refund Policy</li>
+        <!-- More links here -->
+      </ul>
+    </div>
+    
+    <!-- Contact Us Block -->
+    <div class="flex-1 p-2">
+      <h5 class="font-bold">Contact Us</h5>
+      <p class="mt-2">Email: support@example.com</p>
+      <p>Phone: (866) 483-2695</p>
+      <!-- More contact details here -->
+    </div>
+    
+    <!-- Connect With Us Block -->
+    <div class="flex-1 p-2">
+      <h5 class="font-bold">Connect with Us</h5>
+      <div class="social-links flex mt-2">
+      <!-- Instagram Button -->
+      <a href="https://www.instagram.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+          <i class="fa fa-instagram text-black"></i>
+      </a>
+      
+      <!-- Twitter Button -->
+      <a href="https://www.twitter.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+          <i class="fa fa-twitter text-black"></i>
+      </a>
+      
+      <!-- Facebook Button -->
+      <a href="https://www.facebook.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+          <i class="fa fa-facebook-f text-black"></i>
+      </a>
+      
+      <!-- Discord Button -->
+      <a href="https://www.discord.com" class="bg-white p-2 rounded-full hover:bg-gray-300">
+          <i class="fa fa-discord text-black"></i>
+      </a>
+      </div>
+    </div>
+
+    <!-- Corporate Logo Block -->
+    <div class="flex-1 p-2">
+      <%= link_to root_path do %>
+        <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class h-8' %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="text-center p-4">
+    <p>&copy; BarCitizen 2023</p>
+  </div>
+</footer>

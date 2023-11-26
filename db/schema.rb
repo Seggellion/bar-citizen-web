@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_26_024252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,12 +42,35 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "icon"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
   create_table "badges", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "discords", force: :cascade do |t|
+    t.string "server_name"
+    t.string "server_url"
+    t.string "server_icon"
+    t.string "server_description"
+    t.bigint "user_id"
+    t.bigint "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region_id"], name: "index_discords_on_region_id"
+    t.index ["user_id"], name: "index_discords_on_user_id"
   end
 
   create_table "event_comments", force: :cascade do |t|
@@ -58,6 +81,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_event_comments_on_event_id"
     t.index ["user_id"], name: "index_event_comments_on_user_id"
+  end
+
+  create_table "event_managers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_managers_on_event_id"
+    t.index ["user_id"], name: "index_event_managers_on_user_id"
   end
 
   create_table "event_participations", force: :cascade do |t|
@@ -73,13 +105,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
     t.text "description"
     t.datetime "start_datetime"
     t.string "location"
-    t.string "region"
     t.text "social_media_links"
-    t.string "discord_link"
     t.integer "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "views_count", default: 0, null: false
+    t.string "profile_image"
+    t.integer "discord_id"
+    t.integer "region_id"
+    t.string "city"
+    t.string "latlong"
+    t.boolean "featured", default: false, null: false
   end
 
   create_table "photo_comments", force: :cascade do |t|
@@ -114,7 +150,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "region"
+    t.integer "region_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -126,6 +162,23 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
     t.integer "user_id"
     t.boolean "published"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "profile_image"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_regions_on_user_id"
+  end
+
+  create_table "regions_users", id: false, force: :cascade do |t|
+    t.bigint "region_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["region_id"], name: "index_regions_users_on_region_id"
+    t.index ["user_id"], name: "index_regions_users_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -167,15 +220,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_044027) do
     t.string "rsi_account"
     t.datetime "last_login"
     t.string "title"
+    t.boolean "newsletter", default: false, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "users"
+  add_foreign_key "discords", "regions"
+  add_foreign_key "discords", "users"
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"
+  add_foreign_key "event_managers", "events"
+  add_foreign_key "event_managers", "users"
   add_foreign_key "photo_comments", "photos"
   add_foreign_key "photo_comments", "users"
   add_foreign_key "posts", "post_categories"
+  add_foreign_key "regions", "users"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
   add_foreign_key "user_badges", "badges"

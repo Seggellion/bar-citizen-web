@@ -2,7 +2,7 @@
 <p class="mb-4"><strong>Description:</strong> <%= event.description %></p>
 <p class="mb-4"><strong>Start datetime:</strong> <%= event.start_datetime %></p>
 <p class="mb-4"><strong>Location:</strong> <%= event.location %></p>
-<p class="mb-4"><strong>Region:</strong> <%= event.region %></p>
+<p class="mb-4"><strong>Region:</strong> <%= event.region&.name %></p>
 <p class="mb-4"><strong>Social media links:</strong> <%= event.social_media_links %></p>
-<p class="mb-4"><strong>Discord link:</strong> <%= event.discord_link %></p>
+<p class="mb-4"><strong>Discord link:</strong> <%= event.discord&.server_name %></p>
 <p class="mb-4"><strong>Organizer:</strong> <%= event.creator.username %></p>

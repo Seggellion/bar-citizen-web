@@ -10,6 +10,15 @@ class User < ApplicationRecord
   has_many :events, through: :event_participations
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
   has_many :post_categories
+  has_many :discords
+
+  has_many :event_manager_entries, class_name: 'EventManager'
+  has_many :managed_events, through: :event_manager_entries, source: :event
+
+  USER_ADMIN = 0
+  USER_REGULAR = 42
+  ESTABLISHED_ORGANIZER = 20
+  EVENT_ORGANIZER = 30
 
   def event_participation_id_for(event)
     event_participations.find_by(event_id: event.id)&.id

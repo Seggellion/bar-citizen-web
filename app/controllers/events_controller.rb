@@ -70,9 +70,15 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def check_event_manager_permissions
+      unless current_user.event_manager? || current_user.admin?
+        redirect_to root_path, alert: 'You do not have permission to perform this action.'
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :start_datetime, :location, :region, :social_media_links, :discord_link, :creator_id,  images: [])
+      params.require(:event).permit(:title, :description, :start_datetime, :location, :region_id, social_media_links, :discord_id, :creator_id,  images: [])
     end
 
     def authenticate_user!

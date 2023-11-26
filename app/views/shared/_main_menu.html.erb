@@ -1,0 +1,32 @@
+
+
+
+<nav class="bg-gray-800 w-full flex items-center p-2 text-white">
+  <div class="flex-grow">
+  <%= link_to root_path do %>
+    <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class h-8' %>
+<% end %>
+  </div>
+  <div class="flex-grow flex justify-center space-x-4">
+   
+  <%= link_to root_path do %>
+  HOME
+  <% end %>
+  <%= link_to root_path do %>
+  EVENT MAP
+  <% end %>
+  <%= link_to root_path do %>
+  EVENT LIST
+  <% end %>
+  <%= link_to root_path do %>
+  GALLERY
+  <% end %>
+  <%= link_to root_path do %>
+  ABOUT US
+  <% end %>
+
+  </div>
+  <div class="flex-grow flex justify-end">
+    <input type="search" placeholder="Search members" class="p-2 bg-gray-700 text-white">
+  </div>
+</nav>

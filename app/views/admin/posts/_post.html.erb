@@ -1,0 +1,28 @@
+
+<div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
+<div class="flex items-center gap-3 p-2.5 xl:p-5">
+  <div class="flex-shrink-1">
+    <img src="<%= post.user.profile_image %>" alt="User" />
+  </div>
+  <p class="hidden font-medium  dark:text-white sm:block">
+    <%= post.user.username %>
+  </p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= post.title %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium dark:text-white"><%= post.created_at %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white"> <%= post.user.total_posts %></p>
+</div>
+
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white">Approve</p>
+</div>
+</div>

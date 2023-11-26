@@ -9,6 +9,7 @@
     <%= favicon_link_tag 'BarCitizenLogo.png', rel: 'icon', type: 'image/png' %> <!-- For a PNG file -->
 
     <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbo-track': 'reload' %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
@@ -27,21 +28,19 @@ h1{
 </style>
 
 <% unless request.fullpath.include?('/admin') %>
-<!-- Main Site Header -->
-<header class="justify-center container mx-auto mt-2 px-5 flex">
-  <%= link_to root_path do %>
-    <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class' %>
-  <% end %>
-</header>
-<main class="justify-center container mx-auto mt-28 px-5 flex">
-<%= yield %>
-</main>
+  <!-- Main Site Header -->
+  <%= render '/shared/top_bar' %>
+  <%= render '/shared/main_menu' %>
+  <main class="justify-center flex flex-col">
+    <%= yield %>
+  </main>
+  <%= render '/shared/footer' %>
 <% else %>
-<main class="flex">
-<%= yield %>
-</main>
+  <main class="flex">
+    <%= yield %>
+  </main>
 <% end %>
 
-
+   
   </body>
 </html>

@@ -7,11 +7,12 @@ Rails.application.routes.draw do
 
   get '/api/redirect_to_discord', to: 'authentication#redirect_to_discord'
   get '/api/discord/callback', to: 'authentication#discord_callback'
-
+  resources :regions
+  resources :discords
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
 
-  get '/dashboard', to: 'home#dashbocallbackard'
+  get '/dashboard', to: 'home#dashboard'
 
   # Events
  # get '/events/new', to: 'events#new', as: 'new_event'
@@ -20,7 +21,9 @@ Rails.application.routes.draw do
 
  namespace :admin do
   root to: 'dashboard#index'  # Example admin dashboard
-  resources :posts # Example for moderating posts
+  resources :posts 
+  resources :regions
+  resources :discords
   resources :users
   resources :photos
   resources :events # Example for moderating posts

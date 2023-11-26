@@ -1,11 +1,13 @@
 
 
+<%= render 'hero' %>
+<%= render 'secondary_menu' %>
+<%= render 'four_block' %>
+<%= render 'video' %>
+<%= render 'three_block_cta' %>
+<%= render 'newsfeed' %>
 
-
-  <p class="text-white">Please login to access more</p>
-  <%= button_to 'Login with Discord', '/auth/discord', method: :post, class: 'discord-login-button',  data: { turbo: false } %>
-
-
+<%= render 'newsletter' %>
 <!-- Add your own styling for the login button -->
 <style>
   .discord-login-button {

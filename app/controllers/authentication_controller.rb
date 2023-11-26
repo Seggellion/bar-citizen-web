@@ -67,7 +67,7 @@
       payload = {
         user_id: user.id,
         username: user.username,
-        exp: 24.hours.from_now.to_i, # Set an expiration time
+        exp: 72.hours.from_now.to_i, # Set an expiration time
         # ... any other payload data ...
       }
   
