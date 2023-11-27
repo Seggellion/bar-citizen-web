@@ -1,0 +1,61 @@
+<nav class="navbar-wrapper navbar-bottom-fixed base-shadow">
+    <div class="navbar navbar-expand player-header bd-navbar">
+        
+        <div class="d-flex align-items-center">
+            <a href="#" data-toggle="push-menu" class="paper-nav-toggle pp-nav-toggle  paper-nav-toggle-sidenav ml-2 mr-2">
+                <i></i>
+            </a>
+            <a class="navbar-brand d-none d-lg-block" href="/">
+                <div class="d-flex align-items-center s-14 l-s-2 base-orange">
+                    <span>THE BASE</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="d-flex align-items-center d-none d-lg-flex ml-2 mr-2">
+            <a class="btn btn-link d-none d-lg-block" href="/webplayer">
+                <div class="display-currentart"></div>
+            </a>
+            
+            <a class="btn btn-link d-none d-lg-block" href="/webplayer">
+                <span id="display-currentsong-tracker" class="display-currentsong"></span><br>
+                <small class="display-currentalbum"></small>
+            </a>
+        
+        </div>
+        
+        <div class="player-bar mr-auto" id="mediaPlayer" data-auto="false">
+            <div class="row align-items-center grid">
+                <div class="col">
+
+                    <button class="btn btn-link" id="playPause">
+                        <span id="play"><i class="icon-play s-36 text-primary"></i></span>
+                        <span id="pause" style="display: none"><i class="icon-pause s-36 text-primary"></i></span>
+                    </button>
+
+                    <div id="waveform" style="display:none"></div>
+                
+                    <a class=" btn btn-link pls-dl" href="https://social.thebase.sc/thebase.pls" target="_blank" download>
+                        <i class="icon-download"></i>
+                    </a>
+                
+                    <a class="btn" data-toggle="control-sidebar">
+                        <i class="fal fa-comments-alt"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="searchOverlay-wrap">
+                    <a href="#" id="btn-searchOverlay" class="nav-link mr-3 btn--searchOverlay no-ajaxy">
+                        <i class="icon icon-search s-24"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</nav>

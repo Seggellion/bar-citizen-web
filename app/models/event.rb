@@ -8,4 +8,15 @@ class Event < ApplicationRecord
     has_many :event_manager_entries, class_name: 'EventManager'
     has_many :event_managers, through: :event_manager_entries, source: :user
 
+    geocoded_by :address
+    before_save :geocode_address, if: ->(obj){ obj.address.present? and obj.address_changed? }
+
+
+    private
+
+    def geocode_address        
+      # The geocode method is provided by the geocoder gem
+      geocode
+    end  
+
 end

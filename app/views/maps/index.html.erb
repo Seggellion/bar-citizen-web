@@ -1,0 +1,14 @@
+<div data-controller="maps"
+data-maps-key-value="<%= ENV['GOOGLE_MAPS'] %>"
+data-maps-events-value="<%= @events.to_json %>"
+data-maps-discords-value="<%= @discords.to_json %>"
+>
+  <div data-maps-target="map" class="h-screen"></div>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-action="maps#toggleDiscords">
+    Toggle Discords
+    </button>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" data-action="maps#toggleEvents">
+    Toggle Events
+    </button>
+</div>

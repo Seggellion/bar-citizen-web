@@ -10,23 +10,13 @@
 
     <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbo-track': 'reload' %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-
+    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    
   </head>
 
   <body class="bg-black dark:bg-black">
-
-<style>
-.logo-class {
-  height: 50px;
-  width: auto;
-}
-h1{
-    color:white;
-}
-</style>
-
 <% unless request.fullpath.include?('/admin') %>
   <!-- Main Site Header -->
   <%= render '/shared/top_bar' %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/api/redirect_to_discord', to: 'authentication#redirect_to_discord'
   get '/api/discord/callback', to: 'authentication#discord_callback'
+  get '/map', to: 'maps#index'
   resources :regions
   resources :discords
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

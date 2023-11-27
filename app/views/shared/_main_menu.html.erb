@@ -1,32 +1,29 @@
-
-
-
-<nav class="bg-gray-800 w-full flex items-center p-2 text-white">
+<div class="bg-citizen-blue w-full flex items-center p-2 text-white relative" style="min-height: 64px;">
   <div class="flex-grow">
-  <%= link_to root_path do %>
-    <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class h-8' %>
-<% end %>
+    <%= link_to root_path do %>
+      <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class absolute h-auto' %>
+    <% end %>
   </div>
-  <div class="flex-grow flex justify-center space-x-4">
+  <nav id="main_menu"  class="flex-grow flex justify-center space-x-4">
    
   <%= link_to root_path do %>
-  HOME
+    HOME
+  <% end %>
+  <%= link_to map_path do %>
+    EVENT MAP
   <% end %>
   <%= link_to root_path do %>
-  EVENT MAP
+    EVENT LIST
   <% end %>
   <%= link_to root_path do %>
-  EVENT LIST
+    GALLERY
   <% end %>
   <%= link_to root_path do %>
-  GALLERY
-  <% end %>
-  <%= link_to root_path do %>
-  ABOUT US
+    ABOUT US
   <% end %>
 
-  </div>
+  </nav>
   <div class="flex-grow flex justify-end">
-    <input type="search" placeholder="Search members" class="p-2 bg-gray-700 text-white">
+    <input type="search" placeholder="Search Discords" class="p-2 bg-gray-700 text-white">
   </div>
-</nav>
+</div>
