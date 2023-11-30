@@ -42,6 +42,10 @@ button[data-maps-target="regionsToggle"] {
   transition: opacity 0.3s ease;
 }
 
+.mobile-image-height {
+    height: 90vh;
+  }
+
 @media (max-width: 767px) {
     .mobile-image-height {
       height: 50vh;
