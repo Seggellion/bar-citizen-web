@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
     t.float "latitude"
     t.float "longitude"
     t.string "city"
+    t.string "type"
+    t.boolean "published"
     t.index ["region_id"], name: "index_discords_on_region_id"
     t.index ["user_id"], name: "index_discords_on_user_id"
   end
@@ -158,6 +160,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "region_id"
+    t.string "desription"
+    t.string "type"
+    t.boolean "published"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -168,6 +173,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.boolean "published"
+    t.integer "views"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
   end
 
@@ -181,6 +187,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
     t.string "city"
     t.float "latitude"
     t.float "longitude"
+    t.boolean "published"
     t.index ["user_id"], name: "index_regions_on_user_id"
   end
 
@@ -197,6 +204,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published"
     t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
@@ -231,6 +239,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_212924) do
     t.datetime "last_login"
     t.string "title"
     t.boolean "newsletter", default: false, null: false
+    t.boolean "published"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

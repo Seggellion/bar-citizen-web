@@ -1,14 +1,24 @@
 <div data-controller="maps"
 data-maps-key-value="<%= ENV['GOOGLE_MAPS'] %>"
 data-maps-events-value="<%= @events.to_json %>"
-data-maps-discords-value="<%= @discords.to_json %>"
->
-  <div data-maps-target="map" class="h-screen"></div>
+data-maps-regions-value="<%= @regions.to_json %>">
 
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-action="maps#toggleDiscords">
-    Toggle Discords
-    </button>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" data-action="maps#toggleEvents">
-    Toggle Events
-    </button>
+  <!-- Wrapper for map and buttons -->
+  <div class="relative">
+    <!-- Map Container -->
+    <div data-maps-target="map" class="h-screen"></div>
+
+    <!-- Positioning container for buttons -->
+    <div class="absolute bottom-0 left-0 m-4 space-y-2">
+      <!-- Toggle Discords Button with SVG Icon -->
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded-full flex items-center justify-center"  data-maps-target="regionsToggle" data-action="maps#toggleRegions">
+        <%= render '/shared/icons/discord', width:40 %>
+      </button>
+
+      <!-- Toggle Events Button with SVG Icon -->
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded-full flex items-center justify-center"  data-maps-target="eventsToggle" data-action="maps#toggleEvents">
+        <%= render '/shared/icons/barcitizen', width: 40 %>
+      </button>
+    </div>
+  </div>
 </div>

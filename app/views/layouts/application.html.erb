@@ -16,9 +16,10 @@
     
   </head>
 
-  <body class="bg-black dark:bg-black">
+  <body class="bg-black dark:bg-black" style="background-image: url(<%= asset_url('starry_background.png') %>);     background-size: contain; background-position: center;">
 <% unless request.fullpath.include?('/admin') %>
   <!-- Main Site Header -->
+
   <%= render '/shared/top_bar' %>
   <%= render '/shared/main_menu' %>
   <main class="justify-center flex flex-col">

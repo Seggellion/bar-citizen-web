@@ -1,6 +1,6 @@
 
 
-<footer class="bg-gray-800 text-white p-4">
+<footer class="bg-gray-800 text-white mt-8 p-4">
   <div class="text-center p-4">
     <p>If you can't find answers in our Frequently Asked Questions section, feel free to email us at support@example.com with details. We usually respond within 24 hours!</p>
   </div>
@@ -51,7 +51,7 @@
       
       <!-- Discord Button -->
       <a href="https://www.discord.com" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
-      <%= render '/shared/icons/discord' %>
+      <%= render '/shared/icons/discord', width:20 %>
       </a>
 
       </div>
@@ -60,7 +60,7 @@
     <!-- Corporate Logo Block -->
     <div class="flex-1 p-2">
       <%= link_to root_path do %>
-        <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class h-8' %>
+        <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class' %>
     <% end %>
     </div>
   </div>

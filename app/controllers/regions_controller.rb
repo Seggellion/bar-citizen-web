@@ -14,7 +14,7 @@ class RegionsController < ApplicationController
     private
       # Only allow a list of trusted parameters through.
       def region_params
-        params.require(:region).permit(:name, :profile_image)
+        params.require(:region).permit(:name, :profile_image, :city)
       end
   end
   

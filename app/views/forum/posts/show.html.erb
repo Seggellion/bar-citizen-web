@@ -1,7 +1,10 @@
 <!-- app/views/forum/posts/show.html.erb -->
 
-<div class="bg-gray-900 text-white p-4 min-h-screen">
+<div class="bg-gray-900 text-white py-12 px-4 min-h-screen">
   <!-- Post Block -->
+  <%= link_to "Back to #{@post.post_category.name}", forum_post_category_path(@post.post_category) %>
+
+  
   <div class="bg-gray-800 p-4 rounded mb-6">
     <div class="grid grid-cols-3 gap-4">
       <!-- Left Column: Author -->

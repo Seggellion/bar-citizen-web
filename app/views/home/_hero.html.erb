@@ -1,29 +1,31 @@
-<div class="hero flex flex-col md:flex-row w-full relative" style="height: 76vh;">
+<div class="hero flex flex-col md:flex-row w-full relative md:h-auto">
+
   <!-- Left Block with Background Image -->
-  <div class="md:w-4/5 bg-cover bg-no-repeat bg-center p-4 text-left relative" style="background-image: url(<%= asset_url('featured_slides/bar_citizen_slide_1.jpg') %>); background-size: cover;">
+  <div class="w-full md:w-4/5 bg-cover bg-no-repeat bg-center p-4 text-left relative mobile-image-height" style="background-image: url(<%= asset_url('featured_slides/bar_citizen_slide_1.jpg') %>); background-size: cover;">
+
+    <!-- Content inside the image block -->
     <div class="absolute bottom-0 left-0 p-4">
       <h1 class="text-white text-4xl font-bold w-full md:w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
     </div>
     <div class="absolute bottom-0 right-0 p-4">
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
       <p class="text-yellow-300 mb-4"><%= User.count %> MEMBERS AND GROWING!</p>
-      
     </div>
   </div>
 
-
   <!-- Right Block with Events List -->
-  <div class="w-1/5 bg-gray-800 p-4 text-white">
+  <!-- w-1/5 to w-full for mobile, bg-gray-800 and other classes remain the same -->
+  <div class="w-full md:w-1/5 bg-gray-800 p-4 text-white">
     <h2 class="text-xl font-bold">Next events:</h2>
     <div class="mt-4">
-<% @next_events.each do | event| %>
-      <div class="mb-4">
-        <p class="font-semibold"><%= event.title %></p>
-        <p><%= event.start_datetime.strftime("%b %e, %Y %l%p") %></p>
-      </div>
-    <% end %>
-
+      <% @next_events.each do |event| %>
+        <div class="mb-4">
+          <p class="font-semibold"><%= event.title %></p>
+          <p><%= event.start_datetime.strftime("%b %e, %Y %l%p") %></p>
+        </div>
+      <% end %>
     </div>
     <a href="#" class="text-blue-400 hover:text-blue-200">Show all events</a>
   </div>
+
 </div>

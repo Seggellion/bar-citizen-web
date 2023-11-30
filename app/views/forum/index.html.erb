@@ -1,17 +1,78 @@
 <!-- app/views/forum/post_categories/index.html.erb -->
 
-<div class="bg-black text-white">
-  <!-- New Category Button -->
-  <div class="p-4">
-  <%= link_to 'Create New Category', forum_new_category_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+<div class="bg-black p-4">
 
+<!-- Top bar with current time and forum index link -->
+<div class="flex justify-between bg-black text-white px-4 pt-8">
+  <div>The time now is <%= Time.now.strftime('%a %b %d, %Y %l:%M %p') %></div>
+  <div>Bar Citizen Forum Index</div>
+</div>
 
+<!-- Forum table header -->
+<div class="grid grid-cols-12 text-center bg-blue-800 text-white py-2">
+  <div class="col-span-8">Forum</div>
+  <div class="col-span-1">Topics</div>
+  <div class="col-span-1">Posts</div>
+  <div class="col-span-2">Last Posts</div>
+</div>
+
+<!-- Regional Forums Group Name -->
+<div class="bg-gray-900  flex space-between text-white py-2 px-4">
+<div>
+  Regional Forums
   </div>
+  <div>
+  <%= link_to 'Create New Category', forum_new_category_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+</div>
+</div>
 
-  <!-- Existing Categories -->
-  <% @post_categories.each do |category| %>
-    <div class="p-4 border-b border-gray-800">
-      <h3 class="text-lg font-bold"><%= link_to category.name, forum_post_category_path(category) %></h3>
+
+
+<!-- Start of the post categories loop -->
+<% @post_categories.each do |category| %>
+
+    <!-- Each forum entry starts here -->
+    <div class="grid grid-cols-12 bg-blue-900 text-white">
+      <!-- Icon -->
+      <div class="col-span-1 flex justify-center items-center p-2">
+        <!-- Replace 'category.icon' with actual icon display code -->
+       category.icon 
+      </div>
+      <!-- Forum name and description -->
+      <div class="col-span-7 p-2">
+        <p class="text-lg font-bold"><%= link_to category.name, forum_post_category_path(category) %></p>
+        <p class="text-sm text-gray-400"> category.description </p>
+      </div>
+      <!-- Number of topics -->
+      <div class="col-span-1 text-center p-2">
+        <%= category.posts.count %>
+      </div>
+      <!-- Number of posts -->
+      <div class="col-span-1 text-center p-2">
+        <%= category.total_replies %>
+      </div>
+      <!-- Last reply -->
+      <div class="col-span-2 text-center p-2 md:border-l md:border-gray-700">
+        <%= category.last_reply_time %> by <%= category.last_reply_user.username %>
+      </div>
     </div>
-  <% end %>
+    
+  <!-- Each forum entry ends here -->
+<% end %>
+<!-- End of the post categories loop -->
+
+
+<!-- Repeat the individual forum entry for each forum in the group -->
+
+
+<!-- Bar Citizen Forums Group Name -->
+<div class="bg-gray-900  text-white py-2 px-4">
+  Bar Citizen Corporate
+</div>
+
+
+<style>
+  .bg-blue-900 { background-color: #2a4365; } /* This is a Tailwind color, adjust as needed */
+  .bg-blue-800 {background-color : #2c5282;}
+</style>
 </div>

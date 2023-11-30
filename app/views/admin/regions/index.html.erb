@@ -3,6 +3,7 @@
     <h4 class="text-xl font-bold text-gray-900 dark:text-white">Event Regions</h4>
     <%= form_with model: Region.new, url: regions_path, local: true, class: "flex items-center space-x-2" do |form| %>
       <%= form.text_field :name, placeholder: "Region Name", class: "p-2 rounded-lg bg-gray-100 border border-gray-300" %>
+      <%= form.text_field :city, placeholder: "Home City", class: "p-2 rounded-lg bg-gray-100 border border-gray-300" %>
       <%= form.file_field :profile_image, class: "p-2 file:bg-gray-100 file:border file:border-gray-300 file:rounded-lg" %>
       <%= form.submit "Create Region", class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
     <% end %>

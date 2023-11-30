@@ -3,12 +3,73 @@
   <div>
     <% @posts.each do |post| %>
       <div class="p-4 border-b border-gray-800">
-        <p class="text-lg"><%= link_to post.title, forum_post_category_post_path(@category, post) %></p>
+        <p class="text-lg"></p>
         <!-- Other post details -->
       </div>
     <% end %>
   </div>
-  <%= link_to 'Create New Post', new_forum_post_category_post_path(@post_category), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-
-
 </div>
+
+
+<!-- app/views/posts/index.html.erb -->
+<h2 class="text-xl font-bold p-4 text-white"><%= @category.name %></h2>
+<!-- Top Bar -->
+<div class="flex justify-between items-center text-white p-4">
+  <div>
+  <%= link_to 'Create New Post', new_forum_post_category_post_path(@post_category), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    |
+    Mark all posts as read
+  </div>
+</div>
+
+<!-- Posts Header -->
+<div class="grid grid-cols-12 bg-gray-200 text-black py-2 px-4">
+  <div class="col-span-1">Icon</div>
+  <div class="col-span-5">Post</div>
+  <div class="col-span-2">Replies</div>
+  <div class="col-span-1">Author</div>
+  <div class="col-span-1">Views</div>
+  <div class="col-span-2">Last Post</div>
+</div>
+
+<!-- Posts List -->
+<% @posts.each do |post| %>
+  <div class="grid grid-cols-12 items-center py-2 bg-blue-900 px-4 border-b text-white">
+    <!-- Icon Column -->
+    <div class="col-span-1">
+      <%#= image_tag post.icon.url, alt: "Post icon", class: "h-8 w-8" %>icon
+    </div>
+    
+    <!-- Post Title Column -->
+    <div class="col-span-5"><p class="font-bold">
+    <%= link_to post.title, forum_post_category_post_path(@category, post) %>
+     </p>
+    </div>
+    
+    <!-- Reply Count Column -->
+    <div class="col-span-2 text-center">
+      <%= post.replies.count %>
+    </div>
+    
+    <!-- Author Column -->
+    <div class="col-span-1 text-center">
+      <%= post.user.username %>
+    </div>
+    
+    <!-- View Count Column -->
+    <div class="col-span-1 text-center">
+      <%#= post.views %>view_count
+    </div>
+    
+    <!-- Last Reply Column -->
+    <div class="col-span-2 text-center">
+      <%= post.last_reply.created_at.strftime("%a, %b %d, %Y %l:%M %p") %> by <%= post.last_reply.user.username %>
+    </div>
+  </div>
+<% end %>
+
+
+<style>
+  .bg-blue-900 { background-color: #2a4365; } /* This is a Tailwind color, adjust as needed */
+  .bg-blue-800 {background-color : #2c5282;}
+</style>
