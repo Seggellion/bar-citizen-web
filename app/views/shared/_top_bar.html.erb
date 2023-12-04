@@ -1,7 +1,8 @@
 <div class="bg-gray-900 w-full p-2 flex justify-between items-center space-x-4 text-gray-200">
 <div class="text-gray-200"></div>
   <!-- Social Links Here -->
-  <% unless @username %>
+ 
+  <% unless current_user %>
     <%= button_to 'Login with Discord', '/auth/discord', method: :post, class: 'discord-login-button',  data: { turbo: false } %>
   <% end %>
 

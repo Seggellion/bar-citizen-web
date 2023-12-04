@@ -20,14 +20,71 @@ Rails.application.routes.draw do
  # get '/events', to: 'events#index', as: 'find_event'
  # post '/events', to: 'events#create'
 
- namespace :admin do
-  root to: 'dashboard#index'  # Example admin dashboard
-  resources :posts 
-  resources :regions
-  resources :discords
-  resources :users
-  resources :photos
-  resources :events # Example for moderating posts
+ #post '/admin/events/:id/publish', to: 'admin#publish_event', as: 'publish_event'
+ #post '/admin/events/:id/trash', to: 'admin#trash_event', as: 'trash_event'
+
+ namespace :api do
+  resources :regions, only: [:index], defaults: { format: :json }
+  resources :events, only: [:index], defaults: { format: :json }
+  # other API routes...
+end
+
+  namespace :admin do
+    root to: 'dashboard#index'  # Example admin dashboard
+    get '/calendar', to: 'calendar#index'
+
+    resources :events do
+      collection do
+        get 'all', to: 'events#all'  # Adding this line
+      end
+      member do
+        post 'publish'
+        post 'trash'
+      end
+    end
+
+    resources :regions do
+      member do
+        post 'publish'
+        post 'trash'
+      end
+    end
+
+    resources :posts do
+      member do
+        post 'trash'
+      end
+    end
+
+    resources :replies do
+      member do
+        post 'trash'
+      end
+    end
+
+    resources :discords do
+      member do
+        post 'publish'
+        post 'unpublish'
+        post 'trash'
+      end
+    end
+
+    resources :users do
+      member do
+        post 'publish'
+        post 'unpublish'
+        post 'trash'
+      end
+    end
+
+    resources :photos do
+      member do
+        post 'publish'
+        post 'unpublish'
+        post 'trash'
+      end
+    end
   # ... other admin resources ...
   end
 

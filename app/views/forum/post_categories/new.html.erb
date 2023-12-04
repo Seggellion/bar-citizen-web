@@ -1,16 +1,31 @@
 <!-- app/views/forum/post_categories/new.html.erb -->
 
-<div class="bg-black text-white p-4">
+<div class="bg-black text-white mx-4 p-4" data-controller="post-category">
   <h1 class="text-xl font-bold mb-4">Create New Post Category</h1>
   
   <%= form_with(model: [:forum, @post_category], local: true) do |form| %>
-    <div class="mb-4">
-      <%= form.label :name, class: "block text-gray-300 text-sm font-bold mb-2" %>
-      <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-black bg-gray-100 leading-tight focus:outline-none focus:shadow-outline" %>
-      </div>
 
+    <div class="mb-4">
+      <%= form.text_field :name, required: true, placeholder: 'Name', class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+
+
+    <div class="mb-4">
+      <%= form.select :category_type, ['Other', 'BarCitizen', 'Region', 'Star Citizen', 'Private'], {prompt: "Select Category Type"}, {class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white", data: { action: "change->post-category#toggleRegionSelector" }} %>
+    </div>
+  
+    <div data-post-category-target="regionSelector" style="display: none;" class="mb-4">
+      <%= form.collection_select :region_id, Region.all, :id, :name, { prompt: "Select Region" }, { class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" } %>
+    </div>
+  
+
+    <div class="mb-4">
+      <%= form.text_area :description, required: true, placeholder: 'Description', class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    </div>
+  
     <div>
-      <%= form.submit "Create Category", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= form.submit class: "p-2 rounded-lg bg-gray-500 border border-gray-600 text-white" %>
     </div>
   <% end %>
+  
 </div>

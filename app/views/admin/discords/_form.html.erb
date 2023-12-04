@@ -1,0 +1,33 @@
+<!-- Form Container -->
+<div class="flex-grow">
+<%= form_with model: Discord.new, url: admin_discords_path, local: true, class: "flex flex-col px-2 space-y-4", data: { controller: "discordable" } do |form| %>
+    
+    <!-- Text Input Fields Row -->
+    <div class="flex space-x-2 my-0">
+      <%= form.text_field :server_name, placeholder: "Server Name", class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white flex-grow", required: true %>
+      <%= form.text_field :server_url, placeholder: "Server URL", class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white flex-grow", required: true %>
+    </div>
+    
+
+    <!-- File Upload Row -->
+    <div class="flex items-center space-x-2 my-0"  id="discordable_selector">
+   
+    <%= form.select :discordable_type, [["Region", "Region"], ["Event", "Event"]], { include_blank: "Select type" }, { required: true, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600", data: { discordable_target: "type", action: "change->discordable#updateSelector" } } %>
+
+        <%#= form.collection_select :region_id, Region.all, :id, :name, { prompt: "Select Region" }, { class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600" } %>
+
+        <div class="flex items-center space-x-2 my-0" data-discordable-target="selector">
+
+        </div>
+        
+        <%= form.select :user_id, @users.map { |user| [user.username, user.id] }, { selected: current_user.id }, { class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600" } %>
+    </div>
+
+</div>
+
+    <!-- Submit Button -->
+    <div>
+    <%= form.submit "Create Discord", class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
+    </div>
+<% end %>
+</div>

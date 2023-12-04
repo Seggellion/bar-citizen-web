@@ -2,27 +2,56 @@
 <div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
 <div class="flex items-center gap-3 p-2.5 xl:p-5">
   <div class="flex-shrink-1">
-    IMG
   </div>
   <p class="hidden font-medium  dark:text-white sm:block">
-    <%= discord.user.username %>
+    <%= discord.server_name %>
   </p>
 </div>
 
 <div class="flex items-center justify-center p-2.5 xl:p-5">
-  <p class="font-medium  dark:text-white"><%= discord.server_name %></p>
+  <p class="font-medium  dark:text-white"><%= discord.server_description %></p>
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium dark:text-white"><%= discord.region.name %></p>
+<% if discord.discordable %>
+<p class="font-medium dark:text-white">
+  <% if discord.discordable.is_a?(Region) %>
+    <%= discord.discordable.name %>
+  <% elsif discord.discordable.is_a?(Event) %>
+    <%= discord.discordable.title %>
+  <% else %>
+    <!-- Handle the case where discord.discordable is nil or another unexpected type -->
+    No associated region or event.
+  <% end %>
+</p>
+
+<% else %>
+<p class="font-medium dark:text-white">Discord not related</p>
+<% end %>
+  
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-<p class="font-medium dark:text-white"><%= discord.created_at %></p>
+<p class="font-medium dark:text-white"><%= discord.user.username %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+<p class="font-medium dark:text-white"><%= discord.created_at.strftime('%a %b %d, %Y %l:%M %p') %></p>
 </div>
 
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium text-meta-5 text-white">Approve</p>
+<div class="hidden items-center flex-col justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white">
+  <% unless discord.published %>
+  <%= button_to 'Publish', publish_admin_discord_path(discord), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+
+  <%= button_to 'Trash', trash_admin_discord_path(discord), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+<% else %>
+<%= button_to 'Unpublish', unpublish_admin_discord_path(discord), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+
+  <% end %>
+  </p>
+</div>
 </div>
 </div>

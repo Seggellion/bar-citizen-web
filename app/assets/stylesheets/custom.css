@@ -14,6 +14,10 @@ svg.citizen-grey{
     background-color:  var(--citizen-blue);
 }
 
+.bg-citizen-blue-highlight{
+    background-color:  var(--citizen-blue-highlight);
+}
+
 footer .social-links a{
     padding: 10px;
 }

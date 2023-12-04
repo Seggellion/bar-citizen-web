@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,15 +66,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.string "server_icon"
     t.string "server_description"
     t.bigint "user_id"
-    t.bigint "region_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
     t.string "city"
-    t.string "type"
     t.boolean "published"
-    t.index ["region_id"], name: "index_discords_on_region_id"
+    t.boolean "trashed"
+    t.integer "action_id"
+    t.integer "discord_type"
+    t.string "discordable_type"
+    t.bigint "discordable_id"
+    t.index ["discordable_type", "discordable_id"], name: "index_discords_on_discordable"
     t.index ["user_id"], name: "index_discords_on_user_id"
   end
 
@@ -115,7 +118,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.datetime "updated_at", null: false
     t.integer "views_count", default: 0, null: false
     t.string "profile_image"
-    t.integer "discord_id"
     t.integer "region_id"
     t.string "city"
     t.boolean "featured", default: false, null: false
@@ -125,6 +127,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.string "twitter"
     t.string "tiktok"
     t.string "instagram"
+    t.boolean "published"
+    t.boolean "trashed"
+    t.integer "action_id"
   end
 
   create_table "photo_comments", force: :cascade do |t|
@@ -135,6 +140,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.bigint "photo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published"
+    t.boolean "trashed"
+    t.integer "action_id"
     t.index ["photo_id"], name: "index_photo_comments_on_photo_id"
     t.index ["user_id"], name: "index_photo_comments_on_user_id"
   end
@@ -152,6 +160,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.string "categories"
     t.boolean "published"
     t.string "title"
+    t.boolean "trashed"
+    t.integer "action_id"
   end
 
   create_table "post_categories", force: :cascade do |t|
@@ -160,9 +170,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "region_id"
-    t.string "desription"
-    t.string "type"
+    t.string "description"
+    t.string "category_type"
     t.boolean "published"
+    t.boolean "trashed"
+    t.integer "action_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -174,6 +186,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.integer "user_id"
     t.boolean "published"
     t.integer "views"
+    t.boolean "trashed"
+    t.integer "action_id"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
   end
 
@@ -188,6 +202,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.float "latitude"
     t.float "longitude"
     t.boolean "published"
+    t.boolean "trashed"
+    t.integer "action_id"
     t.index ["user_id"], name: "index_regions_on_user_id"
   end
 
@@ -205,6 +221,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "published"
+    t.boolean "trashed"
+    t.integer "action_id"
     t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
@@ -226,8 +244,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.integer "user_type"
     t.string "discord_id"
     t.string "bio"
-    t.integer "karma"
-    t.integer "fame"
+    t.integer "karma", default: 0
+    t.integer "fame", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profile_image"
@@ -240,12 +258,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_070837) do
     t.string "title"
     t.boolean "newsletter", default: false, null: false
     t.boolean "published"
+    t.boolean "trashed"
+    t.integer "action_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
-  add_foreign_key "discords", "regions"
   add_foreign_key "discords", "users"
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"

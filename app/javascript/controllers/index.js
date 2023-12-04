@@ -4,8 +4,14 @@
 
 import { application } from "./application"
 
+import DiscordableController from "./discordable_controller"
+application.register("discordable", DiscordableController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import MapsController from "./maps_controller"
 application.register("maps", MapsController)
+
+import PostCategoryController from "./post_category_controller"
+application.register("post-category", PostCategoryController)

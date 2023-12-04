@@ -3,15 +3,24 @@
   <!-- Left Block with Background Image -->
   <div class="w-full md:w-4/5 bg-cover bg-no-repeat bg-center p-4 text-left relative mobile-image-height" style="background-image: url(<%= asset_url('featured_slides/bar_citizen_slide_1.jpg') %>); background-size: cover;">
 
-    <!-- Content inside the image block -->
-    <div class="absolute bottom-0 left-0 p-4">
-      <h1 class="text-white text-4xl font-bold w-full md:w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
-    </div>
-    <div class="absolute bottom-0 right-0 p-4">
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
-      <p class="text-yellow-300 mb-4"><%= User.count %> MEMBERS AND GROWING!</p>
-    </div>
+  <!-- Content inside the image block for desktop -->
+  <div class="hidden md:block md:absolute bottom-0 left-0 p-4">
+    <h1 class="text-white text-4xl font-bold w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
   </div>
+  <div class="hidden md:block md:absolute bottom-0 right-0 p-4">
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
+    <p class="text-yellow-300 mb-4"><%= User.count %> MEMBERS AND GROWING!</p>
+  </div>
+
+  <!-- Content inside the image block for mobile -->
+  <div class="md:hidden p-4 absolute bottom-0 w-full text-center">
+    <h1 class="text-white text-4xl font-bold mb-4">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full mb-4">ATTEND EVENT</button>
+    <p class="text-yellow-300"><%= User.count %> MEMBERS AND GROWING!</p>
+  </div>
+</div>
+
+
 
   <!-- Right Block with Events List -->
   <!-- w-1/5 to w-full for mobile, bg-gray-800 and other classes remain the same -->

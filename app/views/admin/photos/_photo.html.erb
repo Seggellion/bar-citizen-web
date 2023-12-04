@@ -7,7 +7,7 @@
       <%= image_tag photo.image, class: "h-full w-auto object-cover object-center" %>
       </div>
       <p class="text-sm font-medium  dark:text-white">
-        <%= photo.event.title %>
+        <%= photo.event&.title %>
       </p>
     </div>
   </div>
@@ -18,13 +18,26 @@
   </div>
   <div class="col-span-1 flex items-center">
     <p class="text-sm font-medium  dark:text-white">
-    <%= photo.created_at %>
+    <%= photo.created_at.strftime('%a %b %d, %Y %l:%M %p') %>
     </p>
   </div>
-  <div class="col-span-1 flex items-center">
-    <p class="text-sm font-medium  dark:text-white">Approve</p>
-  </div>
+
+
   <div class="col-span-1 flex items-center dark:text-white">
-    <p class="text-sm font-medium text-meta-3"><%= photo.upvotes %> / <%= photo.downvotes %></p>
+  <p class="text-sm font-medium text-meta-3"><%= photo.upvotes %> / <%= photo.downvotes %></p>
+</div>
+
+  <div class="hidden items-center flex-col justify-center p-2.5 sm:flex xl:p-5">
+    <p class="text-sm font-medium  dark:text-white">
+    
+    <% unless photo.published %>
+      <%= button_to 'Publish', publish_admin_discord_path(photo), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= button_to 'Trash', trash_admin_discord_path(photo), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+    <% else %>
+      <%= button_to 'Unpublish', unpublish_admin_discord_path(photo), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <% end %>
+
+    </p>
   </div>
+
 </div>

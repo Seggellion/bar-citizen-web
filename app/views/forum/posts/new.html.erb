@@ -1,6 +1,6 @@
 <!-- app/views/forum/posts/new.html.erb -->
 
-<div class="bg-black text-white p-4">
+<div class="bg-black text-white p-4 mx-4">
   <h1 class="text-xl font-bold">New Post in <%= @post_category.name %></h1>
   <%= form_with(model: [@post_category, @post], url: forum_post_category_posts_path(@post_category), local: true) do |form| %>
 

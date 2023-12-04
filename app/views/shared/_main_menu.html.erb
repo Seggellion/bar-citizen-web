@@ -4,25 +4,43 @@
       <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class absolute h-auto' %>
     <% end %>
   </div>
-  <nav id="main_menu"  class="flex-grow flex justify-center space-x-4">
-   
-  <%= link_to root_path do %>
-    HOME
-  <% end %>
-  <%= link_to map_path do %>
-    EVENT MAP
-  <% end %>
-  <%= link_to root_path do %>
-    EVENT LIST
-  <% end %>
-  <%= link_to root_path do %>
-    GALLERY
-  <% end %>
-  <%= link_to root_path do %>
-    ABOUT US
-  <% end %>
-
+  <!-- Hamburger Button for Mobile -->
+  <div class="md:hidden flex items-center">
+    <button id="mobile-menu-button" class="text-white focus:outline-none focus:shadow-outline" onclick="document.getElementById('mobile-menu').classList.toggle('hidden');">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden">
+    <nav class="flex flex-col items-center space-y-2 mt-2">
+      <% if current_user && current_user.user_type < 69 %>
+      <%= link_to 'DASHBOARD', dashboard_path, class: "text-white" %>
+      <% else %>
+      <%= link_to 'HOME', root_path, class: "text-white" %>
+      <% end %>
+  
+      <%= link_to 'EVENT MAP', map_path, class: "text-white" %>
+      <%= link_to 'EVENT LIST', events_path, class: "text-white" %>
+      <%= link_to 'GALLERY', root_path, class: "text-white" %>
+      <%= link_to 'ABOUT US', root_path, class: "text-white" %>
+    </nav>
+  </div>
+  
+  <!-- Main Menu for Desktop -->
+  <nav id="main_menu" class="hidden md:flex flex-grow justify-center space-x-4">
+    <% if current_user && current_user.user_type < 69 %>
+    <%= link_to 'DASHBOARD', dashboard_path %>
+    <% else %>
+    <%= link_to 'HOME', root_path %>
+    <% end %>
+  
+    <%= link_to 'EVENT MAP', map_path %>
+    <%= link_to 'EVENT LIST', events_path %>
+    <%= link_to 'GALLERY', root_path %>
+    <%= link_to 'ABOUT US', root_path %>
   </nav>
+  
   <div class="hidden md:flex-grow md:flex justify-end">
     <input type="search" placeholder="Search Discords" class="p-2 bg-gray-700 text-white">
   </div>

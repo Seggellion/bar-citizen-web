@@ -11,7 +11,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 <!-- Left Column -->
                 <div>
-                    <p class="mb-4"><strong>Start datetime:</strong> <%= event.start_datetime %></p>
+                    <p class="mb-4"><strong>Start datetime:</strong> <%= event.start_datetime.strftime('%a %b %d, %Y %l:%M %p') %></p>
                     <p class="mb-4"><strong>Location:</strong> <%= event.address %></p>
                     <p class="mb-4"><strong>Region:</strong> <%= event.region.name %></p>
                 </div>
@@ -19,7 +19,9 @@
                 <!-- Right Column -->
                 <div>
                     <p class="mb-4"><strong>Social media links:</strong> <%= event.twitter %></p>
+                    <% if event.discord %>
                     <p class="mb-4"><strong>Discord link:</strong> <%= event.discord.server_name %></p>
+                    <% end %>
                     <p class="mb-4"><strong>Organizer:</strong> <%= event.creator.username %></p>
                 </div>
             </div>
@@ -31,7 +33,7 @@
                     <%= button_to 'Leave Event', event_event_participation_path(@event, current_user.event_participation_id_for(@event)), method: :delete, class: 'bg-red-500 text-white font-bold py-2 px-4 rounded' %>
                 <% else %>
                     
-                    <%= button_to 'Join Event', event_event_participations_path(@event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @event.id } }, class: 'bg-blue-500 text-white font-bold py-2 px-4 rounded' %>
+                    <%= button_to 'Join Event', event_event_participations_path(@event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @event.id } }, class: 'text-white font-bold py-2 px-4 rounded' %>
 
                 <% end %>
             </div>

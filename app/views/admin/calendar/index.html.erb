@@ -1,0 +1,33 @@
+<% first_day_of_month = @current_date.beginning_of_month %>
+<% last_day_of_month = @current_date.end_of_month %>
+<div class="flex flex-col max-w-4xl mx-auto my-8 p-5 border rounded-lg shadow-lg text-white">
+
+    <!-- Calendar Header -->
+    <div class="flex justify-between items-center mb-4">
+        <button class="p-2 border rounded text-sm">Previous</button>
+        <span class="text-lg font-semibold"><%= @current_date.strftime("%B") %></span>
+        <button class="p-2 border rounded text-sm">Next</button>
+    </div>
+
+    <!-- Days of the Week Header -->
+    <div class="grid grid-cols-7 gap-4 mb-4">
+        <div class="text-center font-medium">Sun</div>
+        <div class="text-center font-medium">Mon</div>
+        <div class="text-center font-medium">Tue</div>
+        <div class="text-center font-medium">Wed</div>
+        <div class="text-center font-medium">Thu</div>
+        <div class="text-center font-medium">Fri</div>
+        <div class="text-center font-medium">Sat</div>
+    </div>
+
+    <!-- Dates of the Month -->
+    <div class="grid grid-cols-7 gap-4">
+        <!-- Repeat for each date, adjusting for start of the month -->
+        <% (first_day_of_month..last_day_of_month).each do |day| %>
+            <div class="border p-4 text-center">
+                <%= day.day %> <!-- Displaying the day of the month -->
+            </div>
+        <% end %>
+    </div>
+
+</div>

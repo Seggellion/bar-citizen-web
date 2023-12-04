@@ -1,6 +1,5 @@
 <aside
-  :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
-  class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-boxdark text-white duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
+  class=" left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-boxdark text-white duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
   @click.outside="sidebarToggle = false"
 >
   <!-- SIDEBAR HEADER -->
@@ -118,12 +117,8 @@
 
           <!-- Menu Item Calendar -->
           <li>
-            <a
-            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium hover:bg-gray-700 hover:text-white duration-300 ease-in-out"
-                href="calendar.html"
-              @click="selected = (selected === 'Calendar' ? '':'Calendar')"
-              :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Calendar') && (page === 'calendar') }"
-            >
+          <%= link_to admin_calendar_path, class: 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium hover:bg-gray-700 hover:text-white duration-300 ease-in-out' do %>
+
               <svg
                 class="fill-current"
                 width="18"
@@ -139,7 +134,7 @@
               </svg>
 
               Calendar
-            </a>
+            <% end %>
           </li>
           <!-- Menu Item Calendar -->
 

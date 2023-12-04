@@ -1,8 +1,42 @@
-<h2 class="text-xl font-semibold mb-2"><%= event.title %></h2>
-<p class="mb-4"><strong>Description:</strong> <%= event.description %></p>
-<p class="mb-4"><strong>Start datetime:</strong> <%= event.start_datetime %></p>
-<p class="mb-4"><strong>Location:</strong> <%= event.address %></p>
-<p class="mb-4"><strong>Region:</strong> <%= event.region&.name %></p>
-<p class="mb-4"><strong>Social media links:</strong> <%= event.twitter %></p>
-<p class="mb-4"><strong>Discord link:</strong> <%= event.discord&.server_name %></p>
-<p class="mb-4"><strong>Organizer:</strong> <%= event.creator.username %></p>
+
+
+
+  <!-- Event Card -->
+  <div class="max-w-4xl mx-auto bg-gray-800 rounded-lg border border-gray-700 p-4">
+    <!-- First Row -->
+    <div class="flex justify-between items-center mb-4 px-2">
+      <div>
+        <h2 class="text-xl font-bold">Title: <%= event.title %></h2>
+        <p class="text-green-400">Event Status: <%= event.status %></p>
+      </div>
+      <div class="flex flex-col">
+        <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2  w-32">Region Info</button>
+        <a href="<%= event.discord&.server_url.presence || 'javascript:void(0);' %>" target="_blank"
+         class="bg-blue-900 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded text-center w-32">
+        Discord Info
+      </a>
+    </div>
+    </div>
+    <!-- Second Row -->
+    <div class="border border-gray-700 rounded-lg p-4">
+      <div class="flex flex-wrap md:flex-nowrap">
+        <!-- Image -->
+        <div class="w-full md:w-4/12 mb-4 md:mb-0">
+          <img src="path_to_image" alt="Event Image" class="w-full h-auto rounded-lg">
+        </div>
+        <!-- Details -->
+        <div class="w-full md:w-6/12 mb-4 md:mb-0 md:px-4">
+          <p><strong>Where:</strong> <%= event.address %></p>
+          <p><strong>Region:</strong><%= event.region&.name %></p>
+          <p><strong>Starts:</strong> <%= event.start_datetime.strftime('%a %b %d, %Y %l:%M %p') %></p>
+          <p><strong>Ends:</strong> End Time</p>
+          <p><strong>Cost:</strong> Free</p>
+        </div>
+        <!-- Action Buttons -->
+        <div class="w-full md:w-2/12 flex flex-col items-end">
+          <%= link_to 'Join Event', event_path(event), class:"bg-citizen-blue-highlight text-center hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2  w-32"%>
+          <button class="bg-blue-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded  w-32">Share Event</button>
+        </div>
+      </div>
+    </div>
+  </div>

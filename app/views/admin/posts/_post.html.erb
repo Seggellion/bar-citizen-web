@@ -12,17 +12,21 @@
 <div class="flex items-center justify-center p-2.5 xl:p-5">
   <p class="font-medium  dark:text-white"><%= post.title %></p>
 </div>
-
-<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium dark:text-white"><%= post.created_at %></p>
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= post.post_category.name %></p>
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium text-meta-5 text-white"> <%= post.user.total_posts %></p>
+  <p class="font-medium text-meta-5 text-white"> <%= post.replies.count %></p>
 </div>
 
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium dark:text-white"><%= post.created_at.strftime('%a %b %d, %Y %l:%M %p') %></p>
+</div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium text-meta-5 text-white">Approve</p>
+<p class="font-medium text-meta-5 text-white">
+  <%= button_to 'Trash', trash_admin_post_path(post), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+</p>
 </div>
 </div>

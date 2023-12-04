@@ -18,17 +18,17 @@
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium dark:text-white"><%= user.created_at %></p>
+  <p class="font-medium dark:text-white"><%= user.last_login.strftime('%a %b %d, %Y %l:%M %p')  %></p>
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium text-meta-5 text-white"> <%= user.user_type %></p>
+  <p class="font-medium text-meta-5 text-white"> <%= user.user_level %></p>
 </div>
 
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-<% unless user.username == "Seggellion" %>
-  <p class="font-medium text-meta-5 text-white">Block</p>
-  <% end %>
+<p class="font-medium text-meta-5 text-white">
+  <%= button_to 'Trash', trash_admin_user_path(user), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+</p>
 </div>
 </div>

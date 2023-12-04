@@ -1,5 +1,5 @@
 
-<header class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
+<header class="sticky top-0 z-999 flex w-full bg-black drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
     <div class="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
     <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
       <!-- Hamburger Toggle BTN -->
@@ -28,10 +28,6 @@
           </span>
         </span>
       </button>
-      <!-- Hamburger Toggle BTN -->
-      <a class="block flex-shrink-0 lg:hidden" href="index.html">
-        <img src="./images/logo/logo-icon.svg" alt="Logo" />
-      </a>
     </div>
     <div class="hidden sm:block">
       <form action="https://formbold.com/s/unique_form_id" method="POST">
@@ -262,7 +258,7 @@
       <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
         <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
           <span class="hidden text-right lg:block">
-            <span class="block text-sm font-medium text-black dark:text-white">Thomas Anree</span>
+            <span class="block text-sm font-medium text-black dark:text-white"><%= @current_user.username %></span>
             <span class="block text-xs font-medium">Event Organizer</span>
           </span>
 

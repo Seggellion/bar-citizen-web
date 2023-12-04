@@ -1,31 +1,33 @@
 <div class="rounded-sm border border-gray-300 shadow-md dark:border-gray-700 dark:bg-gray-800">
-  <div class="py-6 px-4 md:px-6 xl:px-7.5 flex justify-between">
-    <h4 class="text-xl font-bold text-gray-900 dark:text-white">Event Regions</h4>
-    <%= form_with model: Region.new, url: regions_path, local: true, class: "flex items-center space-x-2" do |form| %>
-      <%= form.text_field :name, placeholder: "Region Name", class: "p-2 rounded-lg bg-gray-100 border border-gray-300" %>
-      <%= form.text_field :city, placeholder: "Home City", class: "p-2 rounded-lg bg-gray-100 border border-gray-300" %>
-      <%= form.file_field :profile_image, class: "p-2 file:bg-gray-100 file:border file:border-gray-300 file:rounded-lg" %>
-      <%= form.submit "Create Region", class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
-    <% end %>
-    
+<div class="px-2 md:px-6 xl:px-7.5 flex items-center justify-between">
+  
+  <!-- Header Text -->
+  <h4 class="text-xl font-bold text-gray-900 dark:text-white">Event Regions</h4>
+  
+ <%= render 'form' %>
+
+
+  
+
+  <div class="grid grid-cols-6 rounded-sm bg-gray-900 dark:bg-gray-900 sm:grid-cols-6">
+  <div class="p-2.5 text-center xl:p-5">
   </div>
 
-  <div class="grid grid-cols-3 rounded-sm bg-gray-900 dark:bg-gray-900 sm:grid-cols-6">
+  <div class="p-2.5 text-center xl:p-5">
+  <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Name</h5>
+  </div>
+
     <div class="p-2.5 xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Creator</h5>
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Administrator</h5>
     </div>
+
     <div class="p-2.5 text-center xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Name</h5>
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">City</h5>
     </div>
-    <div class="p-2.5 text-center xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Region</h5>
+    <div class="p-2.5 text-center sm:block xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Created</h5>
     </div>
-    <div class="hidden p-2.5 text-center sm:block xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Date</h5>
-    </div>
-    <div class="hidden p-2.5 text-center sm:block xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Creator Evts</h5>
-    </div>
+
     <div class="hidden p-2.5 text-center sm:block xl:p-5">
     <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Action</h5>
   </div>

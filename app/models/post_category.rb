@@ -1,5 +1,7 @@
 class PostCategory < ApplicationRecord
     has_many :posts
+    validates :name, presence: true
+    validates :user_id, presence: true
 
     def total_replies
       # This will sum up all replies for posts in this category.

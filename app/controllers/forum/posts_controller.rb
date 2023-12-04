@@ -37,10 +37,13 @@ class PostsController < ApplicationController
       redirect_to posts_url, notice: 'Post was successfully destroyed.'
     end
   
-
     def create
       @post = @post_category.posts.new(post_params)
+
+      @post.update(user_id: current_user.id)
+
       if @post.save
+        Activity.create(name: "New Post created", description: "post-id_#{@post.id}", user_id: current_user.id)
         redirect_to forum_post_category_path(@post_category), notice: 'Post was successfully created.'
       else
         render :new
@@ -53,8 +56,8 @@ class PostsController < ApplicationController
       @post_category = PostCategory.find(params[:post_category_id])
     end
 
-      def post_params
-        params.require(:post).permit(:title, :content)
-      end
+    def post_params
+      params.require(:post).permit(:title, :content, :user_id)
+    end
   end
 end

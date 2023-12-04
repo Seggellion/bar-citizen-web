@@ -19,6 +19,7 @@ class User < ApplicationRecord
   USER_REGULAR = 42
   ESTABLISHED_ORGANIZER = 20
   EVENT_ORGANIZER = 30
+  TRASH = 69
 
   def event_participation_id_for(event)
     event_participations.find_by(event_id: event.id)&.id
@@ -30,6 +31,23 @@ class User < ApplicationRecord
 
   def total_posts
     Post.where(user_id: self.id).count
+  end
+
+  def user_level
+    case user_type
+    when USER_ADMIN
+      'Admin'
+    when USER_REGULAR
+      'Regular User'
+    when ESTABLISHED_ORGANIZER
+      'Established Organizer'
+    when EVENT_ORGANIZER
+      'Event Organizer'
+    when TRASH
+      'Trash'
+    else
+      'Unknown'
+    end
   end
 
     def participating_in?(event)

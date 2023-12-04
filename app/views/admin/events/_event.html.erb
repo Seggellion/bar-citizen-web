@@ -1,32 +1,45 @@
 
 <div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
-<div class="flex items-center gap-3 p-2.5 xl:p-5">
-  <div class="flex-shrink-1">
-    <img src="<%= event.creator.profile_image %>" alt="User" />
+<div class="flex items-center gap-3 p-2.5 xl:p-5 flex-col">
+  <div class="flex-shrink-4">
+    <img src="<%= event.creator.profile_image %>" style="height:50px;" alt="User" />
   </div>
   <p class="hidden font-medium  dark:text-white sm:block">
     <%= event.creator.username %>
   </p>
 </div>
 
-<div class="flex items-center justify-center p-2.5 xl:p-5">
-  <p class="font-medium  dark:text-white"><%= event.title %></p>
-</div>
-
-<div class="flex items-center justify-center p-2.5 xl:p-5">
-  <p class="font-medium text-meta-3"><%= event.region %></p>
-</div>
-
-<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium dark:text-white"><%= event.start_datetime %></p>
-</div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
   <p class="font-medium text-meta-5 text-white"> <%= event.creator.total_events %></p>
 </div>
 
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= event.title %></p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5 text-white">
+  <p class="font-medium text-meta-3"><%= event.region.name %></p>
+</div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium text-meta-5 text-white">Approve</p>
+  <p class="font-medium dark:text-white"><%= event.start_datetime.strftime('%a %b %d, %Y %l:%M %p') %></p>
+</div>
+
+
+
+<div class="hidden items-center flex-col justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white">
+  <% unless event.published %>
+  <%= button_to 'Approve', publish_admin_event_path(event), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+
+  <%= button_to 'Not Approve', trash_admin_event_path(event), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+<% else %>
+<p class="text-white">
+Event Published
+</p>
+  <% end %>
+  </p>
 </div>
 </div>
+

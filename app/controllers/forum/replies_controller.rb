@@ -12,6 +12,8 @@ module Forum
         @reply.user = current_user # assuming you have a current_user method
   
         if @reply.save
+          Activity.create(name: "New Reply created", description: "reply-id_#{@reply.id}", user_id: @current_user.id)
+
           redirect_to forum_post_category_post_path(@post.post_category, @post), notice: 'Reply was successfully created.'
         else
           render :new

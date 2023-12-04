@@ -3,30 +3,26 @@
     <h4 class="text-xl font-bold text-gray-900 dark:text-white">Discord servers</h4>
 
 
-    <%= form_with model: Discord.new, url: discords_path, local: true, class: "flex items-center space-x-2" do |form| %>
-      <%= form.text_field :server_name, placeholder: "Server Name", class: "p-2 rounded-lg bg-gray-100 border border-gray-300" %>
-      <%= form.collection_select :region_id, Region.all, :id, :name, { prompt: "Select Region" }, { class: "p-2 rounded-lg bg-gray-100 border border-gray-300" } %>
-      <%= form.submit "Create Discord", class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
-    <% end %>
+<%= render 'form' %>
     
 
   </div>
 
   <div class="grid grid-cols-3 rounded-sm bg-gray-900 dark:bg-gray-900 sm:grid-cols-6">
     <div class="p-2.5 xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Creator</h5>
-    </div>
-    <div class="p-2.5 text-center xl:p-5">
       <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Name</h5>
     </div>
     <div class="p-2.5 text-center xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Region</h5>
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Description</h5>
+    </div>
+    <div class="p-2.5 text-center xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Region / Event</h5>
     </div>
     <div class="hidden p-2.5 text-center sm:block xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Date</h5>
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Admin</h5>
     </div>
     <div class="hidden p-2.5 text-center sm:block xl:p-5">
-      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Creator Evts</h5>
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Created At</h5>
     </div>
     <div class="hidden p-2.5 text-center sm:block xl:p-5">
     <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Action</h5>

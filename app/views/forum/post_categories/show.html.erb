@@ -1,17 +1,5 @@
-<div class="bg-black text-white">
-  <h2 class="text-xl font-bold p-4">Posts in <%= @category.name %></h2>
-  <div>
-    <% @posts.each do |post| %>
-      <div class="p-4 border-b border-gray-800">
-        <p class="text-lg"></p>
-        <!-- Other post details -->
-      </div>
-    <% end %>
-  </div>
-</div>
-
-
 <!-- app/views/posts/index.html.erb -->
+<div class="bg-black mx-4 p-4">
 <h2 class="text-xl font-bold p-4 text-white"><%= @category.name %></h2>
 <!-- Top Bar -->
 <div class="flex justify-between items-center text-white p-4">
@@ -63,11 +51,14 @@
     
     <!-- Last Reply Column -->
     <div class="col-span-2 text-center">
+    <% if post.last_reply %>
       <%= post.last_reply.created_at.strftime("%a, %b %d, %Y %l:%M %p") %> by <%= post.last_reply.user.username %>
+      <% end %>
     </div>
   </div>
 <% end %>
 
+</div>
 
 <style>
   .bg-blue-900 { background-color: #2a4365; } /* This is a Tailwind color, adjust as needed */
