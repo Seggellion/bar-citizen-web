@@ -33,7 +33,7 @@
                     <%= button_to 'Leave Event', event_event_participation_path(@event, current_user.event_participation_id_for(@event)), method: :delete, class: 'bg-red-500 text-white font-bold py-2 px-4 rounded' %>
                 <% else %>
                     
-                    <%= button_to 'Join Event', event_event_participations_path(@event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @event.id } }, class: 'text-white font-bold py-2 px-4 rounded' %>
+                    <%= button_to 'Join Event', event_event_participations_path(@event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @event.id } }, class: 'bg-citizen-blue text-white font-bold py-2 px-4 rounded' %>
 
                 <% end %>
             </div>

@@ -7,7 +7,7 @@ class Event < ApplicationRecord
     has_one :discord, as: :discordable
     has_many :event_manager_entries, class_name: 'EventManager'
     has_many :event_managers, through: :event_manager_entries, source: :user
-    validates :image, presence: true
+
     geocoded_by :address
     before_save :geocode_address, if: ->(obj){ obj.address.present? and obj.address_changed? }
 

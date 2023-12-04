@@ -2,8 +2,8 @@
 class ForumController < ApplicationController
 
     def index
-        @posts = Post.all
-        @post_categories = PostCategory.all
+        @posts = Post.where(published:true)
+        @post_categories = PostCategory.where(published:true)
     end
 
    

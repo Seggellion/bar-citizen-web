@@ -31,6 +31,7 @@
 
   <!-- Replies Section -->
   <% @post.replies.each do |reply| %>
+
     <div class="bg-gray-700 p-4 rounded mb-4">
       <div class="grid grid-cols-3 gap-4">
         <!-- Left Column: Author -->
@@ -40,15 +41,26 @@
           <div class="text-sm">Joined: <%= reply.user.created_at.strftime("%b %d, %Y") %></div>
           <div class="text-sm">Posts: <%= reply.user.total_posts %></div>
         </div>
-
+        <% if reply.published %>
         <!-- Right Column: Message -->
         <div class="col-span-2">
           <div class="text-sm text-gray-400">Replied on: <%= reply.created_at.strftime("%B %d, %Y") %></div>
           <hr class="my-2 border-gray-600">
           <div><%= simple_format(reply.content) %></div>
         </div>
+
+        <% else %>
+        <div class="col-span-2">
+          <div class="text-sm text-gray-400">Replied on: <%= reply.created_at.strftime("%B %d, %Y") %></div>
+          <hr class="my-2 border-gray-600">
+          <div>Post deleted by <%= reply.action_user.username %> </div>
+        </div>
+        <% end %>
+
       </div>
     </div>
+
+
   <% end %>
 
   <!-- Create Reply Button -->

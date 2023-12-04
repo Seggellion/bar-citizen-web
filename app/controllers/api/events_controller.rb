@@ -2,7 +2,7 @@
 module Api
     class EventsController < ApplicationController
       def index
-        @events = Event.all
+        @events = Event.where(published: true)
         render json: @events
       end
     end

@@ -1,16 +1,21 @@
-<div class="w-full flex justify-center mt-4">
+<div class="w-full flex justify-center">
   <div class="w-full max-w-7xl px-4"> <!-- Adjust the max-width as needed -->
     <p class="text-green-600 dark:text-green-400"><%= notice %></p>
 
     <h1 class="text-2xl font-bold text-center mb-6 dark:text-white">Events</h1>
-    <%= link_to "New event", new_event_path, class: "text-white mb-4 inline-block bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" %>
 
-    <div class="text-white p-4">
-      <% @events.each do |event| %>
+    <div class="text-white p-4 mb-4">
+    <% if @published_events.count > 0 %>
 
+      <% @published_events.each do |event| %>
           <%= render event %>
-
       <% end %>
+      <% else %>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        no events yet     <%= link_to "Create new event", new_event_path, class: "text-white mb-4 inline-block bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" %>
+
+        </div>
+        <% end %>
     </div>
   </div>
 </div>

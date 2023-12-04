@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
     def index
-      @posts = Post.all
+      @posts = Post.where(published:true)
     end
   
     def show
@@ -39,8 +39,7 @@ class PostsController < ApplicationController
   
     def create
       @post = @post_category.posts.new(post_params)
-
-      @post.update(user_id: current_user.id)
+      @post.update(user_id: current_user.id, published:true)
 
       if @post.save
         Activity.create(name: "New Post created", description: "post-id_#{@post.id}", user_id: current_user.id)

@@ -2,7 +2,7 @@ module Forum
     class PostCategoriesController < ApplicationController
       # Your actions (index, show, new, create, etc.)
       def index
-        @post_categories = PostCategory.all
+        @post_categories = PostCategory.where(published:true)
       end
 
       def new
@@ -13,7 +13,7 @@ module Forum
         @post_category = PostCategory.find(params[:id])
 
         @category = PostCategory.find(params[:id])
-        @posts = @category.posts
+        @posts = @category.posts.where(published:true)
       end
     
       def create

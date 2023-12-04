@@ -18,7 +18,7 @@
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium dark:text-white"><%= user.last_login.strftime('%a %b %d, %Y %l:%M %p')  %></p>
+  <p class="font-medium dark:text-white"><%= user.last_login&.strftime('%a %b %d, %Y %l:%M %p')  %></p>
 </div>
 
 <div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
