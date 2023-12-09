@@ -1,0 +1,36 @@
+
+<div id="photos" class="p-5 sm:p-8">
+  <div class="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-3 [&>div:not(:first-child)]:mt-8">
+    <% photos.each do |photo| %>
+        <%= link_to photo, class: "" do %> 
+            <div class="break-inside-avoid bg-white shadow-lg rounded-lg overflow-hidden">
+                <% if photo.image.attached? %>
+                    <%= image_tag photo.image, alt: "Photo", class: "w-full" %>        
+                    <!-- Photo Title -->
+                    <div class="px-4 py-2 bg-gray-800">
+                    <h3 class="text-white text-lg font-semibold"><%= photo.title %></h3>
+                    </div>
+
+                    <!-- Interaction Row -->
+                    <div class="px-4 py-2 bg-gray-800 flex justify-between items-center">
+                    <span class="text-gray-100">👍 Upvotes</span>
+                    <span class="text-gray-100">💬 <%= photo.photo_comments.count %></span>
+                    <span class="text-gray-100">👀 <%= photo.views %> </span>
+                    </div>
+
+                <% end %>
+            </div>
+        <% end %>
+        <% end %>
+  </div>
+</div>
+
+
+
+<style>
+.break-inside-avoid {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+</style>

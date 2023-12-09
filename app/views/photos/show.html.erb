@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
-
+<div data-controller="photo" data-photo-id="<%= @photo.id %>" class="w-full flex align-center items-center justify-center flex-col">
 <%= render @photo %>
-
-<div>
-  <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
-  <%= link_to "Back to photos", photos_path %>
-
-  <%= button_to "Destroy this photo", @photo, method: :delete %>
 </div>
+
+<style>
+.event-link{
+  text-decoration:underline;
+}
+</style>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
     t.index ["user_id"], name: "index_event_managers_on_user_id"
   end
 
+  create_table "event_messages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.string "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_messages_on_event_id"
+    t.index ["user_id"], name: "index_event_messages_on_user_id"
+  end
+
   create_table "event_participations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
@@ -130,12 +140,36 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
     t.boolean "published"
     t.boolean "trashed"
     t.integer "action_id"
+    t.datetime "end_datetime"
+    t.float "cost"
+    t.string "location_name"
+    t.string "status"
+  end
+
+  create_table "giveaway_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "giveaway_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["giveaway_id"], name: "index_giveaway_users_on_giveaway_id"
+    t.index ["user_id", "giveaway_id"], name: "index_giveaway_users_on_user_id_and_giveaway_id", unique: true
+    t.index ["user_id"], name: "index_giveaway_users_on_user_id"
+  end
+
+  create_table "giveaways", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "winner_id"
+    t.bigint "creator_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_giveaways_on_creator_id"
+    t.index ["event_id"], name: "index_giveaways_on_event_id"
   end
 
   create_table "photo_comments", force: :cascade do |t|
     t.text "content"
-    t.integer "upvote"
-    t.integer "downvote"
     t.bigint "user_id", null: false
     t.bigint "photo_id", null: false
     t.datetime "created_at", null: false
@@ -151,17 +185,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
     t.integer "event_id"
     t.integer "user_id"
     t.string "image_url"
-    t.integer "upvotes"
-    t.integer "downvotes"
     t.integer "favorites_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "tags"
-    t.string "categories"
     t.boolean "published"
     t.string "title"
     t.boolean "trashed"
     t.integer "action_id"
+    t.integer "views"
+    t.string "description"
+    t.integer "region_id"
   end
 
   create_table "post_categories", force: :cascade do |t|
@@ -262,6 +296,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
     t.integer "action_id"
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "votable_type", null: false
+    t.bigint "votable_id", null: false
+    t.boolean "upvote", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "votable_type", "votable_id"], name: "index_votes_on_user_and_votable", unique: true
+    t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
@@ -270,6 +316,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
   add_foreign_key "event_comments", "users"
   add_foreign_key "event_managers", "events"
   add_foreign_key "event_managers", "users"
+  add_foreign_key "event_messages", "events"
+  add_foreign_key "event_messages", "users"
+  add_foreign_key "giveaway_users", "giveaways"
+  add_foreign_key "giveaway_users", "users"
+  add_foreign_key "giveaways", "events"
+  add_foreign_key "giveaways", "users", column: "creator_id"
   add_foreign_key "photo_comments", "photos"
   add_foreign_key "photo_comments", "users"
   add_foreign_key "posts", "post_categories"
@@ -278,4 +330,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_192523) do
   add_foreign_key "replies", "users"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "users"
+  add_foreign_key "votes", "users"
 end

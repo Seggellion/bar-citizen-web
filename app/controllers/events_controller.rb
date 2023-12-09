@@ -11,9 +11,11 @@ class EventsController < ApplicationController
   def show
     @photo = Photo.new
     @current_event = Event.find(params[:id])
-
+    @posts = @current_event.region.post_category&.posts
     @current_event.increment!(:views_count)
-
+    @event_managers = EventManager.where(event_id: @current_event.id)
+    @messages = @current_event.event_messages
+    @attendees = @current_event.attendees
   end
 
   # GET /events/new
@@ -78,7 +80,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :twitter, :start_datetime, :address, :region_id, :facebook_link, :discord_id, :creator_id,  images: [])
+      params.require(:event).permit(:title, :banner, :description, :twitter, :start_datetime, :address, :region_id, :facebook_link, :discord_id, :creator_id,  images: [])
     end
 
     def authenticate_user!

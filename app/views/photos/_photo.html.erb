@@ -1,32 +1,85 @@
-<div id="<%= dom_id photo %>">
-  <p>
-    <strong>Event:</strong>
-    <%= photo.event_id %>
-  </p>
+<div id="photo_show" class="bg-citizen-blue my-8 max-w-5xl">
+  <!-- Top Row: Photo title and details -->
+  <div class="flex flex-col p-4">
+    <h1 class="text-2xl font-bold"><%= @photo.title %></h1>
+    <div class="flex items-center space-x-4 mt-2">
 
-  <p>
-    <strong>User:</strong>
-    <%= photo.user_id %>
-  </p>
+      <img src="<%= current_user.profile_image %>" alt="Profile Image" class="w-12 h-12 rounded-full">
+      <div>
+        <p class="font-semibold text-white"><%= @photo.user.username %></p>
+        <p class="text-sm text-gray-300"><%= @photo.views %> Views • <%= time_ago_in_words(@photo.created_at) %> ago • via <%= link_to @photo.event, class:"event-link" do %> <%= @photo.event.title %><% end %></p>
+      </div>
+      <div style="display:none;">
+  <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
+  <%= link_to "Back to photos", photos_path %>
 
-  <p>
-    <strong>Image url:</strong>
-    <%= photo.image_url %>
-  </p>
-
-  <p>
-    <strong>Upvotes:</strong>
-    <%= photo.upvotes %>
-  </p>
-
-  <p>
-    <strong>Downvotes:</strong>
-    <%= photo.downvotes %>
-  </p>
-
-  <p>
-    <strong>Favorites count:</strong>
-    <%= photo.favorites_count %>
-  </p>
-
+  <%= button_to "Destroy this photo", @photo, method: :delete %>
 </div>
+    </div>
+  </div>
+
+  <!-- Middle Row: Photo -->
+  <div>
+  <%= image_tag @photo.image, alt: "Photo", class: "w-full" %>
+  </div>
+
+  <!-- Bottom Row: Comments -->
+  <div class="flex flex-col p-4 space-y-4">
+    <%= form_with(model: [ @photo, PhotoComment.new ], local: true) do |form| %>
+      <div class="mb-4">
+        <%= form.text_area :content, rows: 4, placeholder: "Write a comment", class: "w-full p-4 border bg-citizen-blue text-white rounded-md" %>
+      </div>
+    
+      <div>
+        <%= form.submit "Post Comment", class: "px-4 py-2 bg-citizen-blue-highlight text-white rounded hover:bg-blue-600" %>
+      </div>
+    <% end %>
+
+
+    <div class="mt-8">
+    <div class="mb-4">
+    <h2 class="text-lg font-semibold text-white"><%= @photo.photo_comments.count %> Comments</h2>
+  </div>
+
+    <% @photo.photo_comments.each do |comment| %>
+      <!-- Repeat this div for each comment -->
+      <div class="flex items-start space-x-4 text-white">
+        <img src="<%= current_user.profile_image %>" alt="Comment User Image" class="w-8 h-8 rounded-full">
+        <div>
+          <p class="font-semibold"><%= comment.user.username %>  • <%= time_ago_in_words(comment.created_at) %> ago via <%= comment.user.location %></p>
+          <p class="text-sm"><%= comment.content %></p>
+        </div>
+      </div>
+
+      <div class="flex space-x-2 text-white">
+
+      
+      
+      <% if comment.upvoted_by?(current_user) %>
+      <%= image_tag 'upvote_filled.svg', class: 'vote-button' %>
+    <% else %>
+      <%= button_to image_tag('upvote_regular.svg'), votes_path(votable_type: 'PhotoComment', votable_id: comment.id, upvote: true), method: :post, class: "vote-button" %>
+    <% end %>
+
+      <span><%= comment.votes.where(upvote: true).count %></span>
+      <% if comment.downvoted_by?(current_user) %>
+      <%= image_tag 'downvote_filled.svg', class: 'vote-button' %>
+    <% else %>
+      <%= button_to image_tag('downvote_regular.svg'), votes_path(votable_type: 'PhotoComment', votable_id: comment.id, upvote: false), method: :post, class: "vote-button" %>
+    <% end %>
+      <span><%= comment.votes.where(upvote: false).count %></span>
+
+    </div>
+
+      <!-- Horizontal Rule -->
+      <% unless comment == @photo.photo_comments.last %>
+        <hr class="my-4 border-t border-gray-200" />
+      <% end %>
+
+
+      <% end %>
+      <!-- ... other comments ... -->
+    </div>
+  </div>
+</div>
+

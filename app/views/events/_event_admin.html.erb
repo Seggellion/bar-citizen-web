@@ -1,0 +1,20 @@
+<div id="event_admin">
+
+<!-- Event Photos -->
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+
+<% if current_user && current_user.participating_in?(@event) %>
+    <%= render 'photo_form', photo: @photo, event: event %>
+    <% elsif current_user %>
+    Join event to submit photos
+    <% else %>
+    <p>Log in to submit photos</p>
+    <%= button_to 'Login with Discord', '/auth/discord', method: :post, class: 'discord-login-button',  data: { turbo: false } %>
+    <% end %>
+
+
+</div>
+
+</div>
+
+</div>

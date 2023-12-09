@@ -31,10 +31,10 @@
     <p class="text-sm font-medium  dark:text-white">
     
     <% unless photo.published %>
-      <%= button_to 'Publish', publish_admin_discord_path(photo), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-      <%= button_to 'Trash', trash_admin_discord_path(photo), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+      <%= button_to 'Publish', publish_admin_photo_path(photo), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= button_to 'Trash', trash_admin_photo_path(photo), method: :post, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
     <% else %>
-      <%= button_to 'Unpublish', unpublish_admin_discord_path(photo), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= button_to 'Unpublish', unpublish_admin_photo_path(photo), method: :post, class: "m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     <% end %>
 
     </p>

@@ -1,0 +1,78 @@
+
+
+<!-- Event Details -->
+<div id="forums" class="bg-gray-800 mb-8 py-6 px-24 rounded-lg shadow-lg">
+    <div class="mb-8">
+
+    <!-- Event Header -->
+    <div class="mb-8 text-center">
+        <h1 class="text-4xl font-bold mb-2">Regional Forum</h1>
+    </div>
+
+    <!-- Posts Header -->
+    <div class="grid grid-cols-12 bg-gray-200 text-black py-2 px-4">
+      <div class="col-span-1">Icon</div>
+      <div class="col-span-5">Post</div>
+      <div class="col-span-2">Replies</div>
+      <div class="col-span-1">Author</div>
+      <div class="col-span-1">Views</div>
+      <div class="col-span-2">Last Post</div>
+    </div>
+    
+    <!-- Posts List -->
+    <% @posts.each do |post| %>
+      <div class="grid grid-cols-12 items-center py-2 bg-blue-900 px-4 border-b text-white">
+        <!-- Icon Column -->
+        <div class="col-span-1">
+          <%#= image_tag post.icon.url, alt: "Post icon", class: "h-8 w-8" %>icon
+        </div>
+        
+        <!-- Post Title Column -->
+        <div class="col-span-5"><p class="font-bold">
+        <%= link_to post.title, forum_post_category_post_path(post.post_category, post) %>
+         </p>
+        </div>
+        
+        <!-- Reply Count Column -->
+        <div class="col-span-2 text-center">
+          <%= post.replies.count %>
+        </div>
+        
+        <!-- Author Column -->
+        <div class="col-span-1 text-center">
+          <%= post.user.username %>
+        </div>
+        
+        <!-- View Count Column -->
+        <div class="col-span-1 text-center">
+          <%#= post.views %>view_count
+        </div>
+        
+        <!-- Last Reply Column -->
+        <div class="col-span-2 text-center">
+        <% if post.last_reply %>
+          <%= post.last_reply.created_at.strftime("%a, %b %d, %Y %l:%M %p") %> by <%= post.last_reply.user.username %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    
+    </div>
+    
+    <style>
+      .bg-blue-900 { background-color: #2a4365; } /* This is a Tailwind color, adjust as needed */
+      .bg-blue-800 {background-color : #2c5282;}
+    </style>
+
+</div>
+</div>
+
+<style>
+
+.event-page li::before {
+    content: '✧';
+    color: white;
+    position: absolute;
+    left: 0;
+}
+</style>

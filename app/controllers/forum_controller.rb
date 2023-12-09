@@ -3,7 +3,7 @@ class ForumController < ApplicationController
 
     def index
         @posts = Post.where(published:true)
-        @post_categories = PostCategory.where(published:true)
+        @post_categories = PostCategory.all
     end
 
    

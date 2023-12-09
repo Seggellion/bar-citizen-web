@@ -130,7 +130,7 @@ export default class extends Controller {
     const regionsJson = document.querySelector('[data-controller="maps"]').dataset.mapsRegionsValue;
     const regions = JSON.parse(regionsJson);
     //const regions = JSON.parse(this.data.get("maps-regions-value"))
-    
+
     // Add markers for events
     events.forEach(event => this.addMarker(event, 'event'));
 

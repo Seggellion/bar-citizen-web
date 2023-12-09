@@ -1,3 +1,5 @@
 //= link_tree ../images
 //= link_tree ../builds
+//= link_tree ../svg
 //= link custom.css
+

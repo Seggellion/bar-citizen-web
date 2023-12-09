@@ -23,6 +23,12 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         session[:username] = user.username
 
+        cookies.encrypted[:user_id] = {
+          value: user.id,
+          httponly: false, # Important: must be false to be accessible by JavaScript
+          expires: 1.week.from_now
+        }
+
         redirect_to dashboard_path
       end
 

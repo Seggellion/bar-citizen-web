@@ -9,13 +9,15 @@
 svg.citizen-grey{
     fill: #3C3C3B;
 }
-
+.text-green-500{
+    color: #4caf50;
+}
 .bg-citizen-blue{
     background-color:  var(--citizen-blue);
 }
 
-.bg-citizen-blue-highlight{
-    background-color:  var(--citizen-blue-highlight);
+.bg-citizen-blue-highlight, .event-page .bg-citizen-blue-highlight {
+    background-color:  var(--citizen-blue-highlight) !important;
 }
 
 footer .social-links a{

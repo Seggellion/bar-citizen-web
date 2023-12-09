@@ -25,6 +25,7 @@ class EventParticipationsController < ApplicationController
 
     respond_to do |format|
       if @event_participation.save
+        Activity.create(name: "#{current_user.username} joined event", description: "event-id_#{@event.id}", user_id: current_user.id)
         format.html { redirect_to event_url(@event_participation.event), notice: "Joined Event" }
         format.json { render :show, status: :created, location: @event_participation }
       else
@@ -50,6 +51,7 @@ class EventParticipationsController < ApplicationController
   # DELETE /event_participations/1 or /event_participations/1.json
   def destroy
     @event_participation.destroy!
+    Activity.create(name: "#{current_user.username} left #{@event.title} event", description: "event-id_#{@event.id}", user_id: current_user.id)
 
     respond_to do |format|
       format.html { redirect_to event_url(@event_participation.event), notice: "Successfully left event.." }     

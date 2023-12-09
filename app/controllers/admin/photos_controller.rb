@@ -16,8 +16,9 @@ module Admin
       end
   
       def publish
+
         photo = Photo.find(params[:id])
-  
+        byebug
         photo.update(published: true, action_id: @current_user.id)
     
         Activity.create(name: "New photo created", description: "photo-id_#{@photo.id}", user_id: photo.user_id)

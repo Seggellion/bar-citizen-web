@@ -1,0 +1,46 @@
+<!-- app/views/events/chat.html.erb -->
+<div class="container mx-auto px-4" id="thewall" style="width: 60%;">
+<!-- Header in the center at the top -->
+<div class="text-center text-white text-4xl font-bold mb-12">TheWall</div>
+  <div class="flex flex-row">
+    <!-- Messages Column -->
+    <div class="flex-auto bg-gray-800 overflow-auto" style="height: 80vh;" id="event_chat" data-event-id="<%= @event.id %>">
+      <ul id="messages" class="p-4">
+        <% @messages.each do |message| %>
+          <li class="mb-2">
+            <% if message.user == @event.creator %>
+              <span class="text-green-500">@</span>
+            <% elsif message.user.manager? %>
+              <span class="text-blue-500">+</span>
+            <% end %>
+            <span class="text-white"><%= message.user.username %>: <%= message.message %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <!-- Users Column -->
+    <div class="w-50 bg-gray-700 overflow-auto" style="height: 80vh;">
+      <ul id="attendees" class="p-4">
+        <% @attendees.each do |attendee| %>
+          <li class="mb-2">
+            <% if attendee == @event.creator %>
+              <span class="text-green-500">@</span>
+            <% elsif attendee.manager? %>
+              <span class="text-blue-500">+</span>
+            <% end %>
+            <span class="text-white"><%= attendee.username %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Input Field Row -->
+  <div class="flex">
+  <input type="text" id="message_input" class="w-full p-2" placeholder="Type your message here..."
+       data-controller="chat"
+       data-action="keypress->chat#send"
+       data-chat-event-id-value="<%= @event.id %>">
+  </div>
+</div>

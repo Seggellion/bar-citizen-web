@@ -1,0 +1,28 @@
+<div data-controller="manager" class="space-y-2 px-12 py-8">
+<!-- Header in the center at the top -->
+<div class="text-center text-white text-4xl font-bold mb-12">Event Management</div>
+  <!-- Accordion for Edit Event -->
+    <div class="accordion-item bg-gray-800 text-white p-4 rounded">
+        <h2 data-action="click->manager#toggle" class="cursor-pointer">Edit Event</h2>
+        <div data-manager-target="content" class="hidden">
+        <%= render 'accordion_edit' %>
+        </div>
+    </div>
+
+
+  <!-- Accordion for Event Managers -->
+  <div class="accordion-item bg-gray-800 text-white p-4 rounded">
+    <h2 data-action="click->manager#toggle" class="cursor-pointer">Event Managers</h2>
+    <div data-manager-target="content" class="hidden">
+      <%= render 'accordion_managers' %>
+    </div>
+  </div>
+
+  <!-- Accordion for Giveaways -->
+  <div class="accordion-item bg-gray-800 text-white p-4 rounded">
+    <h2 data-action="click->manager#toggle" class="cursor-pointer">Giveaways</h2>
+    <div data-manager-target="content" class="hidden">
+    <%= render 'accordion_giveaway' %>
+    </div>
+  </div>
+</div>

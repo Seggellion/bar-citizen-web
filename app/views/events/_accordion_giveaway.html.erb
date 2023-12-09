@@ -1,0 +1,37 @@
+<%= form_with model: [@event, Giveaway.new], local: true, html: { class: 'space-y-4 bg-gray-800 p-4 rounded text-white' } do |form| %>
+    <div class="field">
+      <%= form.label :title, 'Giveaway Title', class: 'block text-sm font-medium text-white' %>
+      <%= form.text_field :title, placeholder: 'Enter giveaway title', class: 'w-full bg-gray-700 text-white' %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :description, 'Description', class: 'block text-sm font-medium text-white' %>
+      <%= form.text_area :description, placeholder: 'Enter giveaway description', class: 'w-full bg-gray-700 text-white' %>
+    </div>
+  
+    <!-- Add more fields as necessary -->
+  
+    <div class="actions">
+      <%= form.submit "Create Giveaway", class: 'px-4 py-2 bg-blue-500 text-white rounded' %>
+    </div>
+  <% end %>
+
+  
+  <div class="space-y-4 bg-gray-800 p-4 rounded text-white">
+  <% @event.giveaways.each do |giveaway| %>
+    <div class="flex justify-between items-center">
+      <h3><%= giveaway.title %></h3>
+      <p><%= giveaway.description %></p>
+
+      <!-- Action buttons for each giveaway -->
+      <% unless giveaway.winner %>
+      <%= button_to 'Draw Winner', draw_winner_event_giveaway_path(@event, giveaway), method: :post, class: 'px-4 py-2 bg-green-500 text-white rounded' %>
+      <% else %>
+      Winner:
+      <%= giveaway.winner.username %>
+      <% end %>
+      <%= link_to 'Edit', edit_event_giveaway_path(@event, giveaway), class: 'px-4 py-2 bg-yellow-500 text-white rounded' %>
+      <%= link_to 'Delete', event_giveaway_path(@event, giveaway), method: :delete, data: { confirm: 'Are you sure?' }, class: 'px-4 py-2 bg-red-500 text-white rounded' %>
+    </div>
+  <% end %>
+</div>

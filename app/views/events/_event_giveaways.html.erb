@@ -1,0 +1,21 @@
+<div class="bg-black">
+  <div class="container mx-auto px-4 py-8">
+  <!-- Header in the center at the top -->
+  <div class="text-center text-white text-4xl font-bold mb-12">Giveaways</div>
+
+    <div class="flex justify-center flex-wrap gap-4">
+      <% @event.giveaways.each do |giveaway| %>
+        <div class="bg-gray-800 text-white p-4 rounded-lg w-full md:w-auto">
+          <h3 class="text-lg font-bold mb-2"><%= giveaway.title %></h3>
+          <p class="mb-4"><%= giveaway.description %></p>
+          <!-- Additional giveaway details here -->
+          <% if giveaway.winner %>
+            <p class="text-green-400">Winner: <%= giveaway.winner.username %></p>
+          <% else %>
+            <p class="text-red-400">No winner yet</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

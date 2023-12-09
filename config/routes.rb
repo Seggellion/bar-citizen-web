@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
+  mount ActionCable.server => '/cable'
+
   post "/graphql", to: "graphql#execute"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,9 +12,20 @@ Rails.application.routes.draw do
   get '/map', to: 'maps#index'
   resources :regions
   resources :discords
+  resources :photos do
+    resources :photo_comments do 
+      post 'upvote'
+      post 'downvote'
+    end
+    member do
+      post 'view'
+      post 'upvote'
+      post 'downvote'
+    end
+  end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-
+  resources :votes, only: [:create]
   get '/dashboard', to: 'home#dashboard'
 
   # Events
@@ -89,9 +102,16 @@ end
   end
 
   resources :users, only: [:show, :edit, :update, :destroy]
+  
   resources :events do
     resources :event_participations, only: [:create, :destroy]
     resources :photos, only: [:new, :create, :show, :destroy]
+    resources :event_managers
+    resources :giveaways do
+      member do
+        post 'draw_winner'
+      end
+    end
     member do
       post 'join'
       delete 'leave'

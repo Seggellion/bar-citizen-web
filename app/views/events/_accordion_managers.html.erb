@@ -1,0 +1,26 @@
+<%= form_with url: event_event_managers_path(@event), method: :post, local: true, html: { class: 'space-y-4 bg-gray-800 p-4 rounded text-white' } do |form| %>
+  <div class="field">
+    <%= form.label :user_id, 'Add Event Manager', class: 'block text-sm font-medium text-white mb-2' %>
+    <%= form.select :user_id, User.all.map { |u| [u.username, u.id] }, { prompt: 'Select a user' }, { name: 'event_managers[user_id]', class: 'w-full bg-gray-700 text-white' } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Add Manager", class: 'px-4 py-2 bg-blue-500 text-white rounded' %>
+  </div>
+<% end %>
+
+
+  
+  
+
+  <div class="space-y-4 bg-gray-800 p-4 rounded text-white">
+  <% @event_managers.each do |manager| %>
+    <div class="flex justify-between items-center">
+      <p>User ID: <%= manager.user.username %></p>
+      <%= form_with url: event_event_manager_path(@event, manager), method: :delete, class: 'inline' do %>
+        <%= submit_tag 'Remove', class: 'px-4 py-2 bg-red-500 text-white rounded' %>
+      <% end %>
+
+      </div>
+  <% end %>
+</div>

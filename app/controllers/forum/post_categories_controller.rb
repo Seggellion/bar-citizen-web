@@ -19,7 +19,7 @@ module Forum
       def create
         @post_category = PostCategory.new(post_category_params)
 
-        @post_category.update(user_id: @current_user.id)
+        @post_category.update(user_id: current_user.id)
 
         if @post_category.save
           redirect_to forum_path, notice: 'Category was successfully created.'

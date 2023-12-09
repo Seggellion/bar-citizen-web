@@ -1,0 +1,53 @@
+
+<%= form_with(model: @event, local: true, html: { class: 'space-y-4 bg-gray-800 p-4 rounded text-white' }) do |form| %>
+    <% if @event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+  
+        <ul>
+          <% @event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.select :status, ['Planning', 'Open for Registration', 'Ongoing', 'Closed', 'Cancelled'], {}, { class: 'w-full bg-gray-700 text-white' } %>
+  
+  
+    <%= form.text_field :title, placeholder: 'Title', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_area :description, placeholder: 'Description', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.datetime_field :start_datetime, class: 'w-full bg-gray-700 text-white' %>
+    <%= form.datetime_field :end_datetime, class: 'w-full bg-gray-700 text-white' %>
+    <%= form.number_field :cost, placeholder: 'Cost', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_field :location_name, placeholder: 'Location Name', class: 'w-full bg-gray-700 text-white' %>
+  
+    <%= form.text_field :address, placeholder: 'Address', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.number_field :creator_id, placeholder: 'Creator ID', class: 'w-full bg-gray-700 text-white' %>
+  
+
+    <%= form.number_field :views_count, placeholder: 'Views Count', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_field :profile_image, placeholder: 'Profile Image URL', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.number_field :region_id, placeholder: 'Region ID', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_field :city, placeholder: 'City', class: 'w-full bg-gray-700 text-white' %>
+  
+
+
+    <%= form.text_field :facebook, placeholder: 'Facebook', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_field :twitter, placeholder: 'Twitter', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_field :tiktok, placeholder: 'TikTok', class: 'w-full bg-gray-700 text-white' %>
+    <%= form.text_field :instagram, placeholder: 'Instagram', class: 'w-full bg-gray-700 text-white' %>
+  
+    <%= form.file_field :banner, class:'w-full bg-gray-700 text-white' %>
+
+    <div class="actions">
+      <%= form.submit "Update Event", class: 'px-4 py-2 bg-blue-500 text-white rounded' %>
+    </div>
+  <% end %>
+  
+  <% if @event.creator == current_user %>
+
+<%= link_to "Back to events", events_path %>
+
+<%= button_to "Destroy this event", @event, method: :delete %>
+<% end %>

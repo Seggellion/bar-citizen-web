@@ -18,7 +18,9 @@ module Admin
 
         event.update(published: true, action_id: @current_user.id)
     
-        Activity.create(name: "New event created", user_id: event.creator_id)
+ 
+        Activity.create(name: "Created #{event.title} event", description: "event-id_#{event.id}", user_id: current_user.id)
+
         redirect_to admin_events_path, notice: 'Event was successfully approved.'
 
       end

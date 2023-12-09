@@ -1,0 +1,39 @@
+<!-- Event Header -->
+<div class="mb-8 text-center">
+    <h1 class="text-4xl font-bold mb-2">Event Details</h1>
+</div>
+
+<!-- Event Details -->
+<div class="bg-gray-800 mb-8 p-6 rounded-lg shadow-lg">
+    <div class="mb-8">
+
+<ul class="list-none bg-gray-800 text-white p-4 rounded-lg shadow-md">
+    <li class="mb-2 pl-4 relative">Check out our Regional Discord and <%= event.region.name %> page</li>
+    <li class="mb-2 pl-4 relative">See our Facebook page at: <%= event.region.name %> Facebook Page</li>
+    <li class="mb-2 pl-4 relative">Contact the organizer <%= event.creator.username %></li>
+    <li class="mb-2 pl-4 relative">Event Schedule: Join us for an exciting line-up from 6 PM onwards, featuring guest speakers, interactive sessions, and a live DJ set.</li>
+    <li class="mb-2 pl-4 relative">Location Details: Hosted at Starlight Bar, 123 Galaxy Way. Ample parking available, with easy access via public transport.</li>
+    <li class="mb-2 pl-4 relative">Dress Code: Casual attire recommended. Feel free to wear your favorite fan merchandise!</li>
+    <li class="mb-2 pl-4 relative">Food and Drink Specials: Enjoy themed cocktails and exclusive appetizers crafted for our community.</li>
+    <li class="mb-2 pl-4 relative">Networking Opportunities: Mix and mingle with fellow fans, creators, and special guests throughout the evening.</li>
+    <li class="mb-2 pl-4 relative">Safety Protocols: Your health is our priority. Masks required and sanitation stations available.</li>
+    <li class="mb-2 pl-4 relative">Exclusive Merchandise: Limited edition T-shirts and posters available for purchase at the event.</li>
+    <li class="mb-2 pl-4 relative">Photo Opportunities: Capture memories at our themed photo booth with props and backdrops.</li>
+    <li class="mb-2 pl-4 relative">Social Media Contest: Share your experience using #BarCitizen2023 for a chance to win exclusive prizes.</li>
+    <li class="mb-2 pl-4 relative">After-Party Details: Keep the party going! Join us at the After-Glow Lounge starting at 10 PM.</li>
+</ul>
+<p>
+Note: Dates and Times are subject to change. Bar Citizen and Cloud Imperium Games are not responsible for damage to personal property.
+</p>
+</div>
+</div>
+
+<style>
+
+.event-page li::before {
+    content: '✧';
+    color: white;
+    position: absolute;
+    left: 0;
+}
+</style>

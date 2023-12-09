@@ -8,6 +8,10 @@ class PostCategory < ApplicationRecord
       posts.joins(:replies).count
     end
 
+    def region
+        Region.find_by_id(self.region_id)
+    end
+
 
       # Method to get the date_time of the last reply
   def last_reply_time

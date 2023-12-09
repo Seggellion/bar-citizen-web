@@ -9,6 +9,25 @@ class PhotosController < ApplicationController
 
   # GET /photos/1 or /photos/1.json
   def show
+
+    unless viewed?(@photo)
+      @photo.increment!(:views)
+      mark_as_viewed(@photo)
+    end
+  end
+
+  def view
+    photo = Photo.find(params[:id])
+
+    unless viewed?(photo)
+      photo.increment!(:views)
+      mark_as_viewed(photo)
+    end
+
+
+    respond_to do |format|
+      format.json { render json: { success: true } }
+    end
   end
 
   # GET /photos/new
@@ -27,10 +46,11 @@ class PhotosController < ApplicationController
     
     #@photo = @event.photos.build(photo_params.except(:image).merge(user: current_user))
     @photo = @event.photos.build(photo_params.merge(user: current_user))
-
+    @photo.update(region_id: @event.region.id)
     respond_to do |format|
       if @photo.save
         @photo.image.attach(photo_params[:image]) if photo_params[:image].present?
+        Activity.create(name: "New Photo added", description: "photo-id_#{@photo.id}", user_id: current_user.id)
         format.html { redirect_to event_path(@event), notice: "Photo was successfully created." }
         format.json { render :show, status: :created, location: @photo }
       else
@@ -55,6 +75,23 @@ class PhotosController < ApplicationController
     end
   end
 
+  
+  def upvote
+    vote = @photo_comment.votes.find_or_initialize_by(user: current_user)
+    unless vote.persisted?
+      vote.update(upvote: true)
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def downvote
+    vote = @photo_comment.votes.find_or_initialize_by(user: current_user)
+    unless vote.persisted?
+      vote.update(upvote: false)
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   # DELETE /photos/1 or /photos/1.json
   def destroy
     @photo.destroy!
@@ -65,20 +102,34 @@ class PhotosController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
       @photo = Photo.find(params[:id])
     end
-
     def authenticate_user!
       redirect_to login_path, alert: 'You must be logged in to perform this action.' if current_user.nil?
+    end
+
+
+  
+
+    def viewed?(photo)
+      session[:viewed_photos] ||= []
+      session[:viewed_photos].include?(photo.id)
+    end
+  
+    def mark_as_viewed(photo)
+      session[:viewed_photos] ||= []
+      session[:viewed_photos] << photo.id
     end
 
     # Only allow a list of trusted parameters through.
     def photo_params
       #params.require(:attachment).permit(:image, :published, :category, :region)
-      params.require(:photo).permit(:image, :published, :category, :region)
+      params.require(:photo).permit(:image, :title, :description)
 
       #params.require(:photo).permit(:event_id, :user_id, :image_url, :upvotes, :downvotes, :favorites_count, :image, :published, :category, :region, tag_ids: [])
     end

@@ -7,10 +7,15 @@ class Event < ApplicationRecord
     has_one :discord, as: :discordable
     has_many :event_manager_entries, class_name: 'EventManager'
     has_many :event_managers, through: :event_manager_entries, source: :user
-
+    has_many :event_messages
+    has_many :giveaways
     geocoded_by :address
     before_save :geocode_address, if: ->(obj){ obj.address.present? and obj.address_changed? }
-
+    has_one_attached :banner
+    #pineapple add banner
+    def attendees
+      EventParticipation.where(event_id: id).includes(:user).map(&:user)
+    end
 
     def status
       if start_datetime.past?
@@ -18,6 +23,15 @@ class Event < ApplicationRecord
       else
         "Registration Open"
       end
+    end
+
+    def activities
+      Activity.all.select do |activity| 
+        activity.associated_with?(id, 'event') ||
+        activity.associated_with?(id, 'giveaway') ||
+        activity.associated_with?(id, 'photo')
+      end
+    
     end
 
     private

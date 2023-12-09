@@ -29,7 +29,7 @@
           <p><strong>Where:</strong> <%= event.address %></p>
           <p><strong>Region:</strong><%= event.region&.name %></p>
           <p><strong>Starts:</strong> <%= event.start_datetime.strftime('%a %b %d, %Y %l:%M %p') %></p>
-          <p><strong>Ends:</strong> End Time</p>
+          <p><strong>Ends:</strong> <%= event.end_datetime&.strftime('%a %b %d, %Y %l:%M %p') %></p>
           <p><strong>Cost:</strong> Free</p>
         </div>
         <!-- Action Buttons -->
