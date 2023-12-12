@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
   has_many :post_categories
   has_many :discords
-
+  has_many :pages
   has_many :event_manager_entries, class_name: 'EventManager'
   has_many :managed_events, through: :event_manager_entries, source: :event
 

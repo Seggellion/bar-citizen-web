@@ -1,0 +1,31 @@
+<div class="container mx-auto px-4 dark:bg-gray-800">
+  <h1 class="text-xl font-bold my-4 text-gray-900 dark:text-white">New Block</h1>
+  <%= form_with model: Block.new, url: admin_blocks_path, local: true, class: "flex flex-row flex-wrap gap-4" do |form| %>
+    
+    <div class="flex-1 mb-4">
+      <%= form.label :title, class: 'text-gray-900 dark:text-white' %>
+      <%= form.text_field :title, class: "shadow border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700" %>
+    </div>
+
+    <div class="flex-1 mb-4">
+    <%= form.label :image, 'Image URL', class: 'text-gray-900 dark:text-white' %>
+
+        <%= form.file_field :image, class:'shadow border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700' %>
+
+    </div>
+
+    <div class="flex-1 mb-4">
+      <%= form.label :link_url, 'Link URL', class: 'text-gray-900 dark:text-white' %>
+      <%= form.text_field :link_url, class: "shadow border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700" %>
+    </div>
+
+    <div class="flex-1 mb-4">
+      <%= form.label :section_id, 'Section', class: 'text-gray-900 dark:text-white' %>
+      <%= form.collection_select :section_id, Section.all, :id, :sectionable_title, { prompt: 'Select a Section' }, { class: "shadow border rounded py-2 px-3 dark:border-gray-600 dark:bg-gray-700" } %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.submit "Create Block", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  <% end %>
+</div>

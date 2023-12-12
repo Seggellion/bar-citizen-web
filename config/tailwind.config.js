@@ -23,7 +23,13 @@ module.exports = {
       indigo: colors.indigo,
       yellow: colors.yellow,
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        orbitron: ['Orbitron', 'sans-serif'],
+        sans: ['Fira Sans', 'sans-serif'],
+      },
+
+    },
 
   },
 

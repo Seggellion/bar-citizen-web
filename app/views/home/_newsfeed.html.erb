@@ -1,38 +1,106 @@
-<section class="py-14">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-16 py-8 px-14 text-white h-screen" style="height: 90vh;">
-  <!-- New Events Block -->
-  <div class="overflow-auto px-4 py-4 bg-gray-800">
-    <h3 class="text-2xl font-bold mb-4">New Events</h3>
-    <!-- Repeat for each event -->
-    <% @newest_events.each do |event|  %>
-    <div class="flex  px-2 mb-4">
-      <img src="/path-to-event-thumbnail.jpg" alt="Event Thumbnail" class="w-1/3">
-      <div class="ml-4">
-        <p class="font-semibold"><% event.title %></p>
-        <p>Date and Time</p>       
-        <%= event.start_datetime.strftime("%b %e, %Y %l%p") %>
+<section class="py-14 newsfeed"> <!-- Changed to darker background for dark theme -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 py-8 px-14 text-white">
+    
+    <!-- New Events Block -->
+    <div class="bg-gray-800 border border-gray-700 rounded-lg"  style="height:32rem;"> <!-- Rounded corners added -->
+      <div class="px-4 py-4 bg-citizen-blue-base rounded-t-lg"> <!-- Dark header with rounded top -->
+        <h3 class="text-2xl font-bold text-center"><%= t 'homepage.newsfeed.new_events' %></h3>
       </div>
-    </div>
-    <% end %>
-    <!-- ... additional events ... -->
-  </div>
+      <hr class="border-gray-700"> <!-- Horizontal rule -->
+      <div class="px-4 py-4">
+        <!-- Repeat for each event -->
+        <% @newest_events.each do |event| %>
+        <div class="flex py-4">
+          <% banner_url = url_for(event.banner) if event.banner.attached? %>
+          <img src="<%= banner_url %>" alt="Event Thumbnail" class="rounded-lg h-12">
+          <div class="ml-4">
+            <p><%= link_to event.title, event, class:'font-semibold' %> • <%= link_to event.region.name, event.region, class:'citizen-blue-highlight underline underline-offset-4' %></p>
+            <span class="text-sm">Starts <%= event.start_datetime.strftime("%b %e, %Y %l%p") %></span>
+          </div>
+        </div>
+        <hr class="border-gray-700"> <!-- Horizontal rule -->
 
-  <!-- New Activities Block -->
-  <div class="overflow-auto px-4 py-4  bg-gray-800">
-    <h3 class="text-2xl font-bold mb-4">New Activities</h3>
-    <!-- Repeat for each activity -->
-    <% Activity.all.each do | activity | %>
-    <div class="flex  px-2 mb-4">
-      <img src="/path-to-user-profile.jpg" alt="User Profile" class="w-1/3">
-      <div class="ml-4">
-        <p class="font-semibold"><%= activity.user.username %></p>
-        <p><%= activity.name %></p>
-        <p><%= activity.created_at.strftime("%b %e, %Y %l%p") %></p>
-        <!-- Additional Activity Details Here -->
+        <% end %>
+        <!-- ... additional events ... -->
       </div>
     </div>
-    <% end %>
-    <!-- ... additional activities ... -->
+
+    <!-- New Activities Block -->
+
+    <div class="bg-gray-800 border border-gray-700 rounded-lg" style="height:32rem;">
+      <div class="px-4 py-4 bg-citizen-blue-base rounded-t-lg">
+        <h3 class="text-2xl font-bold text-center"><%= t 'homepage.newsfeed.new_activities' %></h3>
+      </div>
+      <hr class="border-gray-700">
+      <!-- Set a max-height to accommodate the header and horizontal rule. Adjust the value as needed. -->
+      <div class="overflow-auto" style="max-height: calc(32rem - 4rem); box-sizing: border-box;">
+        <div class="px-4 py-4">
+          <!-- Repeat for each activity -->
+
+              
+              <% @activities.each do |activity| %>
+                <div class="flex py-4">
+                  <img src="<%= activity.user.profile_image %>" alt="User Profile" class="rounded-full h-12">
+                  <div class="ml-4">
+                    <p class="font-semibold">
+                      <%= activity.user.username %>
+                      <% case activity.name %>
+                      <% when "New Discord created" %>
+                        created a new Discord
+                      <% when "User joined" %>
+                      <%=  t 'homepage.newsfeed.attending' %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %> event
+                      <% when "User signup" %>
+                        created a new account
+                      <% when "New Reply created" %>
+                        posted a reply
+                      <% when "New EventManager created" %>
+                        Assigned a new manager to the event
+                      <% when "New Photo added" %>
+ 
+                      <% event_id = activity.photo&.event&.id %>
+                      <% if event_id %>
+                      <%=  t 'homepage.newsfeed.new_photo' %> <%= link_to activity.photo.event.title, event_path(activity.photo.event), class:'underline' %>
+                      <% end %>
+                      <% when "New Region created" %>
+                        created a new region
+                      <% when "Created event" %>
+                        <%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %>
+                      <% when "New Post created" %>
+                          <%=  t 'homepage.newsfeed.new_post' %>                         <%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.post.post_category.name, forum_post_category_post_path(activity.post.post_category, activity.post), class:'underline' %> 
+                      <% when "New giveaway added" %>
+                      <% event_id = activity.giveaway&.event_id %>
+                        <% if event_id %>
+                        <%= t 'homepage.newsfeed.new_giveaway' %>
+                        <%= link_to activity.giveaway.event.title, event_path(activity.giveaway.event), class:'underline' %>
+                        <% else %>
+                        Deleted giveaway
+                        <% end %>
+                      <% else %>
+                        <%= activity.name %>
+                      <% end %>
+                    </p>
+
+                    <p class="text-xs"><%= time_ago_in_words(activity.created_at) %> ago</p>
+                    <!-- Additional Activity Details Here -->
+                  </div>
+                </div>
+                <hr class="border-gray-700"> <!-- Horizontal rule -->
+              <% end %>
+              
+
+
+        </div>
+      </div>
+    </div>
+    
+
   </div>
-</div>
 </section>
+
+<style>
+@media (min-width: 767px) {
+section.newsfeed{
+  height: 90vh;
+}
+              }
+</style>

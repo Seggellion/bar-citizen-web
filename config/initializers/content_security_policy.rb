@@ -23,3 +23,8 @@
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
 # end
+
+Rails.application.config.content_security_policy do |policy|
+    policy.frame_src :self, 'https://www.youtube.com', 'https://youtube.com', 'https://youtu.be'
+    # ... other policies ...
+  end

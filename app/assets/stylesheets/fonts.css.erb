@@ -1,0 +1,196 @@
+/* Orbitron - Light */
+<style>
+@font-face {
+    font-family: 'Orbitron';
+    src: url("<%= asset_path('orbitron/Orbitron-Light.ttf') %>") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  /* Orbitron - Regular */
+  @font-face {
+    font-family: 'Orbitron';
+    src: url("<%= asset_path('orbitron/Orbitron-Regular.ttf') %>") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  /* Orbitron - Medium */
+  @font-face {
+    font-family: 'Orbitron';
+    src: url("<%= asset_path('orbitron/Orbitron-Medium.ttf') %>") format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  /* Orbitron - SemiBold */
+  @font-face {
+    font-family: 'Orbitron';
+    src: url("<%= asset_path('orbitron/Orbitron-SemiBold.ttf') %>") format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  /* Orbitron - Bold */
+  @font-face {
+    font-family: 'Orbitron';
+    src: url('<%= asset_path('orbitron/Orbitron-Bold.ttf') %>") %>') format('truetype');
+
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  /* Orbitron - Black */
+  @font-face {
+    font-family: 'Orbitron';
+    src: url("<%= asset_path('orbitron/Orbitron-Black.ttf') %>") format('truetype');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  
+
+  /* Fira Sans - Thin */
+@font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-Thin.ttf') %>") format('truetype');
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - ExtraLight */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-ExtraLight.ttf') %>") format('truetype');
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - Light */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-Light.ttf') %>") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - Regular */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-Regular.ttf') %>") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - Medium */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-Medium.ttf') %>") format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - SemiBold */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-SemiBold.ttf') %>") format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - Bold */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-Bold.ttf') %>") format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - ExtraBold */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-ExtraBold.ttf') %>") format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  /* Fira Sans - Black */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-Black.ttf') %>") format('truetype');
+    font-weight: 900;
+    font-style: normal;
+  }
+/* Fira Sans - Thin Italic */
+@font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-ThinItalic.ttf') %>") format('truetype');
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - ExtraLight Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-ExtraLightItalic.ttf') %>") format('truetype');
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - Light Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-LightItalic.ttf') %>") format('truetype');
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - Regular Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-RegularItalic.ttf') %>") format('truetype');
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - Medium Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-MediumItalic.ttf') %>") format('truetype');
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - SemiBold Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-SemiBoldItalic.ttf') %>") format('truetype');
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - Bold Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-BoldItalic.ttf') %>") format('truetype');
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - ExtraBold Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-ExtraBoldItalic.ttf') %>") format('truetype');
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  /* Fira Sans - Black Italic */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url("<%= asset_path('fira/FiraSans-BlackItalic.ttf') %>") format('truetype');
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  </style>

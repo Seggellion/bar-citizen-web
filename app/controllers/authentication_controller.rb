@@ -7,7 +7,7 @@
       token = exchange_code_for_token(code)
       user_info = fetch_user_info(token)
       user = find_or_create_user(user_info)
-      byebug
+
       # Generate a session token or JWT
       #session_token = generate_session_token(user)
       jwt = generate_jwt(user)

@@ -15,25 +15,38 @@
 
     <div class="flex flex-col">
       <%= form.label :title, class: "mb-2 font-semibold" %>
-      <%= form.text_field :title, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+      <%= form.text_field :title, required:true, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
+  <div class="flex flex-col">
+    <%= form.label :description, class: "mb-2 font-semibold" %>
+    <%= form.text_area :description, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
+
     <div class="flex flex-col">
-      <%= form.label :description, class: "mb-2 font-semibold" %>
-      <%= form.text_area :description, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+      <%= form.label :location_name, class: "mb-2 font-semibold" %>
+      <%= form.text_area :location_name, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
     <div class="flex flex-col">
       <%= form.label :start_datetime, class: "mb-2 font-semibold" %>
-      <%= form.datetime_field :start_datetime, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+      <%= form.datetime_field :start_datetime, required:true,  class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
     <div class="flex flex-col">
+    <%= form.label :end_datetime, class: "mb-2 font-semibold" %>
+    <%= form.datetime_field :end_datetime, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
+
+    <div class="flex flex-col">
       <%= form.label :address, class: "mb-2 font-semibold" %>
-      <%= form.text_field :address, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+      <%= form.text_field :address, required:true, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
-
+    <div class="flex flex-col">
+    <%= form.label :cost, class: "mb-2 font-semibold" %>
+    <%= form.text_area :cost, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
 
     <div class="flex flex-col">
     <%= form.label :region_id, class: "mb-2 font-semibold" %>
@@ -51,7 +64,7 @@
   </div>
 
     <div>
-      <%= form.submit "Create Event", class: "mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
+      <%= form.submit "Create Event", class: "mt-4 bg-citizen-blue-base hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
     </div>
   <% end %>
 

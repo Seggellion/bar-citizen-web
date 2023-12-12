@@ -1,0 +1,30 @@
+<section class="py-14">
+<div class="flex flex-col md:flex-row items-center p-4 text-white">
+
+<% section.section.blocks.each do |block| %>
+
+  <!-- Text Area -->
+  <div class="w-full md:w-1/2 p-4">
+    <h5 class="text-2xl font-bold">
+  
+    <% translation = block.translations.find { |t| t.language == I18n.locale.to_s } %>
+    <% if translation %>
+    <%= translation.title %>
+    <% end %>
+</h5>  
+    <p>
+    <% if translation %>
+    <%= translation.description %>
+    <% end %>
+   
+    </p>
+  </div>
+  <!-- Video Area -->
+  <% embed_url = block.link_url.sub(/youtu\.be\/(.+)/, 'www.youtube.com/embed/\1').sub(/watch\?v=/, 'embed/') %>
+
+  <div class="w-full md:w-1/2 relative" style="min-height: 390px;">
+    <iframe class="absolute top-0 left-0 w-full h-full rounded-lg overflow-hidden" src="<%= embed_url %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
+  </div>
+  <% end %>
+</div>
+</section>

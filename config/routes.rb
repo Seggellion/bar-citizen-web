@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   end
   mount ActionCable.server => '/cable'
 
+  # Define a route for standard pages
+  get 'pages/:title', to: 'pages#show', as: :page
+
+  # Define a route for nested pages
+  get 'pages/:category/:title', to: 'pages#show_nested', as: :nested_page
+
   post "/graphql", to: "graphql#execute"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -27,6 +33,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   resources :votes, only: [:create]
   get '/dashboard', to: 'home#dashboard'
+  get '/gallery', to: 'home#gallery'
 
   # Events
  # get '/events/new', to: 'events#new', as: 'new_event'
@@ -62,7 +69,10 @@ end
         post 'trash'
       end
     end
-
+    resources :sections, only: [:create, :destroy, :update]
+    resources :blocks, only: [:create, :destroy, :update]
+    resources :settings 
+    resources :pages
     resources :posts do
       member do
         post 'trash'

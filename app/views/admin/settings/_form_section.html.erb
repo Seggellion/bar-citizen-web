@@ -1,0 +1,29 @@
+<div class="container mx-auto px-4 dark:bg-gray-800">
+  <h1 class="text-xl font-bold my-4 text-gray-900 dark:text-white">New Section</h1>
+  <%= form_with model: Section.new, url: admin_sections_path, local: true, class: "flex flex-row flex-wrap gap-4" do |form| %>
+    
+    <div class="flex-1 mb-4">
+      <%= form.label :title, class: 'text-gray-900 dark:text-white' %>
+      <%= form.text_field :title, class: "shadow border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700" %>
+    </div>
+
+    <div class="flex-1 mb-4">
+      <%= form.label :section_order, class: 'text-gray-900 dark:text-white' %>
+      <%= form.number_field :section_order, class: "shadow border rounded py-2 px-3 dark:border-gray-600 dark:bg-gray-700" %>
+    </div>
+
+    <div class="flex-1 mb-4">
+      <%= form.label :section_type, 'Section Type', class: 'text-gray-900 dark:text-white' %>
+      <%= form.select :section_type, options_for_select(['VideoSection', 'HeroSection', 'TwoByTwoGridSection', 'ThreeGridSection', 'ContentSection']), {}, { class: 'shadow border rounded py-2 px-3 dark:border-gray-600 dark:bg-gray-700', id: 'section_type_select' } %>
+    </div>
+
+    <div class="flex-1 mb-4">
+      <%= form.label :page_id, 'Page', class: 'text-gray-900 dark:text-white' %>
+      <%= form.collection_select :page_id, Page.all, :id, :title, { prompt: 'Select a Page' }, { class: "shadow border rounded py-2 px-3 dark:border-gray-600 dark:bg-gray-700" } %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  <% end %>
+</div>

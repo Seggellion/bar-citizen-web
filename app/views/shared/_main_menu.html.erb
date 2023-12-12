@@ -1,4 +1,10 @@
-<div class="bg-citizen-blue w-full drop-shadow-lg flex items-center p-2 text-white relative" style="z-index:9001; min-height: 64px;">
+<style>
+#main_menu .orb-font{
+letter-spacing:3px;
+}
+</style>
+
+<div class="bg-citizen-blue-base drop-shadow-lg flex items-center p-2 text-white relative rounded-lg m-2" style="z-index:9001; min-height: 64px;">
   <div class="flex-grow">
     <%= link_to root_path do %>
       <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class absolute h-auto' %>
@@ -15,33 +21,66 @@
   <div id="mobile-menu" class="hidden md:hidden">
     <nav class="flex flex-col items-center space-y-2 mt-2">
       <% if current_user && current_user.user_type < 69 %>
-      <%= link_to 'DASHBOARD', dashboard_path, class: "text-white" %>
+      <%= link_to t('menu.dashboard'), dashboard_path, class: "text-white orb-font" %>
       <% else %>
-      <%= link_to 'HOME', root_path, class: "text-white" %>
+      <%= link_to t('menu.home'), root_path, class: "text-white orb-font" %>
       <% end %>
   
-      <%= link_to 'EVENT MAP', map_path, class: "text-white" %>
-      <%= link_to 'EVENT LIST', events_path, class: "text-white" %>
-      <%= link_to 'GALLERY', root_path, class: "text-white" %>
-      <%= link_to 'ABOUT US', root_path, class: "text-white" %>
+      <%= link_to t('menu.event_map'), map_path, class: "text-white orb-font" %>
+      <%= link_to t('menu.event_list'), events_path, class: "text-white orb-font" %>
+      <%= link_to t('menu.gallery'), root_path, class: "text-white orb-font" %>
+      <%= link_to t('menu.about_us'), page_path('about'), class: "text-white orb-font" %>
     </nav>
   </div>
   
   <!-- Main Menu for Desktop -->
   <nav id="main_menu" class="hidden md:flex flex-grow justify-end space-x-4">
-    <% if current_user && current_user.user_type < 69 %>
-    <%= link_to 'DASHBOARD', dashboard_path %>
-    <% else %>
-    <%= link_to 'HOME', root_path %>
-    <% end %>
-  
-    <%= link_to 'EVENT MAP', map_path %>
-    <%= link_to 'EVENT LIST', events_path %>
-    <%= link_to 'GALLERY', root_path %>
-    <%= link_to 'ABOUT US', root_path %>
-  </nav>
+  <div class="relative">
+  <%= image_tag 'bmm.png', alt: 'Banu Merchantman', class: 'absolute bmm' %>
+  <% if current_user && current_user.user_type < 69 %>
+    <%= link_to t('menu.dashboard'), dashboard_path, class:'relative orb-font' %>
+  <% else %>
+    <%= link_to t('menu.home'), root_path, class:'relative orb-font' %>
+  <% end %>
+</div>
+<div class="relative">
+<%= image_tag '890.png', alt: 'Origin 890 Jump', class: 'absolute origin' %>
+<%= link_to t('menu.event_map'), map_path, class: "relative orb-font" %>
+</div>
+<div class="relative">
+<%= image_tag 'carrack.png', alt: 'Anvil Carrack', class: 'absolute carrack' %>
+<%= link_to t('menu.event_list'), events_path, class: "relative orb-font" %>
+</div>
+<div class="relative">
+<%= image_tag 'hullc.png', alt: 'MISC Hull-C', class: 'absolute hullc' %>
+<%= link_to t('menu.gallery'), gallery_path, class: "relative orb-font" %>
+</div>
+
+<div class="relative">
+<%= image_tag 'starfarer.png', alt: 'MISC Starfarer', class: 'absolute starfarer' %>
+
+  <%= link_to t('menu.about_us'), page_path('about'), class: "relative orb-font" %>
+  </div>
+</nav>
+
   
   <div class="hidden md:flex-grow md:flex justify-end">
     <input type="search" placeholder="Search Discords" class="p-2 bg-gray-700 text-white">
   </div>
 </div>
+
+
+<style>
+#main_menu img{
+
+
+max-width: inherit;
+transform: translateX(-50%);
+left: 50%;
+    }
+    .bmm{width: 120px; top: -17px;}
+    .carrack{width: 160px; top: -15px;}
+    .starfarer{width: 140px; top: -7px;}
+    .hullc{width: 140px; top: -17px;}
+    .origin{width: 160px; top: -5px;}
+</style>

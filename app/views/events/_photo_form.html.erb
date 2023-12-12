@@ -1,7 +1,7 @@
 
 <div class="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover relative items-center">
 	<div class="absolute bg-black opacity-60 inset-0 z-0"></div>
-	<div class="sm:max-w-lg w-full p-10 bg-citizen-blue rounded-xl z-10">
+	<div class="sm:max-w-lg w-full p-10 bg-citizen-blue-base rounded-xl z-10">
 		<div class="text-center">
 			<h2 class="text-3xl font-bold text-white">
 				Upload Photo
@@ -10,7 +10,7 @@
 		</div>
     <%= form_with model: [@event, @event.photos.build], local: true do |form| %>
     <div class="grid grid-cols-1 space-y-2 pb-4">
-        <%= form.text_field :title, placeholder:'Title', class:'text-white p-2 border bg-citizen-blue rounded-lg focus:outline-none focus:border-indigo-500' %>
+        <%= form.text_field :title, placeholder:'Title', class:'text-white p-2 border bg-citizen-blue-base rounded-lg focus:outline-none focus:border-indigo-500' %>
 
     </div>
     <div class="grid grid-cols-1 space-y-2">
@@ -27,6 +27,7 @@
                     <p class="pointer-none text-white "><span class="text-sm">Drag and drop</span> files here <br /> or <a href="" id="" class="text-blue-600 hover:underline">select a file</a> from your computer</p>
                 </div>
                 <%= form.file_field :image, class:'hidden' %>
+                <%= form.hidden_field :event_id, value:@event.id, class:'hidden' %>
             </label>
         </div>
     </div>
@@ -34,7 +35,7 @@
 
     <div class="grid grid-cols-1 space-y-2 py-4">
 
-    <%= form.text_field :description, placeholder:'Description', class:'text-white p-2 border bg-citizen-blue rounded-lg focus:outline-none focus:border-indigo-500' %>
+    <%= form.text_field :description, placeholder:'Description', class:'text-white p-2 border bg-citizen-blue-base rounded-lg focus:outline-none focus:border-indigo-500' %>
 </div>
 
                     <div>

@@ -22,7 +22,10 @@
       <div class="flex flex-wrap md:flex-nowrap">
         <!-- Image -->
         <div class="w-full md:w-4/12 mb-4 md:mb-0">
-          <img src="path_to_image" alt="Event Image" class="w-full h-auto rounded-lg">
+
+        <% banner_url = url_for(event.banner) if event.banner.attached? %>
+        <img src="<%= banner_url %>" alt="Event Thumbnail" class="rounded-lg h-full">
+
         </div>
         <!-- Details -->
         <div class="w-full md:w-6/12 mb-4 md:mb-0 md:px-4">

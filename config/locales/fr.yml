@@ -1,0 +1,14 @@
+fr:
+  menu:
+    dashboard: "TABLEAU DE BORD"
+    home: "ACCUEIL"
+    event_map: "CARTE DES ÉVÉNEMENTS"
+    event_list: "LISTE DES ÉVÉNEMENTS"
+    gallery: "GALERIE"
+    about_us: "À PROPOS DE NOUS"
+  homepage:
+    hello: "Bonjour le monde"
+    next_events: "Prochains événements"
+  # Other nested translations for different pages or sections
+  about_page:
+    welcome_message: "Bienvenue sur notre site"

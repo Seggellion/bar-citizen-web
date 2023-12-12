@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    Activity.create(name: "User signup", description: "user-id_#{@user.id}", user_id: current_user.id)
 
     respond_to do |format|
       if @user.save

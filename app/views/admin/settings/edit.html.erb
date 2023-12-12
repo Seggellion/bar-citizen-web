@@ -1,0 +1,62 @@
+<div class="container mx-auto px-4 dark:bg-gray-800">
+  <h1 class="text-xl font-bold my-4 text-gray-900 dark:text-white">Edit Section</h1>
+  
+  <!-- Form for editing the sectionable attributes -->
+  <% comment do %>
+  <%= form_with model: @section, url: admin_section_path(@section), local: true do |form| %>
+
+    <!-- Add fields specific to the sectionable type -->
+    <!-- Example for a VideoSection -->
+    <% if @section.sectionable_type == "VideoSection" %>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+      <!-- Other fields specific to VideoSection -->
+    <% end %>
+    <!-- Add similar conditional blocks for other sectionable types -->
+
+    <%= form.submit 'Update Section', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <% end %>
+  <% end %>
+  <%= button_to 'Delete Section', admin_section_path(@section), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+
+  <!-- Forms for editing blocks -->
+  <% @section.blocks.each do |block| %>
+    <%= form_with model: [:admin, block], local: true do |form| %>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+
+
+      <%= form.label :link_url %>
+      <%= form.text_field :link_url %>
+      
+      <div>
+      <%= form.label :image %>
+      <%= form.file_field :image, class:'w-full bg-gray-700 text-white' %>
+</div>
+
+      <h2 class="text-lg font-bold mt-4 mb-2">Translations</h2>
+      <%= form.fields_for :translations, block.translations do |translation_form| %>
+        <div class="border p-4 rounded mb-2">
+          <%= translation_form.label :language %>
+          <%= translation_form.text_field :language %>
+      
+          <%= translation_form.label :title %>
+          <%= translation_form.text_field :title %>
+      
+          <%= translation_form.label :description %>
+          <%= translation_form.text_area :description %>
+        </div>
+      <% end %>
+
+      <%= form.submit 'Update Block', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
+    <%= button_to 'Delete Block', admin_block_path(block), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+
+  <% end %>
+
+  <!-- Back Button -->
+  <%= link_to 'Back to Settings', admin_settings_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+</div>

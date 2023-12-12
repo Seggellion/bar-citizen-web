@@ -1,0 +1,28 @@
+<section class="py-14">
+<div class="grid grid-cols-1 p-4" style="min-height:70vh;">
+<% section.section.blocks.each do |block| %>
+  <!-- Block 1 -->
+  
+  <% translation = block.translations.find { |t| t.language == I18n.locale.to_s } %>
+
+  <div class="relative  p-6 flex justify-center items-center flex-col cursor-pointer" >
+    <h3 class="text-white text-5xl font-bold mb-2"><%= block.title %></h3>
+    <p class="text-white mb-4">
+    <% unless translation&.description.empty? %>
+      <%= translation.description %>
+      <% else %>
+      <%= block.description %>
+    <% end %>
+    </p>
+
+<% if !block.link_url.empty? %>
+    <div class="border border-white py-2 px-4 text-white cursor-pointer">Click here</div>
+    <% end %>
+  </div>
+  <% end %>
+
+  
+  
+  <!-- Repeat for other two blocks -->
+</div>
+</section>

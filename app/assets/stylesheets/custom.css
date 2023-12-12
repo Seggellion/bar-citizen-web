@@ -1,9 +1,24 @@
 :root {
---citizen-blue: #223C6F;
+--citizen-blue: #2354B1;
+--citizen-blue-dk: #020A21;
 --citizen-blue-highlight: #7196E7;
+--citizen-blue-base: #223C6F;
+--citizen-grey-dk: #2C2C2C;
+--citizen-grey-md: #383838;
 }
 .citizen-grey{
     color: #3C3C3B;
+}
+.citizen-blue-highlight{
+  color:  var(--citizen-blue-highlight);
+}
+
+.citizen-grey-dk{
+  background-color:  var(--citizen-grey-dk);
+}
+
+.citizen-grey-md{
+  background-color:  var(--citizen-grey-md);
 }
 
 svg.citizen-grey{
@@ -13,7 +28,13 @@ svg.citizen-grey{
     color: #4caf50;
 }
 .bg-citizen-blue{
-    background-color:  var(--citizen-blue);
+  background-color:  var(--citizen-blue);
+}
+.bg-citizen-blue-base{
+    background-color:  var(--citizen-blue-base);
+}
+.bg-citizen-blue-dk{
+  background-color:  var(--citizen-blue-dk);
 }
 
 .bg-citizen-blue-highlight, .event-page .bg-citizen-blue-highlight {
@@ -38,10 +59,6 @@ h1{
     color:white;
 }
 
-#main_menu a{
-    padding: 8px;
-    border:4px solid var(--citizen-blue-highlight);
-}
 
 button[data-maps-target="eventsToggle"], 
 button[data-maps-target="regionsToggle"] {
@@ -56,4 +73,14 @@ button[data-maps-target="regionsToggle"] {
     .mobile-image-height {
       height: 50vh;
     }
+  }
+
+  h1,h2,h3,h4, .orb-font {
+    font-family: 'Orbitron', sans-serif;
+  }
+  body,p, .fira-font {
+    font-family: 'Fira Sans', sans-serif;
+  }
+  button:hover{
+    cursor:pointer;
   }

@@ -10,6 +10,9 @@ class Event < ApplicationRecord
     has_many :event_messages
     has_many :giveaways
     geocoded_by :address
+    validates :title, presence: true
+    validates :address, presence: true
+    validates :start_datetime, presence: true
     before_save :geocode_address, if: ->(obj){ obj.address.present? and obj.address_changed? }
     has_one_attached :banner
     #pineapple add banner

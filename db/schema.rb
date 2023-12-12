@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_10_025109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,26 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
     t.string "name"
     t.text "description"
     t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blocks", force: :cascade do |t|
+    t.string "blockable_type"
+    t.bigint "blockable_id"
+    t.string "title"
+    t.string "description"
+    t.integer "section_order", default: 0
+    t.string "link_url"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blockable_type", "blockable_id"], name: "index_blocks_on_blockable"
+    t.index ["section_id"], name: "index_blocks_on_section_id"
+  end
+
+  create_table "content_sections", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -168,6 +188,27 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
     t.index ["event_id"], name: "index_giveaways_on_event_id"
   end
 
+  create_table "hero_sections", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "category"
+    t.string "slug", null: false
+    t.string "meta_description"
+    t.string "meta_image"
+    t.string "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
+    t.index ["title"], name: "index_pages_on_title", unique: true
+    t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
   create_table "photo_comments", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -261,6 +302,40 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.string "sectionable_type"
+    t.bigint "sectionable_id"
+    t.integer "section_order"
+    t.bigint "page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_sections_on_page_id"
+    t.index ["sectionable_type", "sectionable_id"], name: "index_sections_on_sectionable"
+  end
+
+  create_table "three_grid_sections", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "translations", force: :cascade do |t|
+    t.bigint "block_id", null: false
+    t.string "language", null: false
+    t.string "title"
+    t.string "description"
+    t.string "link_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_translations_on_block_id"
+  end
+
+  create_table "two_by_two_grid_sections", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_badges", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "badge_id", null: false
@@ -296,6 +371,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
     t.integer "action_id"
   end
 
+  create_table "video_sections", force: :cascade do |t|
+    t.string "title"
+    t.string "youtube_link"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "votes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "votable_type", null: false
@@ -311,6 +394,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
+  add_foreign_key "blocks", "sections"
   add_foreign_key "discords", "users"
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"
@@ -322,12 +406,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_233733) do
   add_foreign_key "giveaway_users", "users"
   add_foreign_key "giveaways", "events"
   add_foreign_key "giveaways", "users", column: "creator_id"
+  add_foreign_key "pages", "users"
   add_foreign_key "photo_comments", "photos"
   add_foreign_key "photo_comments", "users"
   add_foreign_key "posts", "post_categories"
   add_foreign_key "regions", "users"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
+  add_foreign_key "sections", "pages"
+  add_foreign_key "translations", "blocks"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "users"
   add_foreign_key "votes", "users"

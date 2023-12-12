@@ -2,6 +2,28 @@
 class Activity < ApplicationRecord
     belongs_to :user
 
+
+    def giveaway
+      Giveaway.find_by(id: description.split('_').last) if name == "New giveaway added"
+    end
+
+    def photo
+      Photo.find_by(id: description.split('_').last) if name == "New Photo added"
+    end
+
+    def event
+      Event.find_by(id: description.split('_').last) if name == "Created event"
+    end
+    
+    def post
+      Post.find_by(id: description.split('_').last) if name == "New Post created"
+    end
+
+
+    def user_event
+      EventParticipation.find_by(id: description.split('_').last) if name == "User joined"
+    end
+    
       # Method to extract event_id from description
   def extract_event_id
     model_name, event_id = description.split('-')

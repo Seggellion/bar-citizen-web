@@ -24,7 +24,7 @@
 
 
   <div class="col-span-1 flex items-center dark:text-white">
-  <p class="text-sm font-medium text-meta-3"><%= photo.upvotes %> / <%= photo.downvotes %></p>
+  <p class="text-sm font-medium text-meta-3"><%= photo.votes.where(upvote: true).count  %> /<%= photo.votes.where(upvote: false).count  %></p>
 </div>
 
   <div class="hidden items-center flex-col justify-center p-2.5 sm:flex xl:p-5">

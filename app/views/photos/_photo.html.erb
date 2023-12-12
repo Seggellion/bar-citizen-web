@@ -1,4 +1,4 @@
-<div id="photo_show" class="bg-citizen-blue my-8 max-w-5xl">
+<div id="photo_show" class="bg-citizen-blue-base my-8 max-w-5xl">
   <!-- Top Row: Photo title and details -->
   <div class="flex flex-col p-4">
     <h1 class="text-2xl font-bold"><%= @photo.title %></h1>
@@ -27,7 +27,7 @@
   <div class="flex flex-col p-4 space-y-4">
     <%= form_with(model: [ @photo, PhotoComment.new ], local: true) do |form| %>
       <div class="mb-4">
-        <%= form.text_area :content, rows: 4, placeholder: "Write a comment", class: "w-full p-4 border bg-citizen-blue text-white rounded-md" %>
+        <%= form.text_area :content, rows: 4, placeholder: "Write a comment", class: "w-full p-4 border bg-citizen-blue-base text-white rounded-md" %>
       </div>
     
       <div>

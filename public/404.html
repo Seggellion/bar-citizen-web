@@ -58,10 +58,18 @@
   <!-- This file lives in public/404.html -->
   <div class="dialog">
     <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+      <img style="width:100vw;" id="error-image" alt="404 Error Image" class="error-image">
+</div>
   </div>
+
+  <script>
+    // JavaScript to change the image based on the day of the month
+    window.onload = function() {
+      var dayOfMonth = new Date().getDate();
+      var imageSrc = dayOfMonth % 2 === 0 ? '/assets/404-1.png' : '/assets/404-2.png';
+      document.getElementById('error-image').src = imageSrc;
+    };
+  </script>
+
 </body>
 </html>

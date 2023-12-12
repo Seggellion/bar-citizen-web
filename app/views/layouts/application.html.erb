@@ -10,13 +10,16 @@
 
     <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbo-track': 'reload' %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag 'fonts', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    
+    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
   </head>
 
   <body class="bg-black dark:bg-black" style="background-image: url(<%= asset_url('starry_background.png') %>);     background-size: cover; background-position: center;">
+
 <% unless request.fullpath.include?('/admin') %>
   <!-- Main Site Header -->
 

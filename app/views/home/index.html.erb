@@ -1,11 +1,17 @@
 
 
-<%= render 'hero' %>
-<%= render 'secondary_menu' %>
-<%= render 'four_block' %>
-<%= render 'video' %>
-<%= render 'three_block_cta' %>
+
+
+<% @page&.sections&.order(:section_order)&.each do |section| %>
+  <% section_type = section.sectionable_type.downcase.gsub('section', '') %>
+  <%= render partial: "/section/#{section_type}_section", locals: { section: section.sectionable } %>
+
+  <hr class="bg-citizen-blue-base my-5 mx-4 citizen-blue rounded-full h-8 border-0">
+<% end %>
+
 <%= render 'newsfeed' %>
+
+
 
 <%= render 'newsletter' %>
 <!-- Add your own styling for the login button -->

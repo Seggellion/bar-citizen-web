@@ -18,10 +18,10 @@ module Admin
       def publish
 
         photo = Photo.find(params[:id])
-        byebug
-        photo.update(published: true, action_id: @current_user.id)
+
+        photo.update(published: true, action_id: current_user.id)
     
-        Activity.create(name: "New photo created", description: "photo-id_#{@photo.id}", user_id: photo.user_id)
+        Activity.create(name: "New photo created", description: "photo-id_#{photo.id}", user_id: photo.user_id)
         redirect_to admin_photos_path, notice: 'Photo was successfully published.'
   
       end
@@ -29,7 +29,7 @@ module Admin
       def unpublish
         photo = Photo.find(params[:id])
   
-        photo.update(published: nil, action_id: @current_user.id)
+        photo.update(published: nil, action_id: current_user.id)
     
         Activity.create(name: "Photo unpublished", user_id: photo.user_id)
         redirect_to admin_photos_path, notice: 'Photo was successfully unpublished.'

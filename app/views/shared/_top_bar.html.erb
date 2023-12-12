@@ -1,4 +1,4 @@
-<div class="bg-gray-900 w-full p-2 flex justify-between items-center space-x-4 text-gray-200">
+<div class="bg-citizen-blue-dk  p-2 flex justify-between mx-2 mt-2 items-center space-x-4 text-gray-200 rounded-full">
 <div class="text-gray-200"></div>
   <!-- Social Links Here -->
  
@@ -8,25 +8,94 @@
 
   <div class="social-links flex">
     <!-- Instagram Button -->
-    <a href="https://www.instagram.com" class="bg-white p-2 mx-1 items-center justify-center rounded-full hover:bg-gray-300">
+    <a href="https://www.instagram.com"  style="height:36px" class="bg-white p-2 mx-1 items-center justify-center rounded-full hover:bg-gray-300">
    
         <%= render '/shared/icons/instagram' %>
     </a>
     
     <!-- Twitter Button -->
-    <a href="https://www.twitter.com" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
+    <a href="https://www.twitter.com"  style="height:36px" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
     <%= render '/shared/icons/x' %>
     </a>
     
     <!-- Facebook Button -->
-    <a href="https://www.facebook.com" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
+    <a href="https://www.facebook.com"  style="height:36px" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
     <%= render '/shared/icons/facebook' %>
     </a>
     
     <!-- Discord Button -->
-    <a href="https://www.discord.com" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
+    <a href="https://www.discord.com" style="height:36px" class="bg-white p-2  mx-1  items-center justify-center rounded-full hover:bg-gray-300">
     <%= render '/shared/icons/discord', width: 20 %>
     </a>
+    <% comment do %>
+    <select onchange="location = this.value;" class="bg-black">
+      <option value="?locale=en" <%= 'selected' if I18n.locale == :en %>>English</option>
+      <option value="?locale=fr" <%= 'selected' if I18n.locale == :fr %>>Francais</option>
+      <option value="?locale=ja" <%= 'selected' if I18n.locale == :ja %>>日本語</option>
+    <!-- Add more options for other languages -->
+    </select>
+
+    <% end %>
+
+    <!-- Language Selector Wrapper -->
+<div id="languageSelector" class="relative bg-gray-900 ">
+  <!-- Selected Language Display -->
+  <div class="cursor-pointer overflow-hidden rounded-full w-10 h-10" id="selectedLanguage">
+    <% case I18n.locale %>
+    <% when :en %>
+      <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'england.svg')) %>
+    <% when :fr %>
+      <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'france.svg')) %>
+    <% when :ja %>
+      <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'japan.svg')) %>
+    <% else %>
+    <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'england.svg')) %>
+    <% end %>
+  </div
+
+
+
+  <!-- Dropdown Menu -->
+  <div id="languageDropdown" class="absolute rounded-br-full rounded-br-full bg-gray-900  hidden mt-1">
+    <a href="?locale=en" class="block overflow-hidden rounded-full w-10 h-10">
+    <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'england.svg')) %>
+      <!-- Replace with actual SVG code -->
+    </a>
+    <a href="?locale=fr" class="block overflow-hidden rounded-full w-10 h-10">
+
+    <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'france.svg')) %>
+    </a>
+    <a href="?locale=ja" class="block overflow-hidden rounded-full w-10 h-10">
+    <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'japan.svg')) %>
+    </a>
+    <!-- Add more flags for other languages -->
+  </div>
+</div>
+
+<!-- Tailwind CSS for Styling -->
+<style>
+  #languageDropdown a:not(:last-child) {
+    margin-bottom: 0.25rem;
+  }
+  #languageSelector{
+    z-index:9005;
+  }
+</style>
+
+<!-- JavaScript for Dropdown Toggle -->
+<script>
+  document.getElementById('selectedLanguage').addEventListener('click', function() {
+    document.getElementById('languageDropdown').classList.toggle('hidden');
+  });
+
+  window.addEventListener('click', function(e) {
+    if (!document.getElementById('languageSelector').contains(e.target)) {
+      document.getElementById('languageDropdown').classList.add('hidden');
+    }
+  });
+</script>
+
+
   </div>
 
 </div>

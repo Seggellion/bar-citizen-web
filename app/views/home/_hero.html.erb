@@ -1,40 +1,60 @@
-<div class="hero flex flex-col md:flex-row w-full relative">
+<div style="height:90vh;"  class="hero mx-2 flex flex-col md:flex-row relative overflow-hidden p-1 rounded-lg">
 
   <!-- Left Block with Background Image -->
-  <div class="w-full md:w-4/5 bg-cover bg-no-repeat bg-center p-4 text-left relative mobile-image-height" style="background-image: url(<%= asset_url('featured_slides/bar_citizen_slide_1.jpg') %>); background-size: cover;">
+  <div class="w-full h-screen md:h-full md:w-4/6 bg-citizen-blue-highlight  p-1 text-left relative overflow-hidden	rounded-lg">
+    <div class="w-full h-screen md:h-full background-div bg-cover bg-no-repeat bg-center overflow-hiddenp-4	rounded-lg"  style="background-image: url(<%= asset_url('featured_slides/bar_citizen_slide_1.jpg') %>);" >
+      <!-- Content inside the image block for desktop -->
+      <div class="hidden md:block md:absolute bottom-0 left-0 p-4">
+        <h1 class="text-white text-4xl font-bold w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
+      </div>
+      <div class="hidden md:block md:absolute bottom-0 right-0 p-4">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
+        <p class="text-yellow-300 mb-4"><%= User.count %> MEMBERS AND GROWING!</p>
+      </div>
 
-  <!-- Content inside the image block for desktop -->
-  <div class="hidden md:block md:absolute bottom-0 left-0 p-4">
-    <h1 class="text-white text-4xl font-bold w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
-  </div>
-  <div class="hidden md:block md:absolute bottom-0 right-0 p-4">
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
-    <p class="text-yellow-300 mb-4"><%= User.count %> MEMBERS AND GROWING!</p>
-  </div>
-
-  <!-- Content inside the image block for mobile -->
-  <div class="md:hidden p-4 absolute bottom-0 w-full text-center">
-    <h1 class="text-white text-4xl font-bold mb-4">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full mb-4">ATTEND EVENT</button>
-    <p class="text-yellow-300"><%= User.count %> MEMBERS AND GROWING!</p>
-  </div>
-</div>
-
-
-
-  <!-- Right Block with Events List -->
-  <!-- w-1/5 to w-full for mobile, bg-gray-800 and other classes remain the same -->
-  <div class="w-full md:w-1/5 bg-gray-800 p-4 text-white">
-    <h2 class="text-xl font-bold">Next events:</h2>
-    <div class="mt-4">
-      <% @next_events.each do |event| %>
-        <div class="mb-4">
-          <p class="font-semibold"><%= event.title %></p>
-          <p><%= event.start_datetime.strftime("%b %e, %Y %l%p") %></p>
-        </div>
-      <% end %>
+      <!-- Content inside the image block for mobile -->
+      <div class="md:hidden p-4 absolute bottom-0 w-full text-center">
+        <h1 class="text-white text-4xl font-bold mb-4">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full mb-4">ATTEND EVENT</button>
+        <p class="text-yellow-300"><%= User.count %> MEMBERS AND GROWING!</p>
+      </div>
     </div>
-    <a href="#" class="text-blue-400 hover:text-blue-200">Show all events</a>
   </div>
+  <!-- Right Block with Events List -->
+  <div class="flex flex-col h-full bg-citizen-blue-highlight mt-2 md:mt-0 md:ml-2 md:w-2/6 w-full overflow-hidden text-white rounded-lg">
+    <div class="flex flex-col  bg-citizen-blue-base items-center m-2 rounded-full">
+      <h2 class="text-xl font-bold p-1"><%= t 'homepage.next_events' %>:</h2>
+    </div>
+
+  <!-- Outer div for padding and to act as a flex container -->
+  <div class="flex-grow mt-1 p-1">
+    <!-- Inner div for background and scrolling -->
+    <div class="h-full bg-gray-800 rounded-lg overflow-auto">
+      <% @next_events.each_with_index do |event, index| %>
+        <%= link_to event, class: "#{index.even? ? 'citizen-grey-md' : 'citizen-grey-dk'} p-2 flex items-center justify-between flex-row" do %>
+          <span class="font-light text-xs"><%= event.title %></span>
+          <span class="font-light text-xs"><%= event.start_datetime.strftime("%b %e, %Y %l%p") %></span>
+        <% end %>
+      <% end %>
+      <%= link_to t('homepage.see_all_events'), events_path, class: 'mx-auto flex mt-2 justify-center w-1/2' %>
+      
+    </div>
+  </div>
+</div>
+
+
 
 </div>
+  <style>
+  @media (max-width: 767px) {
+.hero{
+  height:auto !important;
+}
+.background-div{
+  height:90vh !important;
+}
+.hero .h-screen{
+  height:90vh !important;
+}
+      }
+</style>

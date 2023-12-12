@@ -28,4 +28,30 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  menu:
+    dashboard: "DASHBOARD"
+    home: "HOME"
+    event_map: "EVENT MAP"
+    event_list: "EVENT LIST"
+    gallery: "GALLERY"
+    about_us: "ABOUT US"
+  footer:
+    quicklinks: "Quick Links"
+    contact_us: "Contact us"
+    connect_with_us: "Connect with us"
+  homepage:
+    hello: "Hello world"
+    next_events: "Next events"
+    see_all_events: "See all events"
+    newsletter: "Get email notified about new Star Citizen and S42 Events!"
+    newsfeed:
+      new_giveaway: "created a new giveaway for the"
+      new_event: "created a new event"
+      new_photo: "added a new photo to the"
+      new_post: "created a new post in"
+      attending: "is attending the"
+      new_activities: "New activities"
+      new_events: "New events"
+  # Other nested translations for different pages or sections
+  about_page:
+    welcome_message: "Welcome to about page"

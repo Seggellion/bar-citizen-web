@@ -16,7 +16,7 @@ class Photo < ApplicationRecord
     attribute :published, :boolean, default: false
     attribute :category, :string  # Assuming category is a simple string; use belongs_to for a separate Category model    # Assuming region is a string
   
-    has_many :votes, dependent: :destroy
+   
 
     def upvoted_by?(user)
       votes.exists?(user: user, upvote: true)

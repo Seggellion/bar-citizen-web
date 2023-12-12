@@ -308,13 +308,7 @@
 
           <!-- Menu Item Settings -->
           <li>
-            <a
-              class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-              href="settings.html"
-              @click="selected = (selected === 'Settings' ? '':'Settings')"
-              :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') && (page === 'settings') }"
-              :class="page === 'settings' && 'bg-graydark'"
-            >
+          <%= link_to admin_settings_path, class: 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium hover:bg-gray-700 hover:text-white duration-300 ease-in-out' do %>
               <svg
                 class="fill-current"
                 width="18"
@@ -346,7 +340,19 @@
               </svg>
 
               Settings
-            </a>
+            <% end %>
+
+            <% if request.path.include?("/admin/pages") || request.path.include?("/admin/settings") %>
+            <div class="translate transform overflow-hidden block">
+              <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                <li>
+                  <%= link_to 'Pages', admin_pages_path, class: 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white' %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+
+
           </li>
           <!-- Menu Item Settings -->
         </ul>

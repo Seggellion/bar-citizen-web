@@ -1,0 +1,54 @@
+
+<!-- ===== Main Content Start ===== -->
+<main class="w-full">
+  <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+
+
+    
+    <div class="container mx-auto px-4">
+    <h1 class="text-xl font-bold my-4">Settings Dashboard</h1>
+
+<%= render 'form_section' %>
+<%= render 'form_blocks' %>
+
+<div class="rounded-sm border border-gray-300 shadow-md dark:border-gray-700 dark:bg-gray-800">
+
+
+  <div class="grid grid-cols-3 rounded-sm bg-gray-900 dark:bg-gray-900 sm:grid-cols-6">
+    <div class="p-2.5 xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Author</h5>
+    </div>
+    <div class="p-2.5 text-center xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Page</h5>
+    </div>
+    <div class="p-2.5 text-center xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Post</h5>
+    </div>
+    <div class="p-2.5 text-center xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">TYpe</h5>
+    </div>
+    <div class="hidden p-2.5 text-center sm:block xl:p-5">
+      <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Created</h5>
+    </div>
+    <div class="hidden p-2.5 text-center sm:block xl:p-5">
+    <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-900 dark:text-white">Action</h5>
+  </div>
+  </div>
+
+  <% if @sections.count > 0 %>
+    <% @sections.each do |section| %>
+      <%= render 'section', section: section %>
+    <% end %>
+  <% else %>
+    <div class="text-center py-4">
+      <p class="text-gray-500 dark:text-gray-400">No sections found.</p>
+    </div>
+  <% end %>
+
+</div>
+
+
+
+
+  </div>
+</main>

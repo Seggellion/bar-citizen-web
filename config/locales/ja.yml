@@ -1,0 +1,33 @@
+ja:
+  menu:
+    dashboard: "ダッシュボード"
+    home: "ホーム"
+    event_map: "イベントマップ"
+    event_list: "イベントリスト"
+    gallery: "ギャラリー"
+    about_us: "私たちについて"
+  footer:
+    quicklinks: "こんにちは世界"
+    contact_us: "お問い合わせ"
+    connect_with_us: "私達と接続"
+  homepage:
+    hello: "こんにちは世界"
+    next_events: "次のイベント"
+    see_all_events: "すべてのイベントを見る"
+    newsletter: "新しい Star Citizen および S42 イベントに関する通知をメールで受け取りましょう!"
+    newsfeed:
+      new_giveaway: "のための新しいプレゼントを作成しました"
+      new_event: "新しいイベントを作成しました"
+      new_photo: "に新しい写真を追加しました"
+      new_post: "新しいフォーラム投稿を作成しました"
+      attending: "に出席しています"
+      new_activities: "新しいアクティビティ"
+      new_events: "新しいイベント"
+  # 他のページやセクションのためのネストされた翻訳
+  about_page:
+    welcome_message: "私たちのサイトへようこそ"
+  datetime:
+    distance_in_words:
+      x_days:
+        one: 1日前
+        other: "%{count}日前"

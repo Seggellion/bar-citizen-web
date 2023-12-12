@@ -17,8 +17,8 @@
     <% end %>
 
 <%= render 'photo_form', photo: @photo, event: event %>
-<% if @event.photos.count >= 1 %>
-<%= render 'gallery', photos: @event.photos %>
+<% if @photos.count >= 1 %>
+<%= render 'gallery', photos: @photos %>
 <% end %>
 
 <%= render 'event_map' %>
