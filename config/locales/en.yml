@@ -28,6 +28,13 @@
 #       enabled: "ON"
 
 en:
+  secondary_menu:
+    sign_up: "HOW TO SIGN UP"
+    star_citizen: "WHAT IS STAR CITIZEN?"
+    event_ideas: "EVENT IDEAS"
+    news: "NEWS & ACTIVITY"
+    datahub: "DATAHUB"
+    organizer: "ORGANIZER INFO"
   menu:
     dashboard: "DASHBOARD"
     home: "HOME"

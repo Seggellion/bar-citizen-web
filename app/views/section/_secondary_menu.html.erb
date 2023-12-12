@@ -1,0 +1,30 @@
+<div class="secondary-menu mx-2 bg-citizen-blue-dk flex flex-wrap items-center rounded-full justify-center text-white">
+  <div class="w-1/2 md:w-1/6 p-2 text-center">
+    <%= link_to t('secondary_menu.sign_up'), page_path('about', anchor: 'signup'), class: "text-white orb-font" %>
+  </div>
+  <div class="w-1/2 md:w-1/6 p-2 text-center">
+  <%= link_to t('secondary_menu.star_citizen'), page_path('about', anchor: 'star_citizen'), class: "text-white orb-font" %>
+  </div>
+  <div class="w-1/2 md:w-1/6 p-2 text-center">
+  <%= link_to t('secondary_menu.datahub'), page_path('resources', anchor: 'datahub'), class: "text-white orb-font" %>
+  </div>
+  <div class="w-1/2 md:w-1/6 p-2 text-center">
+  <%= link_to t('secondary_menu.event_ideas'), page_path('resources', anchor: 'event_ideas'), class: "text-white orb-font" %>
+
+  </div>
+  <div class="w-1/2 md:w-1/6 p-2 text-center">
+  <%= link_to t('secondary_menu.organizer'), page_path('resources', anchor: 'organizer'), class: "text-white orb-font" %>
+
+  </div>
+  <div class="w-1/2 md:w-1/6 p-2 text-center">
+  <%= link_to t('secondary_menu.news'), root_path(anchor: 'starcitizen'), class: "text-white orb-font" %>
+  </div>
+</div>
+
+<style>
+.secondary-menu{
+z-index: 9003;
+margin-top: -4px;
+}
+
+</style>

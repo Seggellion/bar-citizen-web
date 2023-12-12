@@ -38,28 +38,28 @@ letter-spacing:3px;
   <div class="relative">
   <%= image_tag 'bmm.png', alt: 'Banu Merchantman', class: 'absolute bmm' %>
   <% if current_user && current_user.user_type < 69 %>
-    <%= link_to t('menu.dashboard'), dashboard_path, class:'relative orb-font' %>
+    <%= link_to t('menu.dashboard'), dashboard_path, class:'relative orb-font drop-shadow-xl' %>
   <% else %>
-    <%= link_to t('menu.home'), root_path, class:'relative orb-font' %>
+    <%= link_to t('menu.home'), root_path, class:'relative orb-font drop-shadow-xl' %>
   <% end %>
 </div>
 <div class="relative">
 <%= image_tag '890.png', alt: 'Origin 890 Jump', class: 'absolute origin' %>
-<%= link_to t('menu.event_map'), map_path, class: "relative orb-font" %>
+<%= link_to t('menu.event_map'), map_path, class: "relative orb-font drop-shadow-xl" %>
 </div>
 <div class="relative">
 <%= image_tag 'carrack.png', alt: 'Anvil Carrack', class: 'absolute carrack' %>
-<%= link_to t('menu.event_list'), events_path, class: "relative orb-font" %>
+<%= link_to t('menu.event_list'), events_path, class: "relative orb-font drop-shadow-xl" %>
 </div>
 <div class="relative">
 <%= image_tag 'hullc.png', alt: 'MISC Hull-C', class: 'absolute hullc' %>
-<%= link_to t('menu.gallery'), gallery_path, class: "relative orb-font" %>
+<%= link_to t('menu.gallery'), gallery_path, class: "relative orb-font drop-shadow-xl" %>
 </div>
 
 <div class="relative">
 <%= image_tag 'starfarer.png', alt: 'MISC Starfarer', class: 'absolute starfarer' %>
 
-  <%= link_to t('menu.about_us'), page_path('about'), class: "relative orb-font" %>
+  <%= link_to t('menu.about_us'), page_path('about'), class: "relative orb-font drop-shadow-xl" %>
   </div>
 </nav>
 
@@ -71,9 +71,10 @@ letter-spacing:3px;
 
 
 <style>
+#main_menu .drop-shadow-xl{
+text-shadow: 1px 2px 2px black;
+}
 #main_menu img{
-
-
 max-width: inherit;
 transform: translateX(-50%);
 left: 50%;

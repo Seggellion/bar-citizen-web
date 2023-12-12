@@ -11,10 +11,10 @@
     <div class="w-full h-screen md:h-full background-div bg-cover bg-no-repeat bg-center overflow-hiddenp-4	rounded-lg"  style="background-image: url(<%= block_image_url %>);" >
 
     <!-- Content inside the image block for desktop -->
-    <div class="hidden md:block md:absolute bottom-0 left-0 p-4">
+    <div class="hidden md:block md:absolute bottom-2 left-0 p-4">
       <h1 class="text-white text-4xl font-bold w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
     </div>
-    <div class="hidden md:block md:absolute bottom-0 right-0 p-4">
+    <div class="hidden md:block md:absolute bottom-2 right-0 p-4">
       <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
       <p class="text-yellow-300 mb-4"><%= User.count %> MEMBERS AND GROWING!</p>
     </div>
@@ -34,8 +34,8 @@
 
 <div class="carousel-buttons absolute flex justify-between px-2 py-1">
 
-  <button class="text-xs" data-action="click->carousel#previous">Previous</button>
-  <button class="text-xs" data-action="click->carousel#next">Next</button>
+  <button class="text-xs" data-action="click->carousel#previous"><</button>
+  <button class="text-xs" data-action="click->carousel#next">></button>
   </div>
 
 </div>
@@ -82,12 +82,29 @@
 }
       }
 
+      
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+      
+      .carousel-slide {
+        animation: slideIn 0.5s ease-out forwards;
+      }
+      
+
+
       .carousel-buttons{
+        opacity:0.5;
         border-top-right-radius:6px;
         border-top-left-radius: 6px;
       bottom: 4px;
       background-color: white;
-      width: 120px;
+      width: 90px;
       transform: translateX(-50%);
       left: 50%;
     }
@@ -96,4 +113,4 @@
 
 
 
-<%= render '/home/secondary_menu' %>
+<%= render '/section/secondary_menu' %>

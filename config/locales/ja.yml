@@ -1,4 +1,11 @@
 ja:
+  secondary_menu:
+    sign_up: "登録方法"
+    star_citizen: "スターシチズンとは何ですか?"
+    event_ideas: "イベントのアイデア"
+    news: "ニュースとアクティビティ"
+    datahub: "データセンター"
+    organizer: "主催者情報"
   menu:
     dashboard: "ダッシュボード"
     home: "ホーム"
