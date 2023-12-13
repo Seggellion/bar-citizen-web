@@ -67,5 +67,6 @@ en:
       x_days:
         one: 1
         other: "%{count}hours"
-        less_than_x_minutes: "less than {count} minutes"
-        x_minutes: "{count} minutes ago"
+      x_minutes:
+        one: 1
+        other: "%{count}minutes"
