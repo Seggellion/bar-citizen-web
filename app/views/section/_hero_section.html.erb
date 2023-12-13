@@ -3,12 +3,12 @@
   <!-- Left Block with Background Image -->
   <div class="w-full h-screen md:h-full md:w-4/6 bg-citizen-blue  p-1 text-left relative overflow-hidden	rounded-lg">
 
-  <div class="w-full h-full" data-controller="carousel">
+  <div class="bg-black relative overflow-hidden rounded-lg w-full h-full" data-controller="carousel">
   <% section.section.blocks.each_with_index do |block, index| %>
     <% block_image_url = url_for(block.image) if block.image.attached? %>
     <div data-carousel-target="carouselSlide" class="<%= 'carousel-slide hidden' unless index.zero? %> h-full w-full">
 
-    <div class="w-full h-screen md:h-full background-div bg-cover bg-no-repeat bg-center overflow-hiddenp-4	rounded-lg"  style="background-image: url(<%= block_image_url %>);" >
+    <a href="<%= block.link_url %>" class="w-full h-screen md:h-full background-div bg-cover bg-no-repeat bg-center overflow-hiddenp-4	rounded-lg"  style="display:block; background-image: url(<%= block_image_url %>);" >
 
     <!-- Content inside the image block for desktop -->
     <div class="hidden md:block md:absolute bottom-2 left-0 p-4">
@@ -26,7 +26,7 @@
       <p class="text-yellow-300"><%= User.count %> MEMBERS AND GROWING!</p>
     </div>
      
-      </div>
+      </a>
 
 
     </div>
@@ -82,21 +82,23 @@
 }
       }
 
-      
-      @keyframes slideIn {
-        from {
-          transform: translateX(100%);
-        }
-        to {
-          transform: translateX(0);
-        }
-      }
-      
       .carousel-slide {
-        animation: slideIn 0.5s ease-out forwards;
+        position: absolute;
+        top: 0px;
+        left:-0px;
+        overflow:hidden;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-out;
       }
       
-
+      .carousel-slide.active {
+        transform: translateX(0);
+      }
+      
+      .carousel-slide.out {
+        transform: translateX(-100%);
+      }
+      
 
       .carousel-buttons{
         opacity:0.5;

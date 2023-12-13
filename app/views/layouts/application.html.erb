@@ -35,6 +35,16 @@
   </main>
 <% end %>
 
+<% if @is_404_page %>
+  <script>
+    // Set global JavaScript variables for asset paths
+    window.assetPaths = {
+      errorImage1: '<%= asset_path("404-1.png") %>',
+      errorImage2: '<%= asset_path("404-2.png") %>'
+    };
+  </script>
+<% end %>
+
    
   </body>
 </html>

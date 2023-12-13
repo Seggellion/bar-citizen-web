@@ -16,6 +16,7 @@ class PagesController < ApplicationController
     private
   
     def render_404
+      @is_404_page = true
       render file: "#{Rails.root}/public/404.html", status: :not_found
     end
   end

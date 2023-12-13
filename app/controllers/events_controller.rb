@@ -10,8 +10,8 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
     @photo = Photo.new
-    @photos = @current_event.photos.where(published:true)
     @current_event = Event.find(params[:id])
+    @photos = @current_event.photos.where(published:true)
     @posts = @current_event.region.post_category&.posts
     @current_event.increment!(:views_count)
     @event_managers = EventManager.where(event_id: @current_event.id)
