@@ -42,7 +42,7 @@ class PostsController < ApplicationController
       @post.update(user_id: current_user.id, published:true)
 
       if @post.save
-        Activity.create(name: "New Post created", description: "post-id_#{@post.id}", user_id: current_user.id)
+        Activity.create(name: "New post created", description: "post-id_#{@post.id}", user_id: current_user.id)
         redirect_to forum_post_category_path(@post_category), notice: 'Post was successfully created.'
       else
         render :new

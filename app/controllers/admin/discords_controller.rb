@@ -52,7 +52,7 @@ module Admin
 
       @discord.update(published: true, action_id: @current_user.id)
       if @discord.save
-        Activity.create(name: "New Discord created", description: "discord-id_#{@discord.id}", user_id: @discord.user_id)
+        Activity.create(name: "New discord created", description: "discord-id_#{@discord.id}", user_id: @discord.user_id)
         redirect_to admin_discords_path, notice: 'Discord was successfully created.'
       else
         redirect_to admin_discords_path, notice: 'Discord not created'

@@ -45,28 +45,27 @@
                     <p class="font-semibold">
                       <%= activity.user.username %>
                       <% case activity.name %>
-                      <% when "New Discord created" %>
+                      <% when "New discord created" %>
                         created a new Discord
                       <% when "User joined" %>
                       <%=  t 'homepage.newsfeed.attending' %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %> event
                       <% when "User signup" %>
                         created a new account
-                      <% when "New Reply created" %>
+                      <% when "New reply created" %>
                         posted a reply
                       <% when "New EventManager created" %>
                         Assigned a new manager to the event
-                      <% when "New Photo added" %>
- 
+                      <% when "New photo created" %>
                       <% event_id = activity.photo&.event&.id %>
-                      <% if event_id %>
-                      <%=  t 'homepage.newsfeed.new_photo' %> <%= link_to activity.photo.event.title, event_path(activity.photo.event), class:'underline' %>
-                      <% end %>
-                      <% when "New Region created" %>
+                        <% if event_id %>
+                        <%=  t 'homepage.newsfeed.new_photo' %> <%= link_to activity.photo.event.title, event_path(activity.photo.event), class:'underline' %>
+                        <% end %>
+                      <% when "New region created" %>
                         created a new region
-                      <% when "Created event" %>
+                      <% when "New event created" %>
                         <%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %>
-                      <% when "New Post created" %>
-                          <%=  t 'homepage.newsfeed.new_post' %>                         <%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.post.post_category.name, forum_post_category_post_path(activity.post.post_category, activity.post), class:'underline' %> 
+                      <% when "New post created" %>
+                          <%=  t 'homepage.newsfeed.new_post' %><%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.post.post_category.name, forum_post_category_post_path(activity.post.post_category, activity.post), class:'underline' %> 
                       <% when "New giveaway added" %>
                       <% event_id = activity.giveaway&.event_id %>
                         <% if event_id %>

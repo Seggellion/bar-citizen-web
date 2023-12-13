@@ -8,15 +8,15 @@ class Activity < ApplicationRecord
     end
 
     def photo
-      Photo.find_by(id: description.split('_').last) if name == "New Photo added"
+      Photo.find_by(id: description.split('_').last) if name == "New photo created"
     end
 
     def event
-      Event.find_by(id: description.split('_').last) if name == "Created event"
+      Event.find_by(id: description.split('_').last) if name == "New event created"
     end
     
     def post
-      Post.find_by(id: description.split('_').last) if name == "New Post created"
+      Post.find_by(id: description.split('_').last) if name == "New post created"
     end
 
 

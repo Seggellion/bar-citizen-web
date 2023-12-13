@@ -21,6 +21,7 @@ module Admin
 
         photo.update(published: true, action_id: current_user.id)
     
+        photo.user.update(karma: photo.user.karma + 100, fame: photo.user.fame + 100)
         Activity.create(name: "New photo created", description: "photo-id_#{photo.id}", user_id: photo.user_id)
         redirect_to admin_photos_path, notice: 'Photo was successfully published.'
   
@@ -30,7 +31,7 @@ module Admin
         photo = Photo.find(params[:id])
   
         photo.update(published: nil, action_id: current_user.id)
-    
+        photo.user.update(karma: photo.user.karma - 200, fame: photo.user.fame - 200)
         Activity.create(name: "Photo unpublished", user_id: photo.user_id)
         redirect_to admin_photos_path, notice: 'Photo was successfully unpublished.'
   

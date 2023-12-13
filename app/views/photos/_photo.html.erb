@@ -7,7 +7,7 @@
       <img src="<%= current_user.profile_image %>" alt="Profile Image" class="w-12 h-12 rounded-full">
       <div>
         <p class="font-semibold text-white"><%= @photo.user.username %></p>
-        <p class="text-sm text-gray-300"><%= @photo.views %> Views • <%= time_ago_in_words(@photo.created_at) %> ago • via <%= link_to @photo.event, class:"event-link" do %> <%= @photo.event.title %><% end %></p>
+        <p class="text-sm text-gray-300"><%= @photo.views %> <%=  t 'social.views' %> • <%= time_ago_in_words(@photo.created_at) %> ago • via <%= link_to @photo.event, class:"event-link" do %> <%= @photo.event.title %><% end %></p>
       </div>
       <div style="display:none;">
   <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
@@ -31,14 +31,14 @@
       </div>
     
       <div>
-        <%= form.submit "Post Comment", class: "px-4 py-2 bg-citizen-blue-highlight text-white rounded hover:bg-blue-600" %>
+        <%= form.submit t('social.views'), class: "px-4 py-2 bg-citizen-blue-highlight text-white rounded hover:bg-blue-600" %>
       </div>
     <% end %>
 
 
     <div class="mt-8">
     <div class="mb-4">
-    <h2 class="text-lg font-semibold text-white"><%= @photo.photo_comments.count %> Comments</h2>
+    <h2 class="text-lg font-semibold text-white"><%= @photo.photo_comments.count %> <%=  t 'social.comments' %></h2>
   </div>
 
     <% @photo.photo_comments.each do |comment| %>

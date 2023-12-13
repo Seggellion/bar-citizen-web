@@ -1,4 +1,8 @@
 ja:
+  social:
+    views: "ビュー数"
+    post_comment: "コメントを投稿"
+    comments: "コメント"
   secondary_menu:
     sign_up: "登録方法"
     star_citizen: "スターシチズンとは何ですか?"
@@ -38,3 +42,11 @@ ja:
       x_minutes:
         one: "1分前"
         other: "%{count}分前"
+      x_days:
+        one: 1
+        other: "%{count}minutes"
+      x_hours:
+        one: 1
+        other: "%{count}minutes"
+      about_x_hours: "約 %{count} 時間前"
+

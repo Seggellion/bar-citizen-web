@@ -28,6 +28,10 @@
 #       enabled: "ON"
 
 en:
+  social:
+    views: "views"
+    post_comment: "Post Comment"
+    comments: "Comments"
   secondary_menu:
     sign_up: "HOW TO SIGN UP"
     star_citizen: "WHAT IS STAR CITIZEN?"
@@ -68,5 +72,8 @@ en:
         one: 1
         other: "%{count}hours"
       x_minutes:
+        one: 1
+        other: "%{count}minutes"
+      x_hours:
         one: 1
         other: "%{count}minutes"

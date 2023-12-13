@@ -10,7 +10,7 @@ class RegionsController < ApplicationController
       @region = Region.new(region_params)
 
       if @region.save
-        Activity.create(name: "New Region created", description: "region-id_#{@region.id}", user_id: @region.user_id)
+        Activity.create(name: "New region created", description: "region-id_#{@region.id}", user_id: @region.user_id)
         redirect_to admin_regions_path, notice: 'Region was successfully created.'
       else
         redirect_to admin_regions_path, notice: 'Region not created.'

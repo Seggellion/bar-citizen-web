@@ -50,7 +50,6 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         @photo.image.attach(photo_params[:image]) if photo_params[:image].present?
-        Activity.create(name: "New Photo added", description: "photo-id_#{@photo.id}", user_id: current_user.id)
         format.html { redirect_to event_path(@event), notice: "Photo was successfully created." }
         format.json { render :show, status: :created, location: @photo }
       else
@@ -80,6 +79,8 @@ class PhotosController < ApplicationController
     vote = @photo_comment.votes.find_or_initialize_by(user: current_user)
     unless vote.persisted?
       vote.update(upvote: true)
+      op = @photo_comment.photo.user
+      op.update(karma: op.karma + 20, fame: op.fame + 20)
     end
     redirect_back(fallback_location: root_path)
   end
@@ -88,6 +89,8 @@ class PhotosController < ApplicationController
     vote = @photo_comment.votes.find_or_initialize_by(user: current_user)
     unless vote.persisted?
       vote.update(upvote: false)
+      op = @photo_comment.photo.user
+      op.update(karma: op.karma - 50, fame: op.fame - 50)
     end
     redirect_back(fallback_location: root_path)
   end
