@@ -48,7 +48,7 @@
                       <% when "New discord created" %>
                         created a new Discord
                       <% when "User joined" %>
-                      <%=  t 'homepage.newsfeed.attending' %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %> event
+                      <%=  t 'homepage.newsfeed.attending' %> <%= link_to activity.user_event.event.title, event_path(activity.event), class:'underline' %> event
                       <% when "User signup" %>
                         created a new account
                       <% when "New reply created" %>
