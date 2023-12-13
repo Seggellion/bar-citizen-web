@@ -62,3 +62,10 @@ en:
   # Other nested translations for different pages or sections
   about_page:
     welcome_message: "Welcome to about page"
+  datetime:
+    distance_in_words:
+      x_days:
+        one: 1
+        other: "%{count}hours"
+        less_than_x_minutes: "less than {count} minutes"
+        x_minutes: "{count} minutes ago"

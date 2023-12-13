@@ -22,10 +22,10 @@ class EventParticipationsController < ApplicationController
   # POST /event_participations or /event_participations.json
   def create
     @event_participation = EventParticipation.new(event_participation_params)
-
+event = Event.find_by_id(event_participation_params[:event_id])
     respond_to do |format|
       if @event_participation.save
-        Activity.create(name: "User joined", description: "event-id_#{@event.id}", user_id: current_user.id)
+        Activity.create(name: "User joined", description: "event-id_#{event.id}", user_id: current_user.id)
         format.html { redirect_to event_url(@event_participation.event), notice: "Joined Event" }
         format.json { render :show, status: :created, location: @event_participation }
       else

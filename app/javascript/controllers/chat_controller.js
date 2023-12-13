@@ -15,16 +15,16 @@ export default class extends Controller {
       { channel: "EventChatChannel", event_id: this.eventIdValue },
       {
         received(data) {
-          // Called when there's incoming data on the websocket for this channel
-
           const messagesContainer = document.getElementById('messages');
-
           if (messagesContainer) {
             messagesContainer.insertAdjacentHTML('beforeend', data.message);
+            // Scroll to the bottom of the container
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
           } else {
             console.error('Messages container not found');
           }
         }
+        
       }
     );
   }

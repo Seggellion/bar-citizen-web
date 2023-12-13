@@ -20,7 +20,7 @@
     </div>
     
     <!-- Posts List -->
-    <% @posts.each do |post| %>
+    <% @posts&.each do |post| %>
       <div class="grid grid-cols-12 items-center py-2 bg-blue-900 px-4 border-b text-white">
         <!-- Icon Column -->
         <div class="col-span-1">

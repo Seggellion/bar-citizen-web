@@ -35,6 +35,6 @@ ja:
     welcome_message: "私たちのサイトへようこそ"
   datetime:
     distance_in_words:
-      x_days:
-        one: 1日前
-        other: "%{count}日前"
+      x_minutes:
+        one: "1分前"
+        other: "%{count}分前"

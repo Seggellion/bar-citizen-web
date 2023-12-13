@@ -37,7 +37,7 @@ class Activity < ApplicationRecord
   end
 
   def associated_with?(event_id, type)
-    
+
     return false unless description
 
 
@@ -51,7 +51,7 @@ class Activity < ApplicationRecord
     associated_record = model_name.classify.constantize.find_by(id: record_id)
 
     # Compare the event_id of the associated record
-    associated_record && associated_record.event_id == event_id
+    associated_record && associated_record.id == event_id
   end
 
 end
