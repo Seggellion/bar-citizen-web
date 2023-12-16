@@ -1,8 +1,33 @@
 
 <p style="color: green; position:absolute;top:0px; background-color:black;"><%= notice %></p>
 <div class="event-page">
+
 <%= render 'show_event', event:@event %>
 </div>
 <div>
 
 
+<% if @event.is_virtual %>
+<style>
+.bg-citizen-blue-base{
+    background-color:#4f0066;
+}
+#<%= controller_name %> .bg-citizen-blue-highlight{
+background-color: #ffa500;
+}
+#<%= controller_name %> .citizen-blue-highlight{
+    color: #ffa500;
+}
+#<%= controller_name %> .bg-gray-800{
+    background-color: #505050;
+}
+
+#<%= controller_name %> .bg-gray-700{
+background-color: #605f5f;
+}
+
+#<%= controller_name %> hr{
+    border-color: #ffa500;
+}
+</style>
+<% end %>

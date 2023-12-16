@@ -5,7 +5,7 @@
   <!-- SIDEBAR HEADER -->
   <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
     <a href="index.html">
-    <%= image_tag 'BarCitizenLogo.png', alt: 'Bar Citizen Logo', class: 'logo-class' %>
+    <%= image_tag 'BarCitizenLogo.png', alt: 'Car Citizen Logo', class: 'logo-class' %>
     </a>
 
     <button

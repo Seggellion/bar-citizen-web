@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/api/redirect_to_discord', to: 'authentication#redirect_to_discord'
   get '/api/discord/callback', to: 'authentication#discord_callback'
   get '/map', to: 'maps#index'
+
   resources :regions
   resources :discords
   resources :photos do
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
   resources :votes, only: [:create]
   get '/dashboard', to: 'home#dashboard'
   get '/gallery', to: 'home#gallery'
-
+  resources :messages
   # Events
  # get '/events/new', to: 'events#new', as: 'new_event'
  # get '/events', to: 'events#index', as: 'find_event'
@@ -112,7 +113,10 @@ end
   end
 
   resources :users, only: [:show, :edit, :update, :destroy]
-  
+  get 'new_category', to: 'post_categories#new'
+  get 'virtual-events', to: 'events#virtual'
+  get 'virtual-events/:slug', to: 'events#show_virtual', as: 'virtual_event'
+
   resources :events do
     resources :event_participations, only: [:create, :destroy]
     resources :photos, only: [:new, :create, :show, :destroy]

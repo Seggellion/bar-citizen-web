@@ -62,10 +62,13 @@
                         <% end %>
                       <% when "New region created" %>
                         created a new region
-                      <% when "New event created" %>
-                        <%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %>
+                      <% when "Bug submitted" %>
+                        submitted a bug
+                      <% when "Created event" %>
+               
+                        <%=  t 'homepage.newsfeed.new_event' %> <% if activity.event %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %> <% else %> deleted <% end %>
                       <% when "New post created" %>
-                          <%=  t 'homepage.newsfeed.new_post' %><%=  t 'homepage.newsfeed.new_event' %> <%= link_to activity.post.post_category.name, forum_post_category_post_path(activity.post.post_category, activity.post), class:'underline' %> 
+                          <%=  t 'homepage.newsfeed.new_post' %><%= link_to activity.post.post_category.name, forum_post_category_post_path(activity.post.post_category, activity.post), class:'underline' %> 
                       <% when "New giveaway added" %>
                       <% event_id = activity.giveaway&.event_id %>
                         <% if event_id %>

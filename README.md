@@ -1,6 +1,6 @@
-Bar Citizen Event Management System
+Car Citizen Event Management System
 Project Overview
-Bar Citizen Event Management System is a web application designed to manage and moderate community events. It offers features such as event creation and moderation, user registration and authentication (including Discord OAuth), and an admin panel for content management.
+Car Citizen Event Management System is a web application designed to manage and moderate community events. It offers features such as event creation and moderation, user registration and authentication (including Discord OAuth), and an admin panel for content management.
 
 Features
 User registration and authentication via Discord OAuth.
@@ -73,7 +73,7 @@ bash
 Copy code
 rails test
 Contributing
-Contributions to the Bar Citizen Event Management System are welcome. Please follow the standard GitHub pull request process to propose changes.
+Contributions to the Car Citizen Event Management System are welcome. Please follow the standard GitHub pull request process to propose changes.
 
 License
 Specify the license under which the project is available. Common licenses include MIT, GPL, etc.

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
-    <title>Bar Citizen Earth</title>
+    <title>Car Citizen Earth</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     
@@ -18,7 +18,7 @@
     <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="bg-black dark:bg-black" style="background-image: url(<%= asset_url('starry_background.png') %>);     background-size: cover; background-position: center;">
+  <body  id="<%= controller_name %>" class="bg-black dark:bg-black" style="background-image: url(<%= asset_url('starry_background.png') %>);     background-size: cover; background-position: center;">
 
 <% unless request.fullpath.include?('/admin') %>
   <!-- Main Site Header -->
@@ -44,6 +44,31 @@
     };
   </script>
 <% end %>
+
+<!-- app/views/messages/new.html.erb -->
+<div data-controller="bug" class="fixed text-center bottom-0 right-4 w-64" style="background-color:orange">
+  <button data-action="click->bug#toggleForm" class="bg-blue-500  text-white p-2 rounded-lg">Submit Bug</button>
+
+  <div data-bug-target="form" class="hidden bg-black p-4 rounded">
+    <%= form_for @message do |f| %>
+      <div class="mb-4">
+        <%= f.label :subject, class: 'text-white' %>
+        <%= f.text_field :subject, class: "w-full p-2 rounded" %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :description, class: 'text-white' %>
+        <%= f.text_area :description, class: "w-full p-2 rounded" %>
+      </div>
+      <div class="mb-4">
+      <%= f.label :screenshot, class: 'text-white' %>
+      <%= f.file_field :image, class: "w-full p-2 rounded" %>
+    </div>
+  
+
+      <%= f.submit "Send", class: "bg-blue-500 text-white p-2 rounded" %>
+    <% end %>
+  </div>
+</div>
 
    
   </body>

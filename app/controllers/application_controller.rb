@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
     helper_method :current_user, :user_signed_in?
     protect_from_forgery with: :exception
     before_action :set_locale
+    before_action :set_message
 
+    helper_method :message
+  
 
     def set_locale
       session[:locale] = params[:locale] if params[:locale].present?
@@ -27,6 +30,14 @@ class ApplicationController < ActionController::Base
   
     def user_signed_in?
       current_user.present?
+    end
+  
+    def set_message
+      @message = Message.new
+    end
+  
+    def message
+      @message
     end
     
   end

@@ -1,21 +1,24 @@
 <!-- app/views/events/chat.html.erb -->
-<div class="container mx-auto px-4" id="thewall" style="width: 60%;">
+<div class="container mx-auto px-4 rounded-lg" id="thewall" style="width: 60%;">
 <!-- Header in the center at the top -->
 <div class="text-center text-white text-4xl font-bold mb-12">TheWall</div>
-  <div class="flex flex-row">
+  <div class="flex flex-row rounded-lg overflow-hidden">
     <!-- Messages Column -->
     <div class="flex-auto flex items-end bg-gray-800 overflow-auto" style="height: 80vh;" id="event_chat" data-event-id="<%= @event.id %>">
       <ul id="messages" class="p-4">
         <% @messages.each do |message| %>
-          <li class="mb-2">
-          <span class="text-white">>></span>
-            <% if message.user == @event.creator %>
-              <span class="text-green-500">@</span>
-            <% elsif message.user.manager? %>
-              <span class="text-blue-500">+</span>
-            <% end %>
-            <span class="text-white"><%= message.user.username %>: <%= message.message %></span>
-          </li>
+            <li class="mb-2">
+              <span class="text-white">>></span>
+              <% if message.user == @event.creator %>
+                <span class="text-green-500">@</span>
+              <% elsif message.user.manager? %>
+                <span class="text-blue-500">+</span>
+              <% end %>
+              <span class="text-white"><%= message.user.username %>: <%= message.message %></span>
+            </li>
+        <% end %>
+        <% if @messages.empty? %>
+        <li class="mb-2"><span class="text-white">Be the first to message..</span></li>
         <% end %>
       </ul>
     </div>

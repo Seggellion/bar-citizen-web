@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_10_025109) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_16_045126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -164,6 +164,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_025109) do
     t.float "cost"
     t.string "location_name"
     t.string "status"
+    t.string "event_type"
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_events_on_slug", unique: true
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "giveaway_users", force: :cascade do |t|
@@ -192,6 +206,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_025109) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.string "subject"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -406,6 +431,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_025109) do
   add_foreign_key "giveaway_users", "users"
   add_foreign_key "giveaways", "events"
   add_foreign_key "giveaways", "users", column: "creator_id"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "pages", "users"
   add_foreign_key "photo_comments", "photos"
   add_foreign_key "photo_comments", "users"

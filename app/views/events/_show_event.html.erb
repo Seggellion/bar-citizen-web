@@ -21,7 +21,13 @@
 <%= render 'gallery', photos: @photos %>
 <% end %>
 
-<%= render 'event_map' %>
+<% unless @event.is_virtual %>
+    <%= render 'event_map' %>
+<% end %>
+
+<% if @event.is_virtual %>
+<%= link_to 'View Event', virtual_event_path(event) %>
+<% end %>
 
 <%= render 'event_organizer', event:event %>
 <%= render 'attendees', event:event %>

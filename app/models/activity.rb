@@ -12,7 +12,11 @@ class Activity < ApplicationRecord
     end
 
     def event
-      Event.find_by(id: description.split('_').last) if name == "New event created"
+      Event.find_by(id: description.split('_').last) if name == "Created event"
+    end
+
+    def message
+      Message.find_by(id: description.split('_').last) if name == "Bug submitted"
     end
     
     def post

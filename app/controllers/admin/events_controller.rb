@@ -14,7 +14,8 @@ module Admin
       end
 
       def publish
-        event = Event.find(params[:id])
+
+        event = Event.find_by_slug(params[:id])
 
         event.update(published: true, action_id: @current_user.id)
     
@@ -27,7 +28,7 @@ module Admin
     
       def trash
         
-        event = Event.find(params[:id])
+        event = Event.find_by_slug(params[:id])
         event.update(trashed: true, action_id: @current_user.id)
     
         author = User.find(event.author_id)

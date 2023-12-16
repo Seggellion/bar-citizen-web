@@ -37,7 +37,7 @@ gem 'google-cloud-storage'
 gem 'graphql'
 gem 'geocoder'
 gem 'httparty'
-
+gem 'friendly_id'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

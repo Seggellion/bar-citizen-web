@@ -38,7 +38,7 @@ svg.citizen-grey{
 }
 
 .bg-citizen-blue-highlight, .event-page .bg-citizen-blue-highlight {
-    background-color:  var(--citizen-blue-highlight) !important;
+    background-color:  var(--citizen-blue-highlight);
 }
 
 footer .social-links a{

@@ -1,6 +1,9 @@
 
 
-  <%= form_with(model: event, class: "space-y-4") do |form| %>
+  <%#= form_with(model: event, class: "space-y-4", data: { controller: "event-type", virtual_region_id: @virtual_region_id }) do |form| %>
+  <%= form_with(model: event, class: "space-y-4", data: { controller: "event-type", "event-type-virtual-region-id-value": @virtual_region_id }) do |form| %>
+ 
+   
     <% if event.errors.any? %>
       <div class="bg-red-500 text-white p-4 rounded-lg">
         <h2 class="font-bold"><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -12,6 +15,12 @@
         </ul>
       </div>
     <% end %>
+
+
+    <div class="flex flex-col">
+    <%= form.label :event_type, class: "mb-2 font-semibold" %>
+    <%= form.select :event_type, options_for_select([['IRL', 'irl'], ['Virtual', 'virtual']]), { include_blank: 'Select Type' }, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white", data: { event_type_target: "select", action: "event-type#toggleFields" } %>
+    </div>
 
     <div class="flex flex-col">
       <%= form.label :title, class: "mb-2 font-semibold" %>
@@ -38,20 +47,29 @@
     <%= form.datetime_field :end_datetime, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
   </div>
 
-    <div class="flex flex-col">
-      <%= form.label :address, class: "mb-2 font-semibold" %>
-      <%= form.text_field :address, required:true, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+
+
+
+    <div data-event-type-target="conditional" data-event-type-value="irl">
+
+      <div class="flex flex-col">
+        <%= form.label :address, class: "mb-2 font-semibold" %>
+        <%= form.text_field :address, required:true, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= form.label :region_id, class: "mb-2 font-semibold" %>
+        <%= form.collection_select :region_id, Region.all, :id, :name, { prompt: "Select a Region" }, { class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white", data: { event_type_target: "region" }  } %>
+      </div>
+
+      <div class="flex flex-col">
+      <%= form.label :cost, class: "mb-2 font-semibold" %>
+      <%= form.text_area :cost, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
-    <div class="flex flex-col">
-    <%= form.label :cost, class: "mb-2 font-semibold" %>
-    <%= form.text_area :cost, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
-  </div>
+    </div>
 
-    <div class="flex flex-col">
-    <%= form.label :region_id, class: "mb-2 font-semibold" %>
-    <%= form.collection_select :region_id, Region.all, :id, :name, { prompt: "Select a Region" }, { class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" } %>
-  </div>
+
 
     <div class="flex flex-col">
       <%= form.label :x_link, class: "mb-2 font-semibold" %>
@@ -69,3 +87,8 @@
   <% end %>
 
   <br>
+<style>
+.bg-purple{
+  background-color: #450045;
+}
+</style>

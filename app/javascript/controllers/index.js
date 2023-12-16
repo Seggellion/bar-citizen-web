@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import BugController from "./bug_controller"
+application.register("bug", BugController)
+
 import CarouselController from "./carousel_controller"
 application.register("carousel", CarouselController)
 
@@ -12,6 +15,9 @@ application.register("chat", ChatController)
 
 import DiscordableController from "./discordable_controller"
 application.register("discordable", DiscordableController)
+
+import EventTypeController from "./event_type_controller"
+application.register("event-type", EventTypeController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
