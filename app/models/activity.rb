@@ -25,7 +25,7 @@ class Activity < ApplicationRecord
 
 
     def user_event
-      EventParticipation.find_by(id: description.split('_').last) if name == "User joined"
+      Event.find_by(id: description.split('_').last) if name == "User joined"
     end
     
       # Method to extract event_id from description
