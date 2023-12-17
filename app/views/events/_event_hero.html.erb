@@ -74,9 +74,8 @@
     <div>
       <h3 class="text-lg font-semibold">Past Events</h3>
       <!-- List other events here -->
-      <% current_user.created_events.each do |past_event|  %>
-      <a href="#" class="text-white hover:text-gray-300">Event 1</a>
-      <%= link_to past_event.title, past_event, class:"text-white" %>
+      <% @current_event.creator.created_events.each do |past_event|  %>
+      <%= link_to past_event.title, past_event, class:"text-white text-xs" %>
       <% end %>
     </div>
   </div>
