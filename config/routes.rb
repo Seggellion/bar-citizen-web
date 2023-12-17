@@ -86,6 +86,12 @@ end
       end
     end
 
+    resources :messages do
+      member do
+        post 'trash'
+      end
+    end
+    
     resources :discords do
       member do
         post 'publish'

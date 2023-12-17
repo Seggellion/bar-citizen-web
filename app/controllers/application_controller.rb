@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     def user_signed_in?
       current_user.present?
     end
-  
+
     def set_message
       @message = Message.new
     end

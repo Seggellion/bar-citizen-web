@@ -1,0 +1,39 @@
+
+<div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
+<div class="flex items-center gap-3 p-2.5 xl:p-5">
+  <div class="flex-shrink-1">
+    <img src="<%= message.sender.profile_image %>" alt="User" />
+  </div>
+  <p class="hidden font-medium  dark:text-white sm:block">
+    <%= message.sender.username %>
+  </p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= message.subject %></p>
+</div>
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+<div class="h-22.5 w-15 max-h-22 rounded-md overflow-hidden">
+<%= image_tag message.image, class: "h-full w-auto object-cover object-center" %>
+</div>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white"></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium dark:text-white"><%= message.created_at.strftime('%a %b %d, %Y %l:%M %p') %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+<p class="font-medium text-meta-5 text-white">
+Add trash to table
+  <%#= button_to 'Trash', trash_admin_message_path(message), method: :message, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+</p>
+</div>
+</div>
+
+<style>
+
+</style>

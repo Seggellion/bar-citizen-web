@@ -1,4 +1,6 @@
 ja:
+  photo:
+    comment_submit: "コメントを送信"
   social:
     views: "ビュー数"
     post_comment: "コメントを投稿"
@@ -41,13 +43,13 @@ ja:
     distance_in_words:
       x_minutes:
         one: "1分前"
-        other: "%{count}分前"
+        other: " %{count}分前"
       x_days:
         one: 1
-        other: "%{count}minutes"
+        other: " %{count}minutes"
       x_hours:
         one: 1
-        other: "%{count}minutes"
+        other: " %{count}minutes"
       about_x_hours: "約 %{count} 時間前"
   errors:
     messages:

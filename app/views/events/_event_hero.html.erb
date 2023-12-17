@@ -89,7 +89,9 @@
       <% unless @current_event.is_virtual %>
         <a href="#map" class="text-white hover:underline">Map</a>
       <% end %>
+      <% if !@event.giveaways.empty? %>
       <a href="#giveaways" class="text-white hover:underline">Giveaways</a>
+      <% end %>
       <a href="#photos" class="text-white hover:underline">Photos</a>
       <a href="#forums" class="text-white hover:underline">Regional Forum</a>
       <a href="#attendees" class="text-white hover:underline">Attendees</a>

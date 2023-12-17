@@ -28,6 +28,8 @@
 #       enabled: "ON"
 
 en:
+  photo:
+    comment_submit: "Submit"
   social:
     views: "views"
     post_comment: "Post Comment"
@@ -70,10 +72,10 @@ en:
     distance_in_words:
       x_days:
         one: 1
-        other: "%{count}hours"
+        other: " %{count}hours"
       x_minutes:
         one: 1
-        other: "%{count}minutes"
+        other: " %{count}minutes"
       x_hours:
         one: 1
-        other: "%{count}minutes"
+        other: " %{count}minutes"

@@ -2,8 +2,8 @@
 <div class="h-screen">
 <%= render 'event_hero', event: event %>
 </div>
-<% puts "current_user #{current_user} #{current_user.username}" %>
-<% if @event.creator == current_user || current_user.user_type == 0 %>
+
+<% if @event.creator == current_user || current_user&.user_type == 0 %>
 <%= render 'event_manager', event:event %>
 <% end %>
 <div class="text-white min-h-screen flex items-center justify-center">
@@ -13,21 +13,18 @@
 
 </div>
 
-<% if @event.giveaways %>
+<% if !@event.giveaways.empty? %>
     <%= render 'event_giveaways' %>
     <% end %>
-
+<% if current_user&.participating_in?(event) %>
 <%= render 'photo_form', photo: @photo, event: event %>
+<% end %>
 <% if @photos.count >= 1 %>
 <%= render 'gallery', photos: @photos %>
 <% end %>
 
 <% unless @event.is_virtual %>
     <%= render 'event_map' %>
-<% end %>
-
-<% if @event.is_virtual %>
-<%= link_to 'View Event', virtual_event_path(event) %>
 <% end %>
 
 <%= render 'event_organizer', event:event %>

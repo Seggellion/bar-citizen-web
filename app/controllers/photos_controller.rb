@@ -41,11 +41,12 @@ class PhotosController < ApplicationController
 
   # POST /photos or /photos.json
   def create
-    
-    @event = Event.find(params[:event_id])
+
+    @event = Event.find_by_slug(params[:event_id])
     
     #@photo = @event.photos.build(photo_params.except(:image).merge(user: current_user))
     @photo = @event.photos.build(photo_params.merge(user: current_user))
+    
     @photo.update(region_id: @event.region.id)
     respond_to do |format|
       if @photo.save

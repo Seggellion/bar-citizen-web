@@ -37,6 +37,12 @@ class User < ApplicationRecord
     return true if EventManager.find_by(event_id: event, user_id: self.id)
   end
 
+  
+  def is_admin?
+    return true if self.user_type == 0
+  end
+
+
   def user_level
     case user_type
     when USER_ADMIN

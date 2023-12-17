@@ -33,3 +33,6 @@ application.register("photo", PhotoController)
 
 import PostCategoryController from "./post_category_controller"
 application.register("post-category", PostCategoryController)
+
+import UploadController from "./upload_controller"
+application.register("upload", UploadController)

@@ -6,13 +6,13 @@
     <!-- Grid of 8 items -->
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Individual grid item 1 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
             <div class="font-bold text-lg mb-2">Discord USERNAME</div>
             <div><%= event.creator.username %></div>
         </div>
 
         <!-- Individual grid item 2 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
             <div class="font-bold text-lg mb-2">RSI USERNAME</div>
             <div><%= event.creator.rsi_account %> </div>
         </div>
@@ -20,37 +20,37 @@
         <!-- ... Additional grid items for each of the other categories ... -->
 
         <!-- Individual grid item 3 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
             <div class="font-bold text-lg mb-2">BIO</div>
             <div><%= event.creator.bio %></div>
         </div>
 
         <!-- Individual grid item 4 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
         <div class="font-bold text-lg mb-2">LOCATION</div>
         <div><%= event.creator.location %> </div>
         </div>
 
         <!-- Individual grid item 5 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
             <div class="font-bold text-lg mb-2">LAST FORUM POST</div>
-            <div><%= event.creator.last_login&.strftime("%A %b %d, %Y") %> %> </div>
+            <div><%= event.creator.last_login&.strftime("%A %b %d, %Y") %> </div>
         </div>
 
         <!-- Individual grid item 6 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
         <div class="font-bold text-lg mb-2">LAST LOGIN</div>
-        <div><%= event.creator.last_login&.strftime("%A %b %d, %Y") %> %> </div>
+        <div><%= event.creator.last_login&.strftime("%A %b %d, %Y") %> </div>
         </div>
 
         <!-- Individual grid item 7 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
         <div class="font-bold text-lg mb-2">TOTAL EVENTS</div>
         <div><%= event.creator.total_posts %></div>
         </div>
 
         <!-- Individual grid item 8 -->
-        <div class="p-4 border border-gray-700">
+        <div class="p-4 border border-gray-700 rounded-lg">
             <div class="font-bold text-lg mb-2">SEND MESSAGE</div>
             <div></div>
         </div>

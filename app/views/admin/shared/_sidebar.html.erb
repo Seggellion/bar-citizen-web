@@ -363,14 +363,10 @@
         <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">SUPPORT</h3>
 
         <ul class="mb-6 flex flex-col gap-1.5">
-          <!-- Menu Item Chart -->
+          <!--Messages-->
           <li>
-            <a
-              class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-              href="chart.html"
-              @click="selected = (selected === 'Chart' ? '':'Chart')"
-              :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Chart') && (page === 'Chart') }"
-            >
+          <%= link_to admin_messages_path, class: 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium hover:bg-gray-700 hover:text-white duration-300 ease-in-out' do %>
+
               <svg
                 class="fill-current"
                 width="18"
@@ -402,7 +398,7 @@
               </svg>
 
               Messages
-            </a>
+            <% end %>
           </li>
           <!-- Menu Item Chart -->
 

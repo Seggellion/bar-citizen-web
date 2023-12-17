@@ -1,7 +1,9 @@
 
 <div class="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover relative items-center">
-	<div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+<div class="absolute bg-black opacity-60 inset-0 z-0"></div>
 	<div class="sm:max-w-lg w-full p-10 bg-citizen-blue-base rounded-xl z-10">
+    <h2 class="text-red-500">After uploading your photo will have to be approved by admins.  <br> Please do not post the same photo more than once</h2>	
+
 		<div class="text-center">
 			<h2 class="text-3xl font-bold text-white">
 				Upload Photo
@@ -13,10 +15,10 @@
         <%= form.text_field :title, placeholder:'Title', class:'text-white p-2 border bg-citizen-blue-base rounded-lg focus:outline-none focus:border-indigo-500' %>
 
     </div>
-    <div class="grid grid-cols-1 space-y-2">
+    <div class="grid grid-cols-1 space-y-2" data-controller="upload">
                 
-        <div class="flex items-center justify-center w-full">
-            <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+        <div class="flex items-center justify-center w-full" >
+            <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center" data-upload-target="container">
                 <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
                     <!---<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-blue-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -26,7 +28,9 @@
                     </div>
                     <p class="pointer-none text-white "><span class="text-sm">Drag and drop</span> files here <br /> or <a href="" id="" class="text-blue-600 hover:underline">select a file</a> from your computer</p>
                 </div>
-                <%= form.file_field :image, class:'hidden' %>
+                <!-- Existing file input field -->
+<%= form.file_field :image, class:'hidden', data: { action: "change->upload#previewImage", target: "upload.imageInput" } %>
+
                 <%= form.hidden_field :event_id, value:@event.id, class:'hidden' %>
             </label>
         </div>
@@ -44,8 +48,12 @@
                         Upload
                     </button>
                     </div>
+
+                    
        <% end %>
+       <h2 class="text-red-500">After uploading your photo will have to be approved by admins. <br>Please do not post the same photo more than once</h2>
 	</div>
+   
 </div>
 
 <style>
@@ -53,4 +61,7 @@
 		position: absolute;
 		clip: rect(10px, 150px, 130px, 10px);
 	}
+    .text-red-500{
+        color:red;
+    }
 </style>
