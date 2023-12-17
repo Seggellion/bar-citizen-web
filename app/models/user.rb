@@ -33,6 +33,10 @@ class User < ApplicationRecord
     Post.where(user_id: self.id).count
   end
 
+  def is_manager(event)
+    return true if EventManager.find_by(event_id: event, user_id: self.id)
+  end
+
   def user_level
     case user_type
     when USER_ADMIN

@@ -6,12 +6,13 @@
     <!-- Messages Column -->
     <div class="flex-auto flex items-end bg-gray-800 overflow-auto" style="height: 80vh;" id="event_chat" data-event-id="<%= @event.id %>">
       <ul id="messages" class="p-4">
+ 
         <% @messages.each do |message| %>
             <li class="mb-2">
               <span class="text-white">>></span>
               <% if message.user == @event.creator %>
                 <span class="text-green-500">@</span>
-              <% elsif message.user.manager? %>
+              <% elsif message.user.is_manager(@event) %>
                 <span class="text-blue-500">+</span>
               <% end %>
               <span class="text-white"><%= message.user.username %>: <%= message.message %></span>
@@ -30,7 +31,7 @@
           <li class="mb-2">
             <% if attendee == @event.creator %>
               <span class="text-green-500">@</span>
-            <% elsif attendee.manager? %>
+            <% elsif attendee.is_manager(@event) %>
               <span class="text-blue-500">+</span>
             <% end %>
             <span class="text-white"><%= attendee.username %></span>

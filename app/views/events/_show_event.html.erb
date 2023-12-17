@@ -2,7 +2,8 @@
 <div class="h-screen">
 <%= render 'event_hero', event: event %>
 </div>
-<% if @event.creator == current_user %>
+
+<% if @event.creator == current_user || current_user.user_type == 0 %>
 <%= render 'event_manager', event:event %>
 <% end %>
 <div class="text-white min-h-screen flex items-center justify-center">

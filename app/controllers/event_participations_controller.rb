@@ -51,6 +51,7 @@ event = Event.find_by_id(event_participation_params[:event_id])
   # DELETE /event_participations/1 or /event_participations/1.json
   def destroy
     @event_participation.destroy!
+    @event = @event_participation.event
     Activity.create(name: "Left event", description: "event-id_#{@event.id}", user_id: current_user.id)
 
     respond_to do |format|

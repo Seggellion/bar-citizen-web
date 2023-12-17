@@ -2,7 +2,7 @@
 <li>
   <% if message.user == event.creator %>
     <span class="text-green-500">@</span>
-  <% elsif message.user.manager? %>
+  <% elsif message.user.is_manager(event) %>
     <span class="text-blue-500">+</span>
   <% end %>
   <span class="text-white"><%= message.user.username %>: <%= message.message %></span>

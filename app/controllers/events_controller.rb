@@ -95,11 +95,17 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
 
-      @event = Event.find_by_slug(params[:id])
+if params[:id]
+  @event = Event.find_by_slug(params[:id])
+else
+  @event = Event.find_by_slug(params[:slug])
+end
+
+     
     end
 
     def check_event_manager_permissions
-      unless current_user.event_manager? || current_user.admin?
+      unless current_user.is_manager(self) || current_user.admin?
         redirect_to root_path, alert: 'You do not have permission to perform this action.'
       end
     end

@@ -34,13 +34,13 @@
         <!-- Individual grid item 5 -->
         <div class="p-4 border border-gray-700">
             <div class="font-bold text-lg mb-2">LAST FORUM POST</div>
-            <div><%= event.creator.last_login.strftime("%A %b %d, %Y") %> %> </div>
+            <div><%= event.creator.last_login&.strftime("%A %b %d, %Y") %> %> </div>
         </div>
 
         <!-- Individual grid item 6 -->
         <div class="p-4 border border-gray-700">
         <div class="font-bold text-lg mb-2">LAST LOGIN</div>
-        <div><%= event.creator.last_login.strftime("%A %b %d, %Y") %> %> </div>
+        <div><%= event.creator.last_login&.strftime("%A %b %d, %Y") %> %> </div>
         </div>
 
         <!-- Individual grid item 7 -->
