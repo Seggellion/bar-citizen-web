@@ -3,6 +3,28 @@
   <head>
     <title>Car Citizen Earth</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    
+  <% if @event %>
+  <meta property="og:title" content="Car Citizen test site - <%= @event.title %>">
+    <% if @event.image.attached? %>
+      <meta property="og:image" content="<%= url_for(@event.image) %>">
+    <% end %>
+
+  <% elsif @photo.event %>
+  <meta property="og:title" content="Car Citizen test site - <%= @photo.title %>">
+    <% if @photo.image.attached? %>
+      <meta property="og:image" content="<%= url_for(@photo.image) %>">
+    <% end %>
+  <% else %>
+    <meta property="og:title" content="Car Citizen test site">
+  <% end %>
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:description" content="Your site description">
+  <meta property="og:url" content="<%= request.original_url %>">
+
     <%= csrf_meta_tags %>
     
     <%= csp_meta_tag %>
