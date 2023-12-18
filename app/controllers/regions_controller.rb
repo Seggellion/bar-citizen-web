@@ -6,6 +6,10 @@ class RegionsController < ApplicationController
       render json: @regions
     end
 
+    def show
+      @region = Region.find_by_slug(params[:id])
+    end
+
     def create
       @region = Region.new(region_params)
 

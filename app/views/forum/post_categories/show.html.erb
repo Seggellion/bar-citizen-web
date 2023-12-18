@@ -1,13 +1,16 @@
 <!-- app/views/posts/index.html.erb -->
-<div class="bg-black mx-4 p-4">
+<div class="bg-black mx-4 mt-8 p-4">
 <h2 class="text-xl font-bold p-4 text-white"><%= @category.name %></h2>
 <!-- Top Bar -->
 <div class="flex justify-between items-center text-white p-4">
-  <div>
-  <%= link_to 'Create New Post', new_forum_post_category_post_path(@post_category), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-    |
+  
+<% if current_user %>
+  <%= link_to 'Create New Post', new_forum_post_category_post_path(@post_category), class: "bg-citizen-blue-base hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <% comment do %>
+  |
     Mark all posts as read
-  </div>
+  <% end %>
+  <% end %>
 </div>
 
 <!-- Posts Header -->

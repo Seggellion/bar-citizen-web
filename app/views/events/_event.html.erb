@@ -10,9 +10,10 @@
         <p class="text-green-400">Event Status: <%= event.status %></p>
       </div>
       <div class="flex flex-col">
-        <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2  w-32">Region Info</button>
+        <%= link_to 'Region info', event.region.slug, class: 'text-white bg-citizen-blue-base rounded-lg text=center font-bold w-32 mr-2 mb-2 py-2 px-4' %>
+
         <a href="<%= event.discord&.server_url.presence || 'javascript:void(0);' %>" target="_blank"
-         class="bg-blue-900 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded text-center w-32">
+         class="text-white bg-citizen-blue-base rounded-lg text=center font-bold w-32 mr-2 mb-2 py-2 px-4">
         Discord Info
       </a>
     </div>
@@ -30,7 +31,7 @@
         <!-- Details -->
         <div class="w-full md:w-6/12 mb-4 md:mb-0 md:px-4">
           <p><strong>Where:</strong> <%= event.address %></p>
-          <p><strong>Region:</strong><%= event.region&.name %></p>
+          <p><strong>Region:</strong> <%= event.region&.name %></p>
           <p><strong>Starts:</strong> <%= event.start_datetime.strftime('%a %b %d, %Y %l:%M %p') %></p>
           <p><strong>Ends:</strong> <%= event.end_datetime&.strftime('%a %b %d, %Y %l:%M %p') %></p>
           <p><strong>Cost:</strong> Free</p>

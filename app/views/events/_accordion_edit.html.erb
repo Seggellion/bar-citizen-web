@@ -12,7 +12,7 @@
       </div>
     <% end %>
 
-    <%= form.select :status, ['Planning', 'Open for Registration', 'Ongoing', 'Closed', 'Cancelled'], {}, { class: 'w-full bg-gray-700 text-white' } %>
+    <%= form.select :status, ['Planning', 'Open for Registration', 'Ongoing', 'Closed', 'Cancelled'], {selected: @event.status}, { class: 'w-full bg-gray-700 text-white' } %>
   
   
     <%= form.text_field :title, placeholder: 'Title', class: 'w-full bg-gray-700 text-white' %>
@@ -23,12 +23,8 @@
     <%= form.text_field :location_name, placeholder: 'Location Name', class: 'w-full bg-gray-700 text-white' %>
   
     <%= form.text_field :address, placeholder: 'Address', class: 'w-full bg-gray-700 text-white' %>
-    <%= form.number_field :creator_id, placeholder: 'Creator ID', class: 'w-full bg-gray-700 text-white' %>
-  
 
-    <%= form.number_field :views_count, placeholder: 'Views Count', class: 'w-full bg-gray-700 text-white' %>
-    <%#= form.text_field :profile_image, placeholder: 'Profile Image URL', class: 'w-full bg-gray-700 text-white' %>
-    <%= form.number_field :region_id, placeholder: 'Region ID', class: 'w-full bg-gray-700 text-white' %>
+
     <%= form.text_field :city, placeholder: 'City', class: 'w-full bg-gray-700 text-white' %>
   
 
@@ -41,7 +37,7 @@
     <%= form.file_field :banner, class:'w-full bg-gray-700 text-white' %>
 
     <div class="actions">
-      <%= form.submit "Update Event", class: 'px-4 py-2 bg-blue-500 text-white rounded' %>
+      <%= form.submit "Update Event", class: 'px-4 py-2 bg-citizen-blue-highlight text-white rounded' %>
     </div>
   <% end %>
   

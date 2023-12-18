@@ -10,9 +10,9 @@ module Forum
       end
 
       def show
-        @post_category = PostCategory.find(params[:id])
+        @post_category = PostCategory.find_by_slug(params[:id])
 
-        @category = PostCategory.find(params[:id])
+        @category = PostCategory.find_by_slug(params[:id])
         @posts = @category.posts.where(published:true)
       end
     

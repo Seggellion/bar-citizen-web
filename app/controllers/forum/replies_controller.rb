@@ -10,7 +10,7 @@ module Forum
       def create
         @reply = @post.replies.new(reply_params)
         @reply.user = current_user # assuming you have a current_user method
-  
+        @reply.published = true
         if @reply.save
           Activity.create(name: "New Reply created", description: "reply-id_#{@reply.id}", user_id: @current_user.id)
 

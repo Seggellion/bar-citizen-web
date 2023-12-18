@@ -23,7 +23,7 @@ class Event < ApplicationRecord
       EventParticipation.where(event_id: id).includes(:user).map(&:user)
     end
 
-    def status
+    def event_passed
       if start_datetime.past?
         "Registration closed"
       else

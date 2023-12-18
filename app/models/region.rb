@@ -1,5 +1,7 @@
 # app/models/region.rb
 class Region < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
     belongs_to :user
     # has_many :discords
     has_many :events

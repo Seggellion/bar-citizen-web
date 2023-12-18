@@ -1,0 +1,22 @@
+<!-- Form Container -->
+<div class="flex-grow">
+<%= form_with model: Badge.new, url: admin_badges_path, local: true, class: "flex flex-col px-2 space-y-4"  do |form| %>
+    
+    <!-- Text Input Fields Row -->
+    <div class="flex space-x-2 my-0">
+      <%= form.text_field :name, placeholder: "Badge name", class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white flex-grow", required: true %>
+      <%= form.text_area :description, placeholder: "Badge description", class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white flex-grow", required: true %>
+    </div>
+
+    <div class="flex items-center space-x-2 my-0">
+    <%= form.text_area :icon, placeholder: "<svg></svg>", class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white flex-grow", required: true %>
+    </div>
+
+
+
+    <!-- Submit Button -->
+    <div>
+    <%= form.submit "Create Badge", class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
+    </div>
+<% end %>
+</div>

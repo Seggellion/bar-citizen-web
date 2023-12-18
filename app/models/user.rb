@@ -6,6 +6,9 @@ class User < ApplicationRecord
     validates :discord_id, presence: true, uniqueness: true
     has_many :replies, dependent: :destroy
     has_many :posts, dependent: :destroy
+    has_many :activities
+    has_many :user_badges
+    has_many :badges, through: :user_badges
   # Relationship with Events through EventParticipations
   has_many :events, through: :event_participations
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'

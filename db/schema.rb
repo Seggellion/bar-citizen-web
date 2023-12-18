@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_16_045126) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_17_201524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_16_045126) do
     t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "trashed"
+    t.boolean "published"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -215,6 +218,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_16_045126) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "trashed"
     t.index ["receiver_id"], name: "index_messages_on_receiver_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
@@ -275,6 +279,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_16_045126) do
     t.boolean "published"
     t.boolean "trashed"
     t.integer "action_id"
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_post_categories_on_slug", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -304,6 +310,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_16_045126) do
     t.boolean "published"
     t.boolean "trashed"
     t.integer "action_id"
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_regions_on_slug", unique: true
     t.index ["user_id"], name: "index_regions_on_user_id"
   end
 

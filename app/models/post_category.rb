@@ -1,4 +1,6 @@
 class PostCategory < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
     has_many :posts
     validates :name, presence: true
     validates :user_id, presence: true

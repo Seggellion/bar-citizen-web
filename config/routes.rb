@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/map', to: 'maps#index'
 
   resources :regions
+
   resources :discords
   resources :photos do
     resources :photo_comments do 
@@ -91,6 +92,18 @@ end
         post 'trash'
       end
     end
+
+    resources :badges do
+      member do
+        post 'trash'
+      end
+    end
+
+    resources :user_badges do
+      member do
+        post 'trash'
+      end
+    end
     
     resources :discords do
       member do
@@ -154,4 +167,5 @@ end
 
   # Defines the root path route ("/")
    root "home#index"
+   get '/:id', to: 'regions#show', as: :region_shortcut
 end

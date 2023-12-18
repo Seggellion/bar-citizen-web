@@ -1,0 +1,32 @@
+
+<div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
+<div class="flex items-center gap-3 p-2.5 xl:p-5">
+  <div class="flex-shrink-1">
+    <img src="<%= user_badge.user.profile_image %>" alt="User" />
+  </div>
+  <p class="hidden font-medium  dark:text-white sm:block">
+    <%= user_badge.user.username %>
+  </p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= user_badge.badge.name %></p>
+</div>
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium text-meta-5 text-white"></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium dark:text-white"><%= user_badge.created_at.strftime('%a %b %d, %Y %l:%M %p') %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+<p class="font-medium text-meta-5 text-white">
+  <%= button_to 'Trash', trash_admin_user_badge_path(user_badge), method: :user_badge, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+</p>
+</div>
+</div>

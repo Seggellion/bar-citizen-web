@@ -1,0 +1,15 @@
+<!-- Form Container -->
+<div class="flex-grow">
+  <%= form_with model: UserBadge.new, url: admin_user_badges_path, local: true, class: "flex flex-col px-2 space-y-4" do |form| %>
+    
+
+    <div class="flex-1 mb-4">
+
+    <%= form.collection_select :user_id, User.all, :id, :username, { prompt: 'Select a User' }, { class: "shadow border rounded py-2 px-3 dark:border-gray-600 dark:bg-gray-700" } %>
+
+    <%= form.collection_select :badge_id, Badge.all, :id, :name, { prompt: 'Select a Badge' }, { class: "shadow border rounded py-2 px-3 dark:border-gray-600 dark:bg-gray-700" } %>
+    <%= form.submit "Create UserBadge", class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
+    </div>
+
+<% end %>
+</div>

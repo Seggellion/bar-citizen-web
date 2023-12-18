@@ -1,0 +1,48 @@
+
+<div class="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
+
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+<div class="h-22.5 w-15 max-h-22 rounded-md overflow-hidden">
+<%#= image_tag badge.icon, class: "h-full w-auto object-cover object-center" %>
+
+<%= raw badge.icon %>
+
+</div>
+</div>
+
+<div class="flex items-center gap-3 p-2.5 xl:p-5">
+  <div class="flex-shrink-1">
+  </div>
+  <p class="hidden font-medium  dark:text-white sm:block">
+    <%= badge.user.username %>
+  </p>
+</div>
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <p class="font-medium  dark:text-white"><%= badge.name %></p>
+</div>
+
+
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+<p class="font-medium  dark:text-white"><%= badge.description %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+  <p class="font-medium dark:text-white"><%= badge.created_at.strftime('%a %b %d, %Y %l:%M %p') %></p>
+</div>
+
+<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+<p class="font-medium text-meta-5 text-white">
+<%= link_to 'Edit', edit_admin_badge_path(badge), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+
+
+  <%#= button_to 'Trash', trash_admin_badge_path(badge), method: :badge, class: "m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", form: { data: { turbo_confirm: "Are you sure?" } } %>
+</p>
+</div>
+</div>
+
+<style>
+
+</style>

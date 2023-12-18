@@ -1,4 +1,4 @@
-# app/controllers/admin/posts_controller.rb
+# app/controllers/admin/events_controller.rb
 
 module Admin
     class EventsController < ApplicationController
@@ -17,10 +17,10 @@ module Admin
 
         event = Event.find_by_slug(params[:id])
 
-        event.update(published: true, action_id: @current_user.id)
+        event.update(published: true, action_id: current_user.id)
     
  
-        Activity.create(name: "Created event", description: "event-id_#{event.id}", user_id: current_user.id)
+        Activity.create(name: "Created event", description: "event-id_#{event.id}", user_id: event.creator_id)
 
         redirect_to admin_events_path, notice: 'Event was successfully approved.'
 

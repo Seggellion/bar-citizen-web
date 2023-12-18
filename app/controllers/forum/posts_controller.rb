@@ -52,7 +52,7 @@ class PostsController < ApplicationController
     private
 
     def set_post_category
-      @post_category = PostCategory.find(params[:post_category_id])
+      @post_category = PostCategory.find_by_slug(params[:post_category_id])
     end
 
     def post_params

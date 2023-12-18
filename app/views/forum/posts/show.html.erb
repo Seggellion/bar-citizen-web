@@ -16,8 +16,38 @@
         <div class="mb-2">Member #: <%= @post.user.id %></div>
         <div class="mb-2">Posts: <%= @post.user.total_posts %></div>
         <div class="mb-2">Location: <%= @post.user.location %></div>
-      </div>
+        <div class="mb-2">Badges:
+          <div class="flex flex-row mt-2" data-controller="badge">
+            <% @post.user.badges.each do |badge| %>
+              <div data-action="mouseover->badge#showName mouseout->badge#hideName" 
+              data-badge-name-value="<%= badge.name %>">
+                <%= raw badge.icon %>
+                <div class="badge-tooltip" data-badge-target="tooltip"><%= badge.name %></div>
 
+              </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+<style>
+.badge-tooltip {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+.show-tooltip {
+  display: block;
+}
+
+/* Additional styling for positioning and appearance as needed */
+
+</style>
       <!-- Right Column: Message -->
       <div class="col-span-2">
         <h2 class="text-xl font-bold text-blue-400 mb-2">Message</h2>
@@ -65,6 +95,8 @@
 
   <!-- Create Reply Button -->
   <div class="mt-4">
-    <%= link_to 'Create Reply', new_forum_post_category_post_reply_path(@post_category, @post), class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <% if current_user %>
+    <%= link_to 'Create Reply', new_forum_post_category_post_reply_path(@post_category, @post), class: "inline-block bg-citizen-blue-base hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <% end %>
   </div>
 </div>

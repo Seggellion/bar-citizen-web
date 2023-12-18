@@ -1,6 +1,6 @@
 <!-- app/views/forum/post_categories/index.html.erb -->
 
-<div class="bg-black mx-4 p-4">
+<div class="bg-black m-4 p-4">
 
 <!-- Top bar with current time and forum index link -->
 <div class="flex justify-between bg-black text-white px-4 pt-8">
@@ -72,10 +72,12 @@
 
 
 <!-- Car Citizen Forums Group Name -->
-<div class="bg-gray-900  text-white py-2 px-4">
-  Car Citizen Corporate  |  <%= link_to 'Create New Post', forum_new_category_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-</div>
 
+<% if current_user&.is_admin? %>
+<div class="bg-gray-900  text-white py-2 px-4">
+  Car Citizen Corporate  |  <%= link_to 'Create New Post', forum_new_category_path, class: "bg-citizen-blue-base hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+</div>
+<% end %>
 
 <style>
   .bg-blue-900 { background-color: #2a4365; } /* This is a Tailwind color, adjust as needed */

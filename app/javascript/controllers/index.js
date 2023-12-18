@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import BadgeController from "./badge_controller"
+application.register("badge", BadgeController)
+
 import BugController from "./bug_controller"
 application.register("bug", BugController)
 

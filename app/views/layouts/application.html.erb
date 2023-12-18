@@ -7,17 +7,14 @@
     
   <% if @event %>
   <meta property="og:title" content="Car Citizen test site - <%= @event.title %>">
-    <% if @event.image.attached? %>
-      <meta property="og:image" content="<%= url_for(@event.image) %>">
+    <% if @event.banner.attached? %>
+      <meta property="og:image" content="<%= url_for(@event.banner) %>">
     <% end %>
-
-  <% elsif @photo.event %>
+  <% elsif @photo %>
   <meta property="og:title" content="Car Citizen test site - <%= @photo.title %>">
     <% if @photo.image.attached? %>
       <meta property="og:image" content="<%= url_for(@photo.image) %>">
-    <% end %>
-  <% else %>
-    <meta property="og:title" content="Car Citizen test site">
+    <% end %>s
   <% end %>
 
   <meta property="og:type" content="website">
