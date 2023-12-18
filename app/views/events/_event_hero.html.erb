@@ -57,7 +57,7 @@
     <!-- Register Now Button -->
     <div class=" flex flex-col items-center justify-center">
 
-    <% unless event.status.include?("Closed") %>
+    <% unless event.status&.include?("Closed") %>
       <% if current_user %>
       <div class="text-center">
           <% if current_user && current_user.participating_in?(@current_event) %>
