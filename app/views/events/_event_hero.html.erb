@@ -28,7 +28,7 @@
       <div class="absolute bottom-0 right-0 p-4">
         <!-- Social Buttons Here -->
         <%= link_to 'Share', invite_url(event: @event.slug), id: 'share-event-btn', class: 'citizen-grey-md p-2 text-white rounded-lg btn btn-primary', data: { controller: "clipboard", clipboard_target: "source", action: "click->clipboard#copy" } %>
-      </div>
+        </div>
     </div>
   </div>
 </div>
@@ -104,3 +104,27 @@
     </nav>
   </div>
 </div>
+
+
+<style>
+
+/* Add this to your stylesheet */
+.clipboard-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.clipboard-notification.error {
+  background-color: #ffcccc;
+  color: #cc0000;
+}
+
+</style>
