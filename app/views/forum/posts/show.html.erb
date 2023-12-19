@@ -23,7 +23,6 @@
               data-badge-name-value="<%= badge.name %>">
                 <%= raw badge.icon %>
                 <div class="badge-tooltip" data-badge-target="tooltip"><%= badge.name %></div>
-
               </div>
             <% end %>
           </div>
@@ -70,6 +69,18 @@
           <div class="mb-2"><%= reply.user.username %></div>
           <div class="text-sm">Joined: <%= reply.user.created_at.strftime("%b %d, %Y") %></div>
           <div class="text-sm">Posts: <%= reply.user.total_posts %></div>
+          <div class="mb-2">Badges:
+          <div class="flex flex-row mt-2" data-controller="badge">
+            <% @post.user.badges.each do |badge| %>
+              <div data-action="mouseover->badge#showName mouseout->badge#hideName" 
+              data-badge-name-value="<%= badge.name %>">
+                <%= raw badge.icon %>
+                <div class="badge-tooltip" data-badge-target="tooltip"><%= badge.name %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        
         </div>
         <% if reply.published %>
         <!-- Right Column: Message -->

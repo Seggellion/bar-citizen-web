@@ -7,7 +7,9 @@ class VotesController < ApplicationController
       vote = @votable.votes.where(user: current_user).first_or_initialize
       vote.upvote = params[:upvote]
       if vote.save
-        redirect_to @votable.photo, notice: 'Comment was upvoted'
+
+        redirect_to appropriate_redirect_path, notice: 'Item upvoted!'
+
       else
         # handle error
       end
@@ -17,7 +19,24 @@ class VotesController < ApplicationController
     def authenticate_user!
         redirect_to login_path, alert: 'You must be logged in to perform this action.' if current_user.nil?
       end
-    def find_votable
-      @votable = params[:votable_type].constantize.find(params[:votable_id])
-    end
+      
+      def find_votable
+        klass = params[:votable_type].classify.constantize
+        @votable = klass.find(params[:votable_id])
+      rescue NameError
+        # handle the case where the class does not exist
+      end
+
+      def appropriate_redirect_path
+        case @votable
+        when Photo
+          photo_path(@votable)
+        when PhotoComment
+          photo_path(@votable.photo)
+        else
+          # Handle other votable types or default redirect
+        end
+      end
+
+      
   end

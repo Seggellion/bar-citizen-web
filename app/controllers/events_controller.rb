@@ -92,6 +92,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def invite
+    event_slug = params[:event]
+    @event = Event.find_by(slug: event_slug)
+    
+    if @event
+      session[:event_redirect] = event_path(@event)
+      # Store the information for the view
+      @redirect_to_discord = true
+    else
+      redirect_to root_path, alert: 'Invalid invite link'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -113,7 +126,7 @@ end
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :banner, :status, :event_type, :description, :twitter, :start_datetime, :end_datetime, :address, :region_id, :facebook_link, :discord_id, :creator_id,  images: [])
+      params.require(:event).permit(:title, :banner, :location_name, :status, :event_type, :description, :twitter, :start_datetime, :end_datetime, :address, :region_id, :facebook_link, :discord_id, :creator_id,  images: [])
     end
 
     def authenticate_user!

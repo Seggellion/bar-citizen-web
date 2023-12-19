@@ -15,6 +15,14 @@ class User < ApplicationRecord
   has_many :post_categories
   has_many :discords
   has_many :pages
+  has_many :photos
+  has_many :photo_comments
+  # Association for messages sent by the user
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
+
+  # Association for messages received by the user
+  has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
+
   has_many :event_manager_entries, class_name: 'EventManager'
   has_many :managed_events, through: :event_manager_entries, source: :event
 

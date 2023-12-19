@@ -72,19 +72,19 @@
     <%= form_for @message do |f| %>
       <div class="mb-4">
         <%= f.label :subject, class: 'text-white' %>
-        <%= f.text_field :subject, class: "w-full p-2 rounded" %>
+        <%= f.text_field :subject, required:true, class: "w-full p-2 rounded" %>
       </div>
       <div class="mb-4">
         <%= f.label :description, class: 'text-white' %>
-        <%= f.text_area :description, class: "w-full p-2 rounded" %>
+        <%= f.text_area :description,  required:true, class: "w-full p-2 rounded" %>
       </div>
       <div class="mb-4">
       <%= f.label :screenshot, class: 'text-white' %>
-      <%= f.file_field :image, class: "w-full p-2 rounded" %>
+      <%= f.file_field :image,  required:true, class: "w-full p-2 rounded" %>
     </div>
   
 
-      <%= f.submit "Send", class: "bg-blue-500 text-white p-2 rounded" %>
+      <%= f.submit "Send", class: "bg-citizen-blue-base text-white p-2 rounded" %>
     <% end %>
   </div>
 </div>

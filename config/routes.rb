@@ -164,6 +164,8 @@ end
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'  
   delete '/logout', to: 'sessions#destroy', as: 'logout'
+  get '/invite', to: 'events#invite', as: 'invite'
+
 
   # Defines the root path route ("/")
    root "home#index"

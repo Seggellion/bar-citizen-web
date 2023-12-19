@@ -1,0 +1,80 @@
+<!-- app/views/events/show.html.erb -->
+
+<!-- Modal -->
+<div id="welcome-modal" class="hidden fixed inset-0 bg-opacity-50 overflow-y-auto h-full w-full">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-gray-800">
+    <div class="mt-3 text-center">
+      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+        <!-- Icon or Image -->
+      </div>
+      <h3 class="text-lg leading-6 font-medium text-white" id="modal-title">
+        <%= @event.title %>
+      </h3>
+      <div class="mt-2 px-7 py-3">
+        <p class="text-sm text-gray-300">
+          Location: <%= @event.location_name %>
+        </p>
+        <p class="text-sm text-gray-300">
+          Starts: <%= @event.start_datetime.strftime("%B %d, %Y %H:%M") %>
+        </p>
+        <p class="text-sm text-gray-300">
+          Hosted by: <%= @event.creator.username %>
+        </p>
+        <!-- Add more details as needed -->
+      </div>
+      <div class="items-center px-4 py-3">
+
+      <% if current_user %>
+        <% if current_user.participating_in?(@event) %>
+            <%= button_to 'Leave Event', event_event_participation_path(@event, current_user.event_participation_id_for(@event)), method: :delete, class: 'bg-yellow-400 text-blue-600 rounded-full px-6 py-2 font-bold' %>
+        <% else %>
+            <%= button_to 'Join Event', event_event_participations_path(@event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @event.id } }, class: 'bg-citizen-blue-highlight text-white rounded-full px-6 py-2 font-bold' %>
+        <% end %>
+    <% else %>
+      <p class="text-sm text-red-500">Please log in to join the event.</p>
+    <% end %>
+
+      </div>
+    </div>
+    <!-- Close button -->
+    <span class="absolute top-0 right-0 p-4">
+      <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="close-modal-btn">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 9a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </span>
+  </div>
+</div>
+
+
+<% if session.delete(:show_modal) %>
+  <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('welcome-modal');
+    var closeButton = document.getElementById('close-modal-btn');
+
+      modal.classList.remove('hidden');
+
+
+    closeButton.onclick = function() {
+      modal.classList.add('hidden');
+    }
+  });
+  </script>
+<% end %>
+
+
+<style>
+#welcome-modal{
+    position:absolute;
+    background-color:black;
+    width:100vw;
+    height:100vh;
+    z-index:9010;
+    top:0px;
+
+}
+</style>
+

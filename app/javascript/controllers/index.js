@@ -16,6 +16,9 @@ application.register("carousel", CarouselController)
 import ChatController from "./chat_controller"
 application.register("chat", ChatController)
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
 import DiscordableController from "./discordable_controller"
 application.register("discordable", DiscordableController)
 

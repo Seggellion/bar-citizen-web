@@ -1,0 +1,11 @@
+<% if current_user %>
+      <% if comment.downvoted_by?(current_user) %>
+        <%= image_tag 'downvote_filled.svg', class: 'vote-button' %>
+      <% else %>
+        <%= button_to image_tag('downvote_regular.svg'), votes_path(votable_type: 'PhotoComment', votable_id: comment.id, upvote: false), method: :post, class: "vote-button" %>
+      <% end %>
+      <span><%= comment.votes.where(upvote: false).count %></span>
+<% else %>
+    <%= image_tag 'downvote_filled.svg', class: 'vote-button' %>
+      <span><%= comment.votes.where(upvote: false).count %></span>
+<% end %>

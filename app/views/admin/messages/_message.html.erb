@@ -14,7 +14,9 @@
 </div>
 <div class="flex items-center justify-center p-2.5 xl:p-5">
 <div class="h-22.5 w-15 max-h-22 rounded-md overflow-hidden">
+<% if message.image.present? %>
 <%= image_tag message.image, class: "h-full w-auto object-cover object-center" %>
+<% end %>
 </div>
 </div>
 

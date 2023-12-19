@@ -2,9 +2,7 @@
 <!-- Hero Section --><% banner_url = url_for(event.banner) if event.banner.attached? %>
 
 
-<div class="relative bg-cover bg-center h-3/5"
-
-
+<div class="relative bg-cover bg-center h-[32rem] md:h-3/5"
  style="background-image: url('<%= banner_url %>'); background-size: cover;">
    
   <div class="bg-black bg-opacity-50 h-full">
@@ -29,8 +27,7 @@
       <!-- Social Like Buttons, positioned bottom right -->
       <div class="absolute bottom-0 right-0 p-4">
         <!-- Social Buttons Here -->
-        <button class="text-white">Like</button>
-        <button class="text-white">Share</button>
+        <%= link_to 'Share', invite_url(event: @event.slug), id: 'share-event-btn', class: 'citizen-grey-md p-2 text-white rounded-lg btn btn-primary', data: { controller: "clipboard", clipboard_target: "source", action: "click->clipboard#copy" } %>
       </div>
     </div>
   </div>
@@ -42,7 +39,7 @@
     <!-- Location Details -->
     <div>
       <h3 class="text-lg font-semibold">Location</h3>
-      <p><%= event.description %></p>
+      <p><%= event.location_name %></p>
       <p><%= event.address %></p>
     </div>
 
@@ -64,7 +61,7 @@
               <%= button_to 'Leave Event', event_event_participation_path(@current_event, current_user.event_participation_id_for(@current_event)), method: :delete, class: 'bg-yellow-400 text-blue-600 rounded-full px-6 py-2 font-bold' %>
           <% else %>
               
-              <%= button_to 'Join Event', event_event_participations_path(@current_event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @current_event.id } }, class: 'bg-citizen-blue-highlight text-white rounded-full px-6 py-2 font-bold' %>
+              <%= button_to 'Join Event', event_event_participations_path(@current_event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @current_event.id } }, class: 'bg-citizen-blue-highlight text-white rounded-full text-xl px-6 py-6 font-bold' %>
 
           <% end %>
       </div>

@@ -13,6 +13,8 @@ module Admin
         @events = Event.all
       end
 
+    
+
       def publish
 
         event = Event.find_by_slug(params[:id])

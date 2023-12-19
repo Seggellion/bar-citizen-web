@@ -1,0 +1,28 @@
+<div class="flex flex-row w-full items-center justify-center mt-4">
+<div class="text-center bg-citizen-blue-base rounded-lg w-24 p-16">
+<h1 class="text-xl bold"> Invitation to <%= @event.title %> </h1>
+
+<h2  class="text-lg text-white">Redirecting to Discord </h2>
+
+</div>
+</div>
+<% if @redirect_to_discord %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '/auth/discord';
+
+      // CSRF Token is required for POST requests in Rails
+      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'authenticity_token';
+      hiddenInput.value = csrfToken;
+      form.appendChild(hiddenInput);
+
+      document.body.appendChild(form);
+      form.submit();
+    });
+  </script>
+<% end %>

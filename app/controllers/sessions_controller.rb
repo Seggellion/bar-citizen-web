@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
           return # This is important to stop execution of the method here
         end
 
+        
+
         # Store user information in the session
         session[:user_id] = user.id
         session[:username] = user.username
@@ -29,7 +31,15 @@ class SessionsController < ApplicationController
           expires: 1.week.from_now
         }
 
-        redirect_to dashboard_path
+
+        if session[:event_redirect]
+          event_path = session.delete(:event_redirect)
+          session[:show_modal] = true  # Set a flag to show the modal
+          redirect_to event_path
+        else
+          redirect_to dashboard_path
+        end
+        
       end
 
       def destroy

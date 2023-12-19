@@ -14,6 +14,11 @@
         <img src="<%= user.profile_image %>" alt="User" class="rounded-lg mb-4" />
             </div>
             <h3 class="text-center text-lg"><%= user.username %></h3>
+
+            <% if current_user&.is_admin? || event.creator_id == current_user&.id  %>
+              <%= button_to 'Kick', event_event_participation_path(@current_event, user.event_participation_id_for(@current_event)), method: :delete, class: 'bg-yellow-400 text-blue-600 rounded-full px-6 py-2 font-bold' %>
+<% end %>
+
         </div>
 <% end %>
 
