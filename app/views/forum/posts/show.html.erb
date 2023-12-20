@@ -9,8 +9,8 @@
     <div class="grid grid-cols-3 gap-4">
       <!-- Left Column: Author -->
       <div class="col-span-1">
-        <h2 class="text-xl font-bold text-blue-400 mb-2">Author</h2>
-        <div class="mb-4"><%= @post.user.username %></div>
+        <h2 class="text-xl font-bold text-blue-400 mb-2"><%= @post.user.username %></h2>
+
         <div class="mb-2"><img src="<%= @post.user.profile_image %>" alt="Profile Image" class="w-20 h-20 rounded-full"></div>
         <div class="mb-2">Joined: <%= @post.user.created_at.strftime("%b %d, %Y") %></div>
         <div class="mb-2">Member #: <%= @post.user.id %></div>
@@ -49,10 +49,18 @@
 </style>
       <!-- Right Column: Message -->
       <div class="col-span-2">
-        <h2 class="text-xl font-bold text-blue-400 mb-2">Message</h2>
-        <div>Posted: <%= @post.created_at.strftime("%B %d, %Y") %></div>
+        <div class="flex flex-row justify-between">
+        <div class="text-xs">Posted: <%= @post.created_at.strftime("%B %d, %Y") %></div>
+<% if @post.created_at != @post.updated_at %>
+        <div class="text-xs">Edited:  <%= time_ago_in_words(@post.updated_at) %> ago</div>
+<% end %>
+        <div class="mb-2 text-xs"><strong>Subject:</strong> <%= @post.title %></div>
+
+      <% if current_user&.id == @post.user_id %>
+        <%= link_to 'Edit Post', edit_forum_post_category_post_path(@post.post_category, @post), class: "flex items-center px-2 justify-center rounded-lg bg-citizen-blue-base" %>
+<% end %>
+        </div>
         <hr class="my-2 border-gray-600">
-        <div class="mb-2"><strong>Subject:</strong> <%= @post.title %></div>
         <div><%= simple_format(@post.content) %></div>
       </div>
     </div>

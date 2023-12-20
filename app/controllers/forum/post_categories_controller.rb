@@ -16,6 +16,10 @@ module Forum
         @posts = @category.posts.where(published:true)
       end
     
+def update
+
+end
+
       def create
         @post_category = PostCategory.new(post_category_params)
 

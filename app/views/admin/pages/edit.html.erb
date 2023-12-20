@@ -1,0 +1,106 @@
+<div class="container mx-auto px-4 dark:bg-gray-800">
+  <h1 class="text-xl font-bold my-4 text-gray-900 dark:text-white">Edit Page</h1>
+  
+  <!-- Form for editing the pageable attributes -->
+  <% comment do %>
+  <%= form_with model: @page, url: admin_page_path(@page), local: true do |form| %>
+
+    <!-- Add fields specific to the pageable type -->
+    <!-- Example for a VideoPage -->
+    <% if @page.pageable_type == "VideoPage" %>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+      <!-- Other fields specific to VideoPage -->
+    <% end %>
+    <!-- Add similar conditional blocks for other pageable types -->
+
+    <%= form.submit 'Update Page', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <% end %>
+
+
+  <% end %>
+
+
+
+
+  <%= form_with model: @page, url: admin_page_path(@page), local: true do |form| %>
+
+<!-- Title Field -->
+    <div class="mb-4">
+    <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :title, required:true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <% if @page.errors.full_messages_for(:name).any? %>
+      <p class="text-red-500 text-xs italic"><%= @page.errors.full_messages_for(:name).join(', ') %></p>
+    <% end %>
+  </div>
+
+  <!-- Category Field -->
+  <div class="mb-4">
+    <%= form.label :category, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :category, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <% if @page.errors.full_messages_for(:category).any? %>
+      <p class="text-red-500 text-xs italic"><%= @page.errors.full_messages_for(:category).join(', ') %></p>
+    <% end %>
+  </div>
+
+  <!-- Title Field -->
+  <div class="mb-4">
+  <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+  <%= form.text_area :description, required:true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  <% if @page.errors.full_messages_for(:name).any? %>
+    <p class="text-red-500 text-xs italic"><%= @page.errors.full_messages_for(:name).join(', ') %></p>
+  <% end %>
+</div>
+
+  <!-- Slug Field -->
+  <div class="mb-4">
+    <%= form.label :slug, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :slug, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <% if @page.errors.full_messages_for(:slug).any? %>
+      <p class="text-red-500 text-xs italic"><%= @page.errors.full_messages_for(:slug).join(', ') %></p>
+    <% end %>
+  </div>
+
+  <%= form.submit 'Update Page', class: "bg-citizen-blue-highlight text-white font-bold py-2 px-4 rounded" %>
+
+
+<% end %>
+
+  <!-- Forms for editing blocks in each section -->
+  <% @page.sections.each do |section| %>
+    <% section.blocks.each do |block| %>
+      <%= form_with model: [:admin, block], local: true do |form| %>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+  
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+  
+        <div>
+          <%= form.label :image %>
+          <%= form.file_field :image, class: 'w-full bg-gray-700 text-white' %>
+        </div>
+  
+        <h2 class="text-lg font-bold mt-4 mb-2">Translations</h2>
+        <%= form.fields_for :translations, block.translations do |translation_form| %>
+          <div class="border p-4 rounded mb-2">
+            <%= translation_form.label :language %>
+            <%= translation_form.text_field :language %>
+        
+            <%= translation_form.label :title %>
+            <%= translation_form.text_field :title %>
+        
+            <%= translation_form.label :description %>
+            <%= translation_form.text_area :description %>
+          </div>
+        <% end %>
+  
+        <%= form.submit 'Update Block', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <% end %>
+      <%= button_to 'Delete Block', admin_block_path(block), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
+  <% end %>
+  
+  <!-- Back Button -->
+  <%= link_to 'Back to Settings', admin_settings_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+</div>

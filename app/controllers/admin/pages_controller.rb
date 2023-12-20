@@ -19,8 +19,37 @@ module Admin
           render :new
         end
       end
+
+      def update
+        @page = Page.find(params[:id])
+        
+        respond_to do |format|
+          if @page.update(page_params)
+            redirect_to admin_pages_path, notice: 'Page was successfully updated.'
+            format.json { render :show, status: :ok, location: @page }
+          else
+            redirect_to admin_settings_path, notice: 'Page was successfully updated.'
+            format.json { render json: @page.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
     
   
+      def edit
+        @page = Page.find(params[:id])
+        @page.sections&.each do |section|
+          section.blocks.each do |block|
+            ['en', 'ja'].each do |lang|
+              block.translations.find_or_initialize_by(language: lang)
+            end
+          end
+        end
+        
+      end
+
+      
+
       def trash
         
         reply = Page.find(params[:id])

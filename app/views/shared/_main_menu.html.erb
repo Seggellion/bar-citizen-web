@@ -2,12 +2,15 @@
 #main_menu .orb-font{
 letter-spacing:3px;
 }
+.car-citizen-logo{
+  width:90px !important;
+}
 </style>
 
 <div class="bg-citizen-blue-base drop-shadow-lg flex items-center p-2 text-white relative rounded-lg m-2" style="z-index:9001; min-height: 64px;">
   <div class="flex-grow">
     <%= link_to root_path do %>
-      <%= image_tag 'carcitizen-logo.png', alt: 'Car Citizen Logo', class: 'logo-class absolute h-auto' %>
+      <%= image_tag 'carcitizen-logo.png', alt: 'Car Citizen Logo', class: 'logo-class car-citizen-logo absolute h-auto' %>
     <% end %>
   </div>
   <!-- Hamburger Button for Mobile -->

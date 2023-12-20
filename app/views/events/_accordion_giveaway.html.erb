@@ -8,15 +8,20 @@
       <%= form.label :description, 'Description', class: 'block text-sm font-medium text-white' %>
       <%= form.text_area :description, placeholder: 'Enter giveaway description', class: 'w-full bg-gray-700 text-white' %>
     </div>
+
+    <div class="field"
+    <%= form.label :title, 'Giveaway_image', class: 'block text-sm font-medium text-white' %>
+    <%= form.file_field :image, id: "file_input", class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    </div>
   
     <!-- Add more fields as necessary -->
   
     <div class="actions">
-      <%= form.submit "Create Giveaway", class: 'px-4 py-2 bg-blue-500 text-white rounded' %>
+      <%= form.submit "Create Giveaway", class: 'px-4 py-2 bg-citizen-blue-highlight text-white rounded' %>
     </div>
   <% end %>
 
-  
+<hr>  
   <div class="space-y-4 bg-gray-800 p-4 rounded text-white">
   <% @event.giveaways.each do |giveaway| %>
     <div class="flex justify-between items-center">
@@ -25,7 +30,7 @@
 
       <!-- Action buttons for each giveaway -->
       <% unless giveaway.winner %>
-      <%= button_to 'Draw Winner', draw_winner_event_giveaway_path(@event, giveaway), method: :post, class: 'px-4 py-2 bg-green-500 text-white rounded' %>
+      <%= button_to 'Draw Winner', draw_winner_event_giveaway_path(@event, giveaway), method: :post, class: 'px-4 py-2 bg-citizen-blue-highlight text-white rounded' %>
       <% else %>
       Winner:
       <%= giveaway.winner.username %>

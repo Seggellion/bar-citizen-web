@@ -19,13 +19,16 @@ class PostsController < ApplicationController
   
   
     def edit
+      
       @post = Post.find(params[:id])
+      
     end
   
     def update
+  
       @post = Post.find(params[:id])
       if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
+        redirect_to forum_post_category_path(@post_category), notice: 'Post was successfully updated.'
       else
         render :edit
       end
@@ -52,6 +55,7 @@ class PostsController < ApplicationController
     private
 
     def set_post_category
+      
       @post_category = PostCategory.find_by_slug(params[:post_category_id])
     end
 

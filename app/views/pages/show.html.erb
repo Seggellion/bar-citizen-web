@@ -1,13 +1,30 @@
 <% @pages_sections_ordered = @page&.sections&.order(:section_order)  %>
-<% block_image_url = url_for(@pages_sections_ordered.first.blocks.first.image) if @pages_sections_ordered.first.blocks.first.image.attached? %>
-
+<% if !@pages_sections_ordered.blank? %>
+<% block_image_url = url_for(@pages_sections_ordered.first.blocks.first.image) if @pages_sections_ordered.first.blocks.first&.image.attached? %>
+<% else %>
+<% block_image_url = "" %>
+<% end %>
 <div class="rounded-sm border mx-2 border-gray-300 shadow-md dark:border-gray-700 dark:bg-gray-800"   >
 
-<div class="flex p-10 bg-cover bg-center flex-col justify-end h-72" style="background-image: url(<%= block_image_url %>);">
-<h1  class="text-5xl"><%= @page.title %></h1>
+<div class="flex p-10 bg-cover bg-center flex-col justify-center" style="background-image: url(<%= block_image_url %>);">
+<h1  class="text-5xl mb-4"><%= @page.title %></h1>
+
+<p class="text-white">
+<%= @page.description %>
+</p>
+
+
+<% if request.fullpath.include?('/badges') %>
+<ul class="p-4 mt-4">
+<% Badge.all.each do |badge| %>
+<li class="text-white flex mt-2 items-center flex-row"><div class="badge-image" style="margin-right:5px"><%= raw badge.icon %></div> <%= badge.name %> - <%= badge.description %> </li>
+  <% end %>
+</ul>
+<% end %>
+
 </div>
 
-<% @pages_sections_ordered.each do |section| %>
+<% @pages_sections_ordered&.each do |section| %>
     <% section_type = section.sectionable_type.downcase.gsub('section', '') %>
     <%= render partial: "/section/#{section_type}_section", locals: { section: section.sectionable } %>
   <% end %>

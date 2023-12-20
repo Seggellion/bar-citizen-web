@@ -23,6 +23,9 @@ class Activity < ApplicationRecord
       Post.find_by(id: description.split('_').last) if name == "New post created"
     end
 
+    def giveaway_won
+      Giveaway.find_by(id: description.split('_').last) if name == "Giveaway won"
+    end
 
     def user_event
       Event.find_by(id: description.split('_').last) if name == "User joined"

@@ -2,7 +2,7 @@
 <!-- Hero Section --><% banner_url = url_for(event.banner) if event.banner.attached? %>
 
 
-<div class="relative bg-cover bg-center h-[32rem] md:h-3/5"
+<div class="relative bg-cover bg-center h-[32rem]"
  style="background-image: url('<%= banner_url %>'); background-size: cover;">
    
   <div class="bg-black bg-opacity-50 h-full">
@@ -19,7 +19,7 @@
     <nav class="space-x-4">
       <a href="#" class="text-white hover:text-gray-300">Main</a>
       <a href="#" class="text-white hover:text-gray-300">Schedule</a>
-      <a href="#" class="text-white hover:text-gray-300">Standings</a>
+      <a href="/pages/badges" class="text-white hover:text-gray-300">Badges</a>
       <!-- More links as needed -->
     </nav>
   </div>
@@ -86,24 +86,25 @@
 <!-- Event Menu Section -->
 <div class="bg-gray-500">
   <div class="container mx-auto px-4 py-4">
-    <nav class="flex space-x-4">
-      <a href="#overview" class="text-white hover:underline">Overview </a>
+    <nav class="flex flex-wrap space-x-2 md:space-x-4">
+      <a href="#overview" class="text-white hover:underline mb-2 md:mb-0">Overview</a>
       <% unless @current_event.is_virtual %>
-        <a href="#map" class="text-white hover:underline">Map</a>
+        <a href="#map" class="text-white hover:underline mb-2 md:mb-0">Map</a>
       <% end %>
       <% if !@event.giveaways.empty? %>
-      <a href="#giveaways" class="text-white hover:underline">Giveaways</a>
+        <a href="#giveaways" class="text-white hover:underline mb-2 md:mb-0">Giveaways</a>
       <% end %>
-      <a href="#photos" class="text-white hover:underline">Photos</a>
-      <a href="#forums" class="text-white hover:underline">Regional Forum</a>
-      <a href="#attendees" class="text-white hover:underline">Attendees</a>
-      <a href="#thewall" class="text-white hover:underline">TheWall</a>
-      <a href="#organizer" class="text-white hover:underline">Organizer info</a>
-      <a href="#activity" class="text-white hover:underline">Event Activity</a>
+      <a href="#photos" class="text-white hover:underline mb-2 md:mb-0">Photos</a>
+      <a href="#forums" class="text-white hover:underline mb-2 md:mb-0">Regional Forum</a>
+      <a href="#attendees" class="text-white hover:underline mb-2 md:mb-0">Attendees</a>
+      <a href="#thewall" class="text-white hover:underline mb-2 md:mb-0">TheWall</a>
+      <a href="#organizer" class="text-white hover:underline mb-2 md:mb-0">Organizer info</a>
+      <a href="#activity" class="text-white hover:underline mb-2 md:mb-0">Event Activity</a>
       <!-- More links as needed -->
     </nav>
   </div>
 </div>
+
 
 
 <style>

@@ -51,6 +51,9 @@
                       <%=  t 'homepage.newsfeed.attending' %> <%= link_to activity.user_event.title, event_path(activity.user_event), class:'underline' %> event
                       <% when "User signup" %>
                         created a new account
+
+                      <% when "Giveaway won" %>
+                        won a <%= activity.giveaway_won.title %> from the <%= link_to activity.giveaway_won.event.title, event_path(activity.giveaway_won.event), class:'underline' %>
                       <% when "New reply created" %>
                         posted a reply
                       <% when "New EventManager created" %>

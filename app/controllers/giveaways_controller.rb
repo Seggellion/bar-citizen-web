@@ -10,20 +10,20 @@ class GiveawaysController < ApplicationController
       @giveaway = Giveaway.new
     end
   
-def show
+    def show
 
-end
+    end
 
-def edit
+    def edit
 
-end
+    end
 
-def update
+    def update
 
-end
+    end
 
     def create
-        
+
         @giveaway = @event.giveaways.build(giveaway_params.merge(creator: current_user))
 
       if @giveaway.save
@@ -37,7 +37,7 @@ end
     def draw_winner
         # IDs of users who have already won in this event
         previous_winners_ids = @event.giveaways.where.not(winner_id: nil).pluck(:winner_id)
-      
+
         # Filter out previous winners from the array of attendees
         eligible_attendees = @event.attendees.reject { |attendee| previous_winners_ids.include?(attendee.id) }
       
@@ -47,6 +47,7 @@ end
         if winner
           @giveaway.update(winner_id: winner.id)
           # Additional logic to notify the winner or handle the aftermath
+          Activity.create(name: "Giveaway won", description: "giveaway-id_#{@giveaway.id}", user_id: winner.id)
           redirect_to event_path(@event), notice: "Winner successfully drawn."
         else
           redirect_to event_path(@event), alert: "No eligible attendees to draw from."
@@ -63,8 +64,7 @@ end
     private
   
     def set_event
-     
-      @event = Event.find(params[:event_id])
+      @event = Event.find_by_slug(params[:event_id])
     end
   
     def set_giveaway
@@ -73,7 +73,7 @@ end
     end
   
     def giveaway_params
-      params.require(:giveaway).permit(:title, :description, :event_id, :user_id)
+      params.require(:giveaway).permit(:title, :description, :event_id, :user_id, :image)
     end
   end
   

@@ -5,7 +5,7 @@ module Admin
       before_action :authenticate_admin!
       layout 'admin'
       def index
-        @users = User.all
+        @users = User.all.order(:last_login)
       end
   
       # ... other CRUD actions ...
