@@ -28,24 +28,23 @@
   
     private
   
-    def exchange_code_for_token(code)
-      # Exchange the code for a token
+    def exchange_code_for_token(code, code_verifier)
       request_body = {
-        client_id: ENV['MOBILE_DISCORD_CLIENT_ID'],
-        client_secret: ENV['MOBILE_DISCORD_CLIENT_SECRET'],
+        client_id: ENV['DISCORD_CLIENT_ID'],
+        client_secret: ENV['MOBILE_DISCORD_SECRET_ID'],
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: 'https://carcitizen.altama.energy/api/discord/callback'
+        redirect_uri: 'https://carcitizen.altama.energy/api/discord/callback',
+        code_verifier: code_verifier  # Include the code_verifier
       }
-
- Rails.logger.info "Exchanging code for token with request: #{request_body}"
-
-  response = HTTParty.post("https://discord.com/api/oauth2/token", body: request_body, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
-
-  Rails.logger.info "Access Token Response: #{response.parsed_response}"
-
-  response.parsed_response['access_token']
+    
+      response = HTTParty.post("https://discord.com/api/oauth2/token", body: request_body, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+    
+      Rails.logger.info "Access Token Response: #{response.inspect}"
+    
+      response.parsed_response['access_token']
     end
+    
   
     def fetch_user_info(token)
       # Fetch user information from Discord
