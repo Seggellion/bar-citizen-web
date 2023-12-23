@@ -25,6 +25,14 @@
         oauth_url = "https://discord.com/api/oauth2/authorize?client_id=#{client_id}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}"
         redirect_to oauth_url, allow_other_host: true
       end
+
+    # app/controllers/authentication_controller.rb
+    def exchange_token
+    code = params[:code]
+    code_verifier = params[:code_verifier]
+    token = exchange_code_for_token(code, code_verifier)
+    # respond with the token or an error message
+    end
   
     private
   

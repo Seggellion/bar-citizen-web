@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   post "/graphql", to: "graphql#execute"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  post '/api/exchange_token', to: 'authentication#exchange_token'
 
   get '/api/redirect_to_discord', to: 'authentication#redirect_to_discord'
   get '/api/discord/callback', to: 'authentication#discord_callback'
