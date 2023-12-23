@@ -2,6 +2,8 @@
   
   # app/controllers/authentication_controller.rb
   class AuthenticationController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def discord_callback
       code = params[:code]
       token = exchange_code_for_token(code, code_verifier)
@@ -31,6 +33,7 @@
     code = params[:code]
     code_verifier = params[:code_verifier]
     token = exchange_code_for_token(code, code_verifier)
+    Rails.logger.info "exchange token: #{code_verifier}"
     # respond with the token or an error message
     end
   
@@ -38,7 +41,7 @@
   
     def exchange_code_for_token(code, code_verifier)
       request_body = {
-        client_id: ENV['DISCORD_CLIENT_ID'],
+        client_id: ENV['MOBILE_DISCORD_CLIENT_ID'],
         client_secret: ENV['MOBILE_DISCORD_SECRET_ID'],
         grant_type: 'authorization_code',
         code: code,
