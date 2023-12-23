@@ -33,7 +33,7 @@ module Admin
         event = Event.find_by_slug(params[:id])
         event.update(trashed: true, action_id: @current_user.id)
     
-        author = User.find(event.author_id)
+        author = User.find(event.creator_id)
         author.update(karma: author.karma - 200, fame: author.fame - 200)
         redirect_to admin_events_path, notice: 'Event was successfully trashed.'
         # Redirect or render as needed

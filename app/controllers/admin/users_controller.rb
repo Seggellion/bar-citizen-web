@@ -5,7 +5,7 @@ module Admin
       before_action :authenticate_admin!
       layout 'admin'
       def index
-        @users = User.all.order(:last_login)
+        @users = User.all.order(Arel.sql("last_login IS NULL, last_login DESC"))
       end
   
       # ... other CRUD actions ...

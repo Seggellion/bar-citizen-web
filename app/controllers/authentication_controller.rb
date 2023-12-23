@@ -19,7 +19,7 @@
 
     def redirect_to_discord
         client_id = ENV['DISCORD_CLIENT_ID']
-        redirect_uri = CGI.escape('https://barcitizen.altama.energy/api/discord/callback')
+        redirect_uri = CGI.escape('https://carcitizen.altama.energy/api/discord/callback')
         scope = 'identify email'
     
         oauth_url = "https://discord.com/api/oauth2/authorize?client_id=#{client_id}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}"
@@ -35,7 +35,7 @@
         client_secret: ENV['DISCORD_CLIENT_SECRET'],
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: 'https://barcitizen.altama.energy/api/discord/callback'
+        redirect_uri: 'https://carcitizen.altama.energy/api/discord/callback'
       }, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
   
       response.parsed_response['access_token']
@@ -53,12 +53,14 @@
     def find_or_create_user(user_info)
       # Find or create a user in your database
       User.find_or_create_by(discord_id: user_info['id']) do |u|
-        u.username = auth['extra']['raw_info']['global_name']
-        u.profile_image = auth['info']['image']
-        u.discord_id = auth['extra']['raw_info']['id']
+        u.username = user_info['username']
+        u.profile_image = user_info['avatar']
+        u.discord_id = user_info['id']
         u.user_type = 42
         # Set other user attributes...
       end
+      Rails.logger.info "User Info to Process: #{user_info}"
+
     end
 
   
