@@ -30,15 +30,21 @@
   
     def exchange_code_for_token(code)
       # Exchange the code for a token
-      response = HTTParty.post("https://discord.com/api/oauth2/token", body: {
+      request_body = {
         client_id: ENV['DISCORD_CLIENT_ID'],
         client_secret: ENV['DISCORD_CLIENT_SECRET'],
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: 'https://carcitizen.altama.energy/api/discord/callback'
-      }, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
-      Rails.logger.info "Access Token Response: #{response.parsed_response}"
-      response.parsed_response['access_token']
+      }
+
+ Rails.logger.info "Exchanging code for token with request: #{request_body}"
+
+  response = HTTParty.post("https://discord.com/api/oauth2/token", body: request_body, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+
+  Rails.logger.info "Access Token Response: #{response.parsed_response}"
+
+  response.parsed_response['access_token']
     end
   
     def fetch_user_info(token)
@@ -54,7 +60,7 @@
   
     def find_or_create_user(user_info)
       # Find or create a user in your database
-      User.find_or_create_by(discord_id: user_info['id']) do |u|
+      user = User.find_or_create_by(discord_id: user_info['id']) do |u|
         u.username = user_info['username']
         u.profile_image = user_info['avatar']
         u.discord_id = user_info['id']
@@ -62,11 +68,13 @@
         # Set other user attributes...
       end
       Rails.logger.info "User Info to Process: #{user_info}"
-
+      user
     end
 
   
     def generate_jwt(user)
+      Rails.logger.info "Generating JWT for User: #{user.inspect}"
+
       # Generate a session token or JWT
       payload = {
         user_id: user.id,
