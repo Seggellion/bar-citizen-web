@@ -37,12 +37,14 @@
         code: code,
         redirect_uri: 'https://carcitizen.altama.energy/api/discord/callback'
       }, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
-  
+      Rails.logger.info "Access Token Response: #{response.parsed_response}"
       response.parsed_response['access_token']
     end
   
     def fetch_user_info(token)
       # Fetch user information from Discord
+      Rails.logger.info "Discord User Info Response: #{response.parsed_response}"
+
       response = HTTParty.get("https://discord.com/api/users/@me", headers: {
         'Authorization' => "Bearer #{token}"
       })
