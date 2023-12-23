@@ -4,7 +4,7 @@
   class AuthenticationController < ApplicationController
     def discord_callback
       code = params[:code]
-      token = exchange_code_for_token(code)
+      token = exchange_code_for_token(code, code_verifier)
       user_info = fetch_user_info(token)
       user = find_or_create_user(user_info)
 
