@@ -18,7 +18,7 @@
     end
 
     def redirect_to_discord
-        client_id = ENV['DISCORD_CLIENT_ID']
+        client_id = ENV['MOBILE_DISCORD_CLIENT_ID']
         redirect_uri = CGI.escape('https://carcitizen.altama.energy/api/discord/callback')
         scope = 'identify email'
     
@@ -31,8 +31,8 @@
     def exchange_code_for_token(code)
       # Exchange the code for a token
       request_body = {
-        client_id: ENV['DISCORD_CLIENT_ID'],
-        client_secret: ENV['DISCORD_CLIENT_SECRET'],
+        client_id: ENV['MOBILE_DISCORD_CLIENT_ID'],
+        client_secret: ENV['MOBILE_DISCORD_CLIENT_SECRET'],
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: 'https://carcitizen.altama.energy/api/discord/callback'
