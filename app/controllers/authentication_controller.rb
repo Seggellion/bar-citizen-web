@@ -6,17 +6,20 @@
 
     def discord_callback
       code = params[:code]
-      token = exchange_code_for_token(code, code_verifier)
-      user_info = fetch_user_info(token)
-      user = find_or_create_user(user_info)
-
-      # Generate a session token or JWT
-      #session_token = generate_session_token(user)
-      jwt = generate_jwt(user)
-      render json: { jwt: jwt }
+      code_verifier = params[:code_verifier]  # Ensure this line is present to extract the code_verifier from parameters
   
-      # Send token to Flutter app (consider a secure method to do this)
-     # render json: { token: session_token }
+      if code && code_verifier
+        token = exchange_code_for_token(code, code_verifier)
+        user_info = fetch_user_info(token)
+        user = find_or_create_user(user_info)
+  
+        # Generate a session token or JWT
+        jwt = generate_jwt(user)
+        render json: { jwt: jwt }
+      else
+        # Handle the error if code or code_verifier are missing
+        render json: { error: 'Missing code or code_verifier' }, status: :bad_request
+      end
     end
 
     def redirect_to_discord
@@ -30,11 +33,12 @@
 
     # app/controllers/authentication_controller.rb
     def exchange_token
+    Rails.logger.info "exchange token initialized"
     code = params[:code]
     code_verifier = params[:code_verifier]
     token = exchange_code_for_token(code, code_verifier)
-    Rails.logger.info "exchange token: #{code_verifier}"
-    # respond with the token or an error message
+
+
     end
   
     private
