@@ -5,6 +5,7 @@
     skip_before_action :verify_authenticity_token
 
     def discord_callback
+      Rails.logger.info "Received parameters: #{params}"
       code = params[:code]
       code_verifier = params[:code_verifier]  # Ensure this line is present to extract the code_verifier from parameters
   

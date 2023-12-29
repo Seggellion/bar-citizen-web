@@ -1,0 +1,34 @@
+
+<%= form_with(model: @region, local: true, html: { class: 'space-y-4 bg-gray-800 p-4 rounded text-white' }) do |form| %>
+    <% if @region.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@region.errors.count, "error") %> prohibited this event from being saved:</h2>
+  
+        <ul>
+          <% @region.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+  
+    <%= form.text_area :description, placeholder: 'Description', class: 'w-full bg-gray-700 text-white' %>
+  
+
+
+    <%= form.text_field :city, placeholder: 'City', class: 'w-full bg-gray-700 text-white' %>
+  <%= form.label :image_one %>
+    <%= form.file_field :image_01, class:'w-full bg-gray-700 text-white' %>
+    <%= form.label :image_two %>
+    <%= form.file_field :image_02, class:'w-full bg-gray-700 text-white' %>
+    <%= form.label :logo_image %>
+    <%= form.file_field :logo_image, class:'w-full bg-gray-700 text-white' %>
+    <%= form.label :banner %>
+    <%= form.file_field :banner, class:'w-full bg-gray-700 text-white' %>
+
+    <div class="actions">
+      <%= form.submit "Update Event", class: 'px-4 py-2 bg-citizen-blue-highlight text-white rounded' %>
+    </div>
+  <% end %>

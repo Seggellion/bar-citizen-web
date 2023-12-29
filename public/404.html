@@ -68,6 +68,7 @@
     var dayOfMonth = new Date().getDate();
     var imageSrc = dayOfMonth % 2 === 0 ? window.assetPaths.errorImage1 : window.assetPaths.errorImage2;
     document.getElementById('error-image').src = imageSrc;
+    console.log('error: ', document.getElementById('error-image'));
   };
 </script>
 

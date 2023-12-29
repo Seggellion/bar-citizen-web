@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :discords
   has_many :pages
   has_many :photos
+  has_one :region
   has_many :photo_comments
   # Association for messages sent by the user
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
@@ -28,6 +29,7 @@ class User < ApplicationRecord
 
   USER_ADMIN = 0
   USER_REGULAR = 42
+  REGIONAL_MANAGER = 10
   ESTABLISHED_ORGANIZER = 20
   EVENT_ORGANIZER = 30
   TRASH = 69
@@ -62,6 +64,8 @@ class User < ApplicationRecord
       'Regular User'
     when ESTABLISHED_ORGANIZER
       'Established Organizer'
+    when REGIONAL_MANAGER
+      'Regional Manager'
     when EVENT_ORGANIZER
       'Event Organizer'
     when TRASH

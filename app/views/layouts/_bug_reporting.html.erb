@@ -1,0 +1,25 @@
+
+<!-- app/views/messages/new.html.erb -->
+<div data-controller="bug" class="fixed text-center bottom-0 right-4 w-64" style="background-color:orange">
+  <button data-action="click->bug#toggleForm" class="bg-blue-500  text-white p-2 rounded-lg">Submit Bug</button>
+
+  <div data-bug-target="form" class="hidden bg-black p-4 rounded">
+    <%= form_for @message do |f| %>
+      <div class="mb-4">
+        <%= f.label :subject, class: 'text-white' %>
+        <%= f.text_field :subject, required:true, class: "w-full p-2 rounded" %>
+      </div>
+      <div class="mb-4">
+        <%= f.label :description, class: 'text-white' %>
+        <%= f.text_area :description,  required:true, class: "w-full p-2 rounded" %>
+      </div>
+      <div class="mb-4">
+      <%= f.label :screenshot, class: 'text-white' %>
+      <%= f.file_field :image,  required:true, class: "w-full p-2 rounded" %>
+    </div>
+  
+
+      <%= f.submit "Send", class: "bg-citizen-blue-base text-white p-2 rounded" %>
+    <% end %>
+  </div>
+</div>

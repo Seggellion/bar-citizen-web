@@ -1,0 +1,26 @@
+
+
+<!-- Event Details -->
+<div id="map" class="bg-gray-800  rounded-lg shadow-lg">
+
+
+
+    <div data-controller="maps"
+    data-maps-key-value="<%= ENV['GOOGLE_MAPS'] %>"
+    data-maps-events-value=""
+    data-maps-regions-value="[<%= @region.to_json %>]"
+    
+    
+        <!-- Wrapper for map and buttons -->
+        <div class="relative">
+            <!-- Map Container -->
+            <div data-maps-target="map" class="h-screen"></div>
+        
+
+
+            
+        </div>
+    
+    </div>
+
+</div>

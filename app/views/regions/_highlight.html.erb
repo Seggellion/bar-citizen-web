@@ -1,0 +1,15 @@
+<div id="highlight" class="flex flex-row">
+
+<div>
+<% if @region.image_01.present? %>
+<%= image_tag @region.image_01, class: "h-full w-auto object-cover object-center" %>
+<% end %>
+    </div>
+
+    <div>
+    <% if @region.image_02.present? %>
+    <%= image_tag @region.image_02, class: "h-full w-auto object-cover object-center" %>
+    <% end %>
+    </div>
+
+</div>

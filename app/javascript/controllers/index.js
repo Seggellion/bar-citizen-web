@@ -40,5 +40,8 @@ application.register("photo", PhotoController)
 import PostCategoryController from "./post_category_controller"
 application.register("post-category", PostCategoryController)
 
+import SelectSubmitController from "./select_submit_controller"
+application.register("select-submit", SelectSubmitController)
+
 import UploadController from "./upload_controller"
 application.register("upload", UploadController)

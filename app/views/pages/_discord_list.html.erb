@@ -1,0 +1,31 @@
+
+
+<div class="flex flex-col flex-grow mt-1 p-1">
+  <div class="h-full bg-gray-800 rounded-lg overflow-auto">
+    <!-- Table Header -->
+    <div class="flex text-white border-b border-gray-600">
+      <div class="p-2 w-1/3 text-left">Country / Location</div>
+      <div class="p-2 w-1/3 text-left">Server Name</div>
+      <div class="p-2 w-1/3 text-left">Invite Link</div>
+    </div>
+    <!-- Table Rows -->
+    <% Discord.all.each_with_index do |discord, index| %>
+      <%= link_to discord.server_url, class: "#{index.even? ? 'bg-gray-700' : 'bg-gray-600'} flex items-center justify-between flex-row text-white hover:bg-gray-500 transition-colors" do %>
+        <span class="p-2 w-1/3 text-left">
+          <% if discord.discordable.is_a?(Region) %>
+            <%= discord.discordable.name %>
+          <% elsif discord.discordable.is_a?(Event) %>
+            <%= discord.discordable.title %>
+          <% else %>
+            <!-- Handle the case where discord.discordable is nil or another unexpected type -->
+            No associated region or event.
+          <% end %>
+        </span>
+
+        <span class="p-2 w-1/3 text-left"><%= discord.server_name %></span>
+
+        <span class="p-2 w-1/3 text-left"><%= discord.server_url %></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

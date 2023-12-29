@@ -7,6 +7,9 @@ class Region < ApplicationRecord
     has_many :events
     has_and_belongs_to_many :regional_managers, class_name: 'User'
     has_one_attached :logo_image
+    has_one_attached :banner
+    has_one_attached :image_01
+    has_one_attached :image_02
     has_many :discords, as: :discordable
     has_one :post_category
 

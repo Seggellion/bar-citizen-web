@@ -5,7 +5,7 @@ module Admin
     before_action :authenticate_admin!
     layout 'admin'
     def index
-      @discords = Discord.where(trashed:nil)
+      @discords = Discord.where(trashed:nil).order(:created_at).reverse_order
       @users = User.all
     end
 

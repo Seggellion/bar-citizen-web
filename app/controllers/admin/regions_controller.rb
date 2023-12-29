@@ -5,7 +5,7 @@ module Admin
     before_action :authenticate_admin!
     layout 'admin'
     def index
-      @regions = Region.where(trashed:nil)
+      @regions = Region.where(trashed:nil).order(:created_at).reverse_order
       @users = User.all
     end
 

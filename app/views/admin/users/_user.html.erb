@@ -21,8 +21,22 @@
   <p class="font-medium dark:text-white"><%= user.last_login&.strftime('%a %b %d, %Y %l:%M %p')  %></p>
 </div>
 
-<div class="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-  <p class="font-medium text-meta-5 text-white"> <%= user.user_level %></p>
+
+
+<div class="flex items-center justify-center p-2.5 xl:p-5">
+  <%= form_with model: user, url: update_user_level_admin_user_path(user), method: :patch, data: { controller: "select-submit" } do |form| %>
+    <%= form.select :user_type, 
+          options_for_select([
+            ['Admin', User::USER_ADMIN], 
+            ['Regular', User::USER_REGULAR], 
+            ['Regional Manager', User::REGIONAL_MANAGER], 
+            ['Established Organizer', User::ESTABLISHED_ORGANIZER], 
+            ['Event Organizer', User::EVENT_ORGANIZER]
+          ], selected: user.user_type),
+          {},
+          { class: "rounded border-gray-300", data: { action: "change->select-submit#submitForm" } } 
+    %>
+  <% end %>
 </div>
 
 

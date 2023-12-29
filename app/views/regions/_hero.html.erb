@@ -1,0 +1,19 @@
+
+<!-- Hero Section --><% banner_url = url_for(@region.banner) if @region.banner.attached? %>
+
+
+<div class="relative bg-cover bg-center h-[18rem]"
+ style="background-image: url('<%= banner_url %>'); background-size: cover;">
+   
+    <div class="bg-black bg-opacity-50 h-full">
+        <div class="container mx-auto px-4 h-full flex flex-col justify-end">
+            <!-- Row 1: Region Details aligned to bottom-left -->
+            <div class="text-white pb-10">
+                <h1 class="text-4xl font-bold"><%= @region.name %></h1>
+
+            </div>
+
+
+        </div>
+  </div>
+</div>

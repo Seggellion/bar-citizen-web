@@ -20,6 +20,11 @@
 <li class="text-white flex mt-2 items-center flex-row"><div class="badge-image" style="margin-right:5px"><%= raw badge.icon %></div> <%= badge.name %> - <%= badge.description %> </li>
   <% end %>
 </ul>
+
+<% elsif request.fullpath.include?('/discord-list') %>
+
+<%= render '/pages/discord_list' %>
+
 <% end %>
 
 </div>

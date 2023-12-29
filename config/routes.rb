@@ -119,6 +119,7 @@ end
         post 'publish'
         post 'unpublish'
         post 'trash'
+        patch :update_user_level, to: 'users#update_user_level'
       end
     end
 

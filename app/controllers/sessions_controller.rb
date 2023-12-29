@@ -4,8 +4,15 @@ class SessionsController < ApplicationController
     def create
         auth = request.env['omniauth.auth']
 
+        if auth['extra']['raw_info']['global_name']
+          username = auth['extra']['raw_info']['global_name']
+        else
+          username = auth['extra']['raw_info']['username']
+        end
+
+
         user = User.find_or_create_by(discord_id: auth['extra']['raw_info']['id']) do |u|
-          u.username = auth['extra']['raw_info']['global_name']
+          u.username = username
           u.profile_image = auth['info']['image']
           u.discord_id = auth['extra']['raw_info']['id']
           u.user_type = 42
