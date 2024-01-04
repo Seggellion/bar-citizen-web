@@ -1,8 +1,9 @@
-Car Citizen Event Management System
-Project Overview
+# Bar Citizen Event Management System
+
+## Project Overview
 Car Citizen Event Management System is a web application designed to manage and moderate community events. It offers features such as event creation and moderation, user registration and authentication (including Discord OAuth), and an admin panel for content management.
 
-Features
+## Features
 User registration and authentication via Discord OAuth.
 Event creation, approval, and management.
 Admin panel for content moderation.
@@ -21,14 +22,18 @@ Rails 7.1
 PostgreSQL
 Node.js and Yarn (for Webpack and asset compilation)
 Docker (optional, for containerized environment)
-Installation
+
+## Installation
 Clone the Repository
 
+```
 bash
 Copy code
 git clone https://github.com/your-username/bar-citizen.git
 cd bar-citizen
-Set Up Environment Variables
+```
+
+## Set Up Environment Variables
 
 Create a .env file and set the necessary environment variables:
 ```
@@ -39,13 +44,13 @@ DISCORD_CLIENT_SECRET=your_discord_client_secret
 SECRET_KEY_BASE=your_secret_key_base
 ```
 
-Install Dependencies
+## Install Dependencies
 ```
 bundle install
 yarn install
 ```
 
-Database Setup
+## Database Setup
 
 ```
 rails db:create
@@ -62,18 +67,17 @@ or, if using Docker:
 docker-compose up --build
 ```
 
-Access the Application
+## Access the Application
 
 Open your browser and navigate to http://localhost:3000.
 
-Testing
+## Testing
 Run the test suite to ensure everything is working correctly:
 
 bash
 Copy code
 rails test
-Contributing
+
+## Contributing
 Contributions to the Car Citizen Event Management System are welcome. Please follow the standard GitHub pull request process to propose changes.
 
-License
-Specify the license under which the project is available. Common licenses include MIT, GPL, etc.
