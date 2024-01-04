@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @published_events = Event.where(published:true, event_type: 'irl').order(:start_datetime)
+    @published_events = Event.where(published:true, event_type: 'irl').order(:start_datetime).reverse_order
   end
 
 
