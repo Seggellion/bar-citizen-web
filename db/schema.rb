@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_17_201524) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_04_030518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -169,6 +169,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_17_201524) do
     t.string "status"
     t.string "event_type"
     t.string "slug", null: false
+    t.bigint "discord_id"
+    t.index ["discord_id"], name: "index_events_on_discord_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
@@ -435,6 +437,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_17_201524) do
   add_foreign_key "event_managers", "users"
   add_foreign_key "event_messages", "events"
   add_foreign_key "event_messages", "users"
+  add_foreign_key "events", "discords"
   add_foreign_key "giveaway_users", "giveaways"
   add_foreign_key "giveaway_users", "users"
   add_foreign_key "giveaways", "events"

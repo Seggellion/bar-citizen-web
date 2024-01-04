@@ -4,7 +4,57 @@
   class AuthenticationController < ApplicationController
     skip_before_action :verify_authenticity_token
 
+    CLIENT_SECRET = ENV['MOBILE_DISCORD_CLIENT_SECRET']
+
+    CLIENT_ID = ENV['MOBILE_DISCORD_CLIENT_ID']
+    REDIRECT_URI = 'http://192.168.4.108:3000/api/discord/callback'  # Change this to your production URI when needed
+  
+    # This method starts the Discord OAuth process
+    def start_auth
+      # Define the Discord OAuth URL with required query parameters
+      discord_oauth_url = "https://discord.com/api/oauth2/authorize?" +
+                          "client_id=#{CLIENT_ID}&" +
+                          "redirect_uri=#{CGI.escape(REDIRECT_URI)}&" +
+                          "response_type=code&" +
+                          "scope=identify%20email"  # Add other scopes as needed
+  
+      # Redirect the client to Discord's OAuth endpoint
+      redirect_to discord_oauth_url, allow_other_host: true
+     
+    end
+
+
     def discord_callback
+      # Exchange the code for a token
+      response = exchange_code_for_token(params[:code])
+
+      if response['access_token']
+        # Fetch user information from Discord
+        user_info = fetch_user_info(response['access_token'])
+
+        # Find or create a user in your database
+        # This is pseudo-code; implement according to your user model and database setup
+        user = User.find_or_create_by(discord_id: user_info['id']) do |u|
+          u.username = user_info['username']
+          # ... any other user fields ...
+        end
+  
+        # Generate a JWT for the user
+        token = generate_jwt(user)
+  
+        # Respond to the client with the JWT
+        app_deep_link_uri = "deeplinktest://oauth2redirect?token=#{token}"
+
+        # Redirect to the app with the token
+        redirect_to app_deep_link_uri, allow_other_host: true
+      else
+        # Handle errors or issues with the token exchange
+        render json: { error: 'Failed to authenticate with Discord' }, status: :unauthorized
+      end
+    end
+
+
+    def discord_callback_old_deleteme
       Rails.logger.info "Received parameters: #{params}"
       code = params[:code]
       code_verifier = params[:code_verifier]  # Ensure this line is present to extract the code_verifier from parameters
@@ -34,17 +84,15 @@
 
     # app/controllers/authentication_controller.rb
     def exchange_token
-    Rails.logger.info "exchange token initialized"
-    code = params[:code]
-    code_verifier = params[:code_verifier]
-    token = exchange_code_for_token(code, code_verifier)
-
-
+      Rails.logger.info "exchange token initialized"
+      code = params[:code]
+      code_verifier = params[:code_verifier]
+      token = exchange_code_for_token(code, code_verifier)
     end
   
     private
   
-    def exchange_code_for_token(code, code_verifier)
+    def exchange_code_for_token_old(code, code_verifier)
       request_body = {
         client_id: ENV['MOBILE_DISCORD_CLIENT_ID'],
         client_secret: ENV['MOBILE_DISCORD_SECRET_ID'],
@@ -60,12 +108,25 @@
     
       response.parsed_response['access_token']
     end
+  
     
+    
+  # Helper method to exchange the code for a token
+  def exchange_code_for_token(code)
+    uri = URI('https://discord.com/api/oauth2/token')
+    response = Net::HTTP.post_form(uri, {
+      'client_id' => CLIENT_ID,
+      'client_secret' => CLIENT_SECRET,
+      'grant_type' => 'authorization_code',
+      'code' => code,
+      'redirect_uri' => REDIRECT_URI
+    })
+    JSON.parse(response.body)
+  end
+
   
     def fetch_user_info(token)
       # Fetch user information from Discord
-      Rails.logger.info "Discord User Info Response: #{response.parsed_response}"
-
       response = HTTParty.get("https://discord.com/api/users/@me", headers: {
         'Authorization' => "Bearer #{token}"
       })

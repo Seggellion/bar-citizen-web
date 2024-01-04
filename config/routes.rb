@@ -1,21 +1,24 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
-  mount ActionCable.server => '/cable'
 
+  post "/graphql", to: "graphql#execute"
   # Define a route for standard pages
   get 'pages/:title', to: 'pages#show', as: :page
 
   # Define a route for nested pages
   get 'pages/:category/:title', to: 'pages#show_nested', as: :nested_page
 
-  post "/graphql", to: "graphql#execute"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   post '/api/exchange_token', to: 'authentication#exchange_token'
 
   get '/api/redirect_to_discord', to: 'authentication#redirect_to_discord'
   get '/api/discord/callback', to: 'authentication#discord_callback'
+  get '/api/discord/start_auth', to: 'authentication#start_auth'
+
   get '/map', to: 'maps#index'
 
   resources :regions

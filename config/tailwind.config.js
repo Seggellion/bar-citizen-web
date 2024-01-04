@@ -26,7 +26,7 @@ module.exports = {
     extend: {
       fontFamily: {
         orbitron: ['Orbitron', 'sans-serif'],
-        sans: ['Fira Sans', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
       },
 
     },

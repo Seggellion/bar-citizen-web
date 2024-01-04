@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @published_events = Event.where(published:true, event_type: 'irl')
+    @published_events = Event.where(published:true, event_type: 'irl').order(:start_datetime)
   end
 
 
@@ -19,6 +19,8 @@ class EventsController < ApplicationController
     @event_managers = EventManager.where(event_id: @current_event.id)
     @messages = @current_event.event_messages
     @attendees = @current_event.attendees
+    @current_discord = @current_event.discord
+
   end
 
   def virtual
@@ -57,6 +59,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.creator_id = current_user.id # Set the creator_id to current_user's id
 
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
@@ -70,9 +73,10 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
-
+    
     respond_to do |format|
       if @event.update(event_params)
+
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -126,7 +130,7 @@ end
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :banner, :location_name, :status, :event_type, :description, :twitter, :start_datetime, :end_datetime, :address, :region_id, :facebook_link, :discord_id, :creator_id,  images: [])
+      params.require(:event).permit(:title, :banner, :discord_id, :location_name, :city, :status, :event_type, :description, :twitter, :start_datetime, :end_datetime, :address, :region_id, :facebook_link, :creator_id,  images: [])
     end
 
     def authenticate_user!

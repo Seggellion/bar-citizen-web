@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
 
   def gallery
-@photos = Photo.where(published:true)
+    @photos = Photo.where(published:true)
   end
   
   def dashboard

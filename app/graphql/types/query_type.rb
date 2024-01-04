@@ -21,6 +21,24 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
+    field :all_photos, [PhotoType], null: false
+    def all_photos
+      # Fetch all photos or apply some scope, depending on your needs
+      Photo.where(published: true)  # For example, only return published photos
+    end
+
+    field :all_events, [EventType], null: false
+
+    def all_events
+      Event.where(published: true) 
+    end
+
+    field :all_regions, [RegionType], null: false
+
+    def all_regions
+      Region.all
+    end
+
     # TODO: remove me
     field :test_field, String, null: false,
       description: "An example field added by the generator"
