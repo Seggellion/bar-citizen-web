@@ -1,29 +1,24 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
-  # If accessing from outside this domain, nullify the session
-  # This allows for outside API access while preventing CSRF attacks,
-  # but you'll have to authenticate your user separately
-  # protect_from_forgery with: :null_session
-  skip_before_action :verify_authenticity_token, if: :read_operation?
 
+ # skip_before_action :verify_authenticity_token, if: :read_operation?
+ skip_before_action :verify_authenticity_token
 
   def execute
+    Rails.logger.info "GraphQL request: #{params.inspect}"
     variables = prepare_variables(params[:variables])
-    
     query = params[:query]
     operation_name = params[:operationName]
-    logger.debug "Executing GraphQL query: #{params[:query]}"
-    logger.debug "With variables: #{params[:variables]}"
     context = {
       # Query context goes here, for example:
       # current_user: current_user,
     }
-
     result = BarcitizenSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
-    
     render json: result
   rescue StandardError => e
+    Rails.logger.error "GraphQL Error: #{e.message}"
+
     raise e unless Rails.env.development?
     handle_error_in_development(e)
   end
@@ -50,10 +45,8 @@ class GraphqlController < ApplicationController
     end
   end
 
-
   def read_operation?
     # Check if the GraphQL query is a read operation
-  
     params[:query].include?("query") && !params[:query].include?("mutation")
   end
 

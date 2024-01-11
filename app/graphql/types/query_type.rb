@@ -18,9 +18,6 @@ module Types
       ids.map { |id| context.schema.object_from_id(id, context) }
     end
 
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
     field :all_photos, [PhotoType], null: false
     def all_photos
       # Fetch all photos or apply some scope, depending on your needs
@@ -33,11 +30,39 @@ module Types
       Event.where(published: true) 
     end
 
+    field :all_event_participations, [EventParticipationType], null: false
+
+    def all_event_participations
+      EventParticipation.all
+    end
+
     field :all_regions, [RegionType], null: false
 
     def all_regions
       Region.all
     end
+
+    field :is_user_attending, Boolean, null: false do
+      argument :user_id, Integer, required: true
+      argument :event_id, Integer, required: true
+    end
+
+    def is_user_attending(user_id:, event_id:)
+      
+      EventParticipation.exists?(user_id: user_id, event_id: event_id)
+    end
+
+
+
+   # Update the event field to accept eventId as an Integer
+   field :event, Types::EventType, null: true do
+    argument :id, Integer, required: true
+  end
+
+  def event(id:)
+    Event.find(id)
+  end
+
 
     # TODO: remove me
     field :test_field, String, null: false,

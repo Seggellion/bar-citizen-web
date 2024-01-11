@@ -28,15 +28,15 @@ COPY . .
 # Install JavaScript dependencies
 RUN yarn install
 
-
+#Commented out recent thing Jan 8
 # Copy the script to the container
-COPY add-google-credentials.sh /app/add-google-credentials.sh
+# COPY add-google-credentials.sh /app/add-google-credentials.sh
 
 # Make sure the script is executable
-RUN chmod +x /app/add-google-credentials.sh
+# RUN chmod +x /app/add-google-credentials.sh
 
 # Set the script as the entrypoint
-ENTRYPOINT ["sh", "/app/add-google-credentials.sh"]
+# ENTRYPOINT ["sh", "/app/add-google-credentials.sh"]
 
 
 # ARG for SECRET_KEY_BASE
