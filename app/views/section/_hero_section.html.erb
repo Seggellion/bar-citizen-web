@@ -57,7 +57,7 @@
       <% @next_events.each_with_index do |event, index| %>
         <%= link_to event, class: "#{index.even? ? 'citizen-grey-md' : 'citizen-grey-dk'} p-2 flex items-center justify-between flex-row" do %>
           <span class="font-light text-xs"><%= event.title %></span>
-          <span class="font-light text-xs"><%= event.start_datetime.strftime("%b %e, %Y %l%p") %></span>
+          <span class="font-light text-xs"><%= event.start_datetime.in_time_zone(event.timezone).strftime("%b %e, %Y %l%p") %>  <%= timezone_abbreviation(event.timezone) %></span>
         <% end %>
       <% end %>
       <%= link_to t('homepage.see_all_events'), events_path, class: 'mx-auto flex mt-2 justify-center w-1/2' %>

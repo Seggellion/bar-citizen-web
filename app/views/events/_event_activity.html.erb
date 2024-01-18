@@ -17,7 +17,7 @@
           <div class="ml-4">
             <p class="font-semibold"><%= activity.user.username %></p>
             <p><%= activity.name %></p>
-            <p><%= activity.created_at.strftime("%b %e, %Y %l%p") %></p>
+            <p><%= activity.created_at.in_time_zone(session[:user_timezone]).strftime("%b %e, %Y %l%p") %></p>
             <!-- Additional Activity Details Here -->
           </div>
         </div>

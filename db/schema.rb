@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_030518) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_16_053609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_030518) do
     t.integer "discord_type"
     t.string "discordable_type"
     t.bigint "discordable_id"
+    t.string "timezone"
     t.index ["discordable_type", "discordable_id"], name: "index_discords_on_discordable"
     t.index ["user_id"], name: "index_discords_on_user_id"
   end
@@ -170,6 +171,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_030518) do
     t.string "event_type"
     t.string "slug", null: false
     t.bigint "discord_id"
+    t.string "timezone"
     t.index ["discord_id"], name: "index_events_on_discord_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
@@ -313,6 +315,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_030518) do
     t.boolean "trashed"
     t.integer "action_id"
     t.string "slug", null: false
+    t.string "timezone"
     t.index ["slug"], name: "index_regions_on_slug", unique: true
     t.index ["user_id"], name: "index_regions_on_user_id"
   end
@@ -404,6 +407,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_030518) do
     t.boolean "published"
     t.boolean "trashed"
     t.integer "action_id"
+    t.string "timezone"
   end
 
   create_table "video_sections", force: :cascade do |t|

@@ -73,10 +73,10 @@ en:
     distance_in_words:
       x_days:
         one: 1
-        other: " %{count}hours"
+        other: " %{count} days"
       x_minutes:
         one: 1
-        other: " %{count}minutes"
+        other: " %{count} minutes"
       x_hours:
         one: 1
-        other: " %{count}minutes"
+        other: " %{count} hours"

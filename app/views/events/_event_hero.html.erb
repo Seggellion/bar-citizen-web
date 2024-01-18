@@ -12,7 +12,7 @@
   <% if @current_event.is_virtual %>
   <h2 class="text-xl citizen-blue-highlight">Virtual</h2>
   <% end %>
-  <h2 class="text-xl"><%= format_event_datetime(event.start_datetime, event.end_datetime) %>  </h2>
+  <h2 class="text-xl"><%= format_event_datetime(event.start_datetime, event.end_datetime, event.timezone) %> <%= timezone_abbreviation(event.timezone) %>  </h2>
     <h1 class="text-4xl font-bold"><%= event.title %></h1>
 
     <hr class="my-2">
@@ -50,9 +50,13 @@
     <!-- Start Time -->
     <div>
       <h3 class="text-lg font-semibold">Start Time</h3>
-      <p><%= event.start_datetime.strftime("%A") %></p>
-      <p>End time 
-      will be around <%= event.end_datetime&.strftime("%l:%M%P %Z") %> </p>
+      <% comment do %>
+      <p><%#= event.start_datetime.strftime("%A") %></p>
+      <% end %>
+    <p class="rounded-full text-center w-3/4" ><%=  event.start_datetime.in_time_zone(event.timezone).strftime("%A %l:%M%P %Z") %></p>
+    <p class="rounded-full text-center w-3/4" style="background-color:green; color:black;" ><%=  event.start_datetime.in_time_zone(session[:user_timezone]).strftime("%A %l:%M%P %Z") %></p>
+
+      <p>End time <%= event.end_datetime&.in_time_zone(event.timezone).strftime("%A %l:%M%P %Z") %> </p>
     </div>
 
     <!-- Register Now Button -->

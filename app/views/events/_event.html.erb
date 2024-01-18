@@ -33,6 +33,8 @@
           <p><strong>Where:</strong> <%= event.location_name %><%= event.city %></p>
           <p><strong>Region:</strong> <%= event.region&.name %></p>
           <p><strong>Starts:</strong> <%= event.start_datetime.strftime('%a %b %d, %Y %l:%M %p') %></p>
+          <p><%=  event.start_datetime.in_time_zone(event.timezone).strftime("%A") %> <%= event.timezone %></p>
+
           <p><strong>Ends:</strong> <%= event.end_datetime&.strftime('%a %b %d, %Y %l:%M %p') %></p>
           <p><strong>Cost:</strong> Free</p>
         </div>

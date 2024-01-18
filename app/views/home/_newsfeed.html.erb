@@ -15,7 +15,9 @@
           <img src="<%= banner_url %>" alt="Event Thumbnail" class="rounded-lg h-12">
           <div class="ml-4">
             <p><%= link_to event.title, event, class:'font-semibold' %> • <%= link_to event.region.name, event.region, class:'citizen-blue-highlight underline underline-offset-4' %></p>
-            <span class="text-sm">Starts <%= event.start_datetime.strftime("%b %e, %Y %l%p") %></span>
+            <span class="text-sm">Starts <%=  event.start_datetime.in_time_zone(event.timezone).strftime("%b %e, %Y %l%p") %></span>
+            
+
           </div>
         </div>
         <hr class="border-gray-700"> <!-- Horizontal rule -->

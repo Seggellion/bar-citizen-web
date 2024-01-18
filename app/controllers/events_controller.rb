@@ -44,6 +44,11 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    user_ip = request.remote_ip
+    
+    user_timezone = Geocoder.search(user_ip).first.try(:timezone)
+    session[:user_timezone] = user_timezone || 'UTC'  # Default to UTC if not found
+  
     @event = Event.new
     @virtual_region_id = Region.find_by(name: "Virtual")&.id
 
@@ -58,6 +63,7 @@ class EventsController < ApplicationController
     
     @event = Event.new(event_params)
     @event.creator_id = current_user.id # Set the creator_id to current_user's id
+    @event.timezone = params[:event][:user_timezone]  # Set timezone from form input
 
 
     respond_to do |format|
@@ -130,7 +136,7 @@ end
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :banner, :discord_id, :location_name, :city, :status, :event_type, :description, :twitter, :start_datetime, :end_datetime, :address, :region_id, :facebook_link, :creator_id,  images: [])
+      params.require(:event).permit(:title, :banner, :discord_id, :location_name, :city, :status, :timezone, :event_type, :description, :twitter, :start_datetime, :end_datetime, :address, :region_id, :facebook_link, :creator_id,  images: [])
     end
 
     def authenticate_user!
