@@ -1,3 +1,5 @@
+@import "flatpickr/dist/flatpickr.min.css";
+
 :root {
 --citizen-blue: #2354B1;
 --citizen-blue-dk: #020A21;
@@ -84,3 +86,39 @@ button[data-maps-target="regionsToggle"] {
   button:hover{
     cursor:pointer;
   }
+
+
+  /* flatpickr styling */
+
+.flatpickr-calendar.dark-mode  .flatpickr-month,
+.flatpickr-calendar.dark-mode .flatpickr-weekday{
+  color:white;
+}
+.flatpickr-calendar.dark-mode .flatpickr-prev-month,
+.flatpickr-calendar.dark-mode .flatpickr-next-month{
+fill:white;
+}
+
+.flatpickr-input,
+.flatpickr-calendar.dark-mode,
+.flatpickr-calendar.dark-mode  .flatpickr-time input,
+.flatpickr-calendar.dark-mode .flatpickr-input,
+.flatpickr-calendar.dark-mode .flatpickr-day,
+.flatpickr-calendar.dark-mode .flatpickr-am-pm{
+  background-color: var(--citizen-blue-base);
+color:white;
+}
+
+
+.flatpickr-calendar.dark-mode .flatpickr-monthDropdown-months {
+  background-color: #333; /* Dark background */
+}
+
+
+.flatpickr-calendar.dark-mode .flatpickr-day:hover,
+.flatpickr-calendar.dark-mode .flatpickr-day:focus,
+.flatpickr-calendar.dark-mode .flatpickr-day.today {
+  background-color: #777; /* Lighter background for hover, focus, and today */
+}
+
+/* More customizations can be added as needed */

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show_virtual show edit update destroy ]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_timezone
 
   # GET /events or /events.json
   def index
@@ -38,16 +39,13 @@ class EventsController < ApplicationController
     @event_managers = EventManager.where(event_id: @current_event.id)
     @messages = @current_event.event_messages
     @attendees = @current_event.attendees
+    
 
     # Handle the case where the event is not found or not virtual
   end
 
   # GET /events/new
   def new
-    user_ip = request.remote_ip
-    
-    user_timezone = Geocoder.search(user_ip).first.try(:timezone)
-    session[:user_timezone] = user_timezone || 'UTC'  # Default to UTC if not found
   
     @event = Event.new
     @virtual_region_id = Region.find_by(name: "Virtual")&.id
@@ -119,14 +117,25 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
 
-if params[:id]
-  @event = Event.find_by_slug(params[:id])
-else
-  @event = Event.find_by_slug(params[:slug])
-end
+      if params[:id]
+        @event = Event.find_by_slug(params[:id])
+      else
+        @event = Event.find_by_slug(params[:slug])
+      end
 
      
     end
+
+
+    def set_timezone
+      user_ip = request.remote_ip
+    
+      user_timezone = Geocoder.search(user_ip).first.try(:timezone)
+      session[:user_timezone] = user_timezone || 'UTC'  # Default to UTC if not found
+
+
+    end
+
 
     def check_event_manager_permissions
       unless current_user.is_manager(self) || current_user.admin?

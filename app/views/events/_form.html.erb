@@ -37,25 +37,22 @@
       <%= form.text_area :location_name, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
     </div>
 
+
+    <div class="flex flex-row">
     <div class="flex flex-col">
-      <%= form.label :start_datetime, class: "mb-2 font-semibold" %>
-      <%= form.datetime_field :start_datetime, required:true,  class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+    <%= form.label :start_datetime %>
+    <%= form.text_field :start_datetime, data: { controller: "flatpickr" }, class: "form-input border border-gray-300 rounded p-2 bg-gray-700 text-white", value: form.object.start_datetime&.strftime('%Y-%m-%d %H:%M') %>
+    </div>
+    <div class="flex ml-2 flex-col">
+    <%= form.label :end_datetime %>
+    <%= form.text_field :end_datetime, data: { controller: "flatpickr" }, class: "form-input border border-gray-300 rounded p-2 bg-gray-700 text-white", value: form.object.end_datetime&.strftime('%Y-%m-%d %H:%M') %>
     </div>
 
-    <div class="flex flex-col">
-    <%= form.label :end_datetime, class: "mb-2 font-semibold" %>
-      
-  <div class="flex flex-row">
-    <%= form.datetime_field :end_datetime, class: "p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
-
-  
-  <%= form.select :timezone, 
-  TZInfo::Timezone.all_identifiers.sort, 
-  { selected: session[:user_timezone], include_blank: true }, 
-  { class: 'p-2 rounded-lg bg-gray-800 border border-gray-600 text-white ml-2' } %>
+      <%= form.select :timezone, 
+      TZInfo::Timezone.all_identifiers.sort, 
+      { selected: session[:user_timezone], include_blank: true }, 
+      { class: 'p-2 rounded-lg bg-gray-800 border border-gray-600 text-white ml-2' } %>
 </div>
-
-  </div>
 
 
 

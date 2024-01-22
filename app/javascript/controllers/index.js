@@ -25,6 +25,9 @@ application.register("discordable", DiscordableController)
 import EventTypeController from "./event_type_controller"
 application.register("event-type", EventTypeController)
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
