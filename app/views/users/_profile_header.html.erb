@@ -1,0 +1,52 @@
+
+<!-- Hero Section --><% banner_url = url_for(@user.banner) if @user.banner.attached? %>
+
+
+<div class="relative bg-cover bg-center h-[18rem]"
+ style="background-image: url('<%= banner_url %>'); background-size: cover;">
+   
+  <div class="bg-black bg-opacity-50 h-full">
+  <div class="container mx-auto px-4 h-full flex flex-row justify-start items-end">
+
+<div class="profile-image mr-4">
+<img src="<%= @user.profile_image %>" alt="Profile Image" class="rounded-lg" >
+</div>
+
+  <!-- Row 1: user Details aligned to bottom-left -->
+  <div class="text-white pb-10">
+ 
+  <h2 class="text-xl">Timezone: @user.timezone </h2>
+    <h1 class="text-4xl font-bold"><%= @user.username %></h1>
+
+    <hr class="my-2">
+    <nav class="space-x-4">
+        <a href="#" class="text-white hover:text-gray-300">Message</a>
+      <%= link_to  'Edit Profile', edit_user_path(@user), class:'text-white hover:text-gray-300' %>
+
+      <a href="#" class="text-white hover:text-gray-300">Attended Events</a>
+      <a href="/pages/badges" class="text-white hover:text-gray-300">My Wall</a>
+      <a href="<%= @user.last_event&.discord&.server_url.presence || 'javascript:void(0);' %>" target="_blank"
+      class="text-white hover:text-gray-300">
+     Discord Server
+   </a>
+      <!-- More links as needed -->
+    </nav>
+  </div>
+
+      <!-- Social Like Buttons, positioned bottom right -->
+      <div class="absolute bottom-0 right-0 p-4">
+        <!-- Social Buttons Here -->
+        <a href="#" class="citizen-grey-md p-2 text-white rounded-lg btn btn-primary">Region</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+.profile-image img{
+    height:12rem;
+    width:12rem;
+}
+</style>

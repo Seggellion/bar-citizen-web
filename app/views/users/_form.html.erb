@@ -1,3 +1,4 @@
+<div class="form-container">
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div style="color: red">
@@ -11,22 +12,55 @@
     </div>
   <% end %>
 
+
   <div>
-    <%= form.label :username, style: "display: block" %>
-    <%= form.text_field :username %>
+    <%= form.label :twitch_channel,  class: "text-white mb-2 font-semibold" %>
+    <%= form.text_field :twitch_channel, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
   </div>
 
   <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <%= form.label :discord_channel,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_field :discord_channel, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+<div>
+  <%= form.label :location,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_field :location, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+<div>
+<%= form.label :timezone,  class: "text-white mb-2 font-semibold" %>
+<%= form.select :timezone, 
+TZInfo::Timezone.all_identifiers.sort, 
+{ selected: session[:user_timezone], include_blank: true }, 
+{ class: 'p-2 rounded-lg bg-gray-800 border border-gray-600 text-white ml-2' } %>
+</div>
+
+<div>
+  <%= form.label :rsi_account,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_field :rsi_account, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+<div>
+  <%= form.label :bio,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_area :bio, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+
+  <div>
+    <%= form.label :email,  class: "text-white mb-2 font-semibold" %>
+    <%= form.text_field :email, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
   </div>
 
   <div>
-    <%= form.label :discord_id, style: "display: block" %>
-    <%= form.text_field :discord_id %>
+    <%= form.label :discord_id,  class: "text-white mb-2 font-semibold" %>
+    <%= form.text_field :discord_id, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "mt-4 bg-citizen-blue-base hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
   </div>
 <% end %>
+</div>
+
+

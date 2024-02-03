@@ -20,12 +20,14 @@ class User < ApplicationRecord
   has_many :photo_comments
   # Association for messages sent by the user
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
+  has_many :wall_comments, foreign_key: :owner_id
 
   # Association for messages received by the user
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
 
   has_many :event_manager_entries, class_name: 'EventManager'
   has_many :managed_events, through: :event_manager_entries, source: :event
+  has_one_attached :banner
 
   USER_ADMIN = 0
   USER_REGULAR = 42
@@ -55,6 +57,17 @@ class User < ApplicationRecord
     return true if self.user_type == 0
   end
 
+  def last_event    
+    participation = EventParticipation.where(user_id: self.id).last
+    if participation
+      return participation.event
+    end
+  end
+
+  def past_events
+    participations = EventParticipation.where(user_id: self.id)
+    participations.map(&:event)
+  end
 
   def user_level
     case user_type

@@ -1,53 +1,21 @@
-<section class="py-14 newsfeed"> <!-- Changed to darker background for dark theme -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 py-8 px-14 text-white">
-    
-    <!-- New Events Block -->
-    <div class="bg-gray-800 border border-gray-700 rounded-lg"  style="height:32rem;"> <!-- Rounded corners added -->
-      <div class="px-4 py-4 bg-citizen-blue-base rounded-t-lg"> <!-- Dark header with rounded top -->
-        <h3 class="text-2xl font-bold text-center"><%= t 'homepage.newsfeed.new_events' %></h3>
-      </div>
-      <hr class="border-gray-700"> <!-- Horizontal rule -->
-      <div class="px-4 py-4">
-        <!-- Repeat for each event -->
-        <% @newest_events.each do |event| %>
-        <div class="flex py-4">
-          <% banner_url = url_for(event.banner) if event.banner.attached? %>
-          <img src="<%= banner_url %>" alt="Event Thumbnail" class="rounded-lg h-12">
-          <div class="ml-4">
-            <p><%= link_to event.title, event, class:'font-semibold' %> • <%= link_to event.region.name, event.region, class:'citizen-blue-highlight underline underline-offset-4' %></p>
-            <span class="text-sm">Starts <%=  event.start_datetime.in_time_zone(event.timezone).strftime("%b %e, %Y %l%p") %></span>
-            
 
-          </div>
-        </div>
-        <hr class="border-gray-700"> <!-- Horizontal rule -->
-
-        <% end %>
-        <!-- ... additional events ... -->
-      </div>
-    </div>
-
-    <!-- New Activities Block -->
-
-    <div class="bg-gray-800 border border-gray-700 rounded-lg" style="height:32rem;">
+<section class="py-14 newsfeed  px-4 flex justify-center"> 
+    <div class="bg-gray-800 border border-gray-700 w-full md:w-1/2 rounded-lg" style="height:32rem;">
       <div class="px-4 py-4 bg-citizen-blue-base rounded-t-lg">
-        <h3 class="text-2xl font-bold text-center"><%= t 'homepage.newsfeed.new_activities' %></h3>
+        <h3 class="text-2xl font-bold text-center text-white"><%= t 'homepage.newsfeed.new_activities' %></h3>
       </div>
       <hr class="border-gray-700">
-      <!-- Set a max-height to accommodate the header and horizontal rule. Adjust the value as needed. -->
       <div class="overflow-auto" style="max-height: calc(32rem - 4rem); box-sizing: border-box;">
         <div class="px-4 py-4">
-          <!-- Repeat for each activity -->
+
 
               
               <% @activities.each do |activity| %>
                 <div class="flex py-4">
-                  <%= link_to user_path(activity.user) do %>
-                    <img src="<%= activity.user.profile_image %>" alt="User Profile" class="rounded-full h-12">
-                  <% end %>
+                  <img src="<%= activity.user.profile_image %>" alt="User Profile" class="rounded-full h-12">
                   <div class="ml-4">
                     <p class="font-semibold">
-                     <%= link_to activity.user.username, user_path(activity.user), class: 'activity-user' %>
+                      <%= activity.user.username %>
                       <% case activity.name %>
                       <% when "New discord created" %>
                         created a new Discord
@@ -71,6 +39,9 @@
                         created a new region
                       <% when "Bug submitted" %>
                         submitted a bug
+                      <% when "Wall commented" %>
+
+                        POsted a comment on <%= link_to activity.user.username, user_path(activity.user), class:'underline' %>
                       <% when "Created event" %>
                
                         <%=  t 'homepage.newsfeed.new_event' %> <% if activity.event %> <%= link_to activity.event.title, event_path(activity.event), class:'underline' %> <% else %> deleted <% end %>
@@ -114,8 +85,7 @@ section.newsfeed{
 }
               }
 
-              .activity-user{
-                display:inline-block;
-                border-bottom:1px solid white;
-              }
+              section.newsfeed{
+             color:white   
+            }
 </style>

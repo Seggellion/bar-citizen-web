@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @activities =  Activity.where(user_id: @user.id).all.order(:created_at).reverse_order 
   end
 
   # GET /users/new
@@ -66,6 +67,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :user_type, :discord_id)
+      params.require(:user).permit(:email, :timezone, :location, :rsi_account, :bio, :twitch_channel, :discord_channel)
     end
 end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/map', to: 'maps#index'
 
   resources :regions
-
+  resources :wall_comments, only: [:create, :destroy]
   resources :discords
   resources :photos do
     resources :photo_comments do 
@@ -58,7 +58,7 @@ end
   namespace :admin do
     root to: 'dashboard#index'  # Example admin dashboard
     get '/calendar', to: 'calendar#index'
-
+    get '/profile', to: 'users#show'
     resources :events do
       collection do
         get 'all', to: 'events#all'  # Adding this line

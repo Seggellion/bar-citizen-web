@@ -1,0 +1,71 @@
+<div class="form-container">
+
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div>
+    <%= form.label :twitch_channel,  class: "text-white mb-2 font-semibold" %>
+    <%= form.text_field :twitch_channel, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
+
+  <div>
+  <%= form.label :discord_channel,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_field :discord_channel, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+<div>
+  <%= form.label :location,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_field :location, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+<div>
+
+
+<%= form.label :timezone,  class: "text-white mb-2 font-semibold" %>
+<%= form.select :timezone, 
+TZInfo::Timezone.all_identifiers.sort, 
+{ selected: user.timezone, include_blank: true }, 
+{ class: 'p-2 rounded-lg bg-gray-800 border border-gray-600 text-white ml-2' } %>
+</div>
+
+
+<div>
+  <%= form.label :rsi_account,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_field :rsi_account, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+<div>
+  <%= form.label :bio,  class: "text-white mb-2 font-semibold" %>
+  <%= form.text_area :bio, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+</div>
+
+
+  <div>
+    <%= form.label :email,  class: "text-white mb-2 font-semibold" %>
+    <%= form.text_field :email, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
+
+  <div>
+    <%= form.label :discord_id,  class: "text-white mb-2 font-semibold" %>
+    <%= form.text_field :discord_id, class:"p-2 rounded-lg bg-gray-800 border border-gray-600 text-white" %>
+  </div>
+
+  <div>
+    <%= form.submit class: "p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white" %>
+  </div>
+<% end %>
+</div>
+
+

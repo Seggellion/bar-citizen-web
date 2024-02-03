@@ -18,6 +18,10 @@ class Activity < ApplicationRecord
     def message
       Message.find_by(id: description.split('_').last) if name == "Bug submitted"
     end
+
+    def comment
+      WallComment.find_by(id: description.split('_').last) if name == "Wall commented"
+    end
     
     def post
       Post.find_by(id: description.split('_').last) if name == "New post created"

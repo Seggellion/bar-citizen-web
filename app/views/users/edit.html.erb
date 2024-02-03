@@ -1,10 +1,28 @@
-<h1>Editing user</h1>
 
-<%= render "form", user: @user %>
 
-<br>
+<div class="py-6 px-4 flex justify-center">
+  <div class="grid bg-gray-800 border border-gray-700 rounded-lg w-full md:w-1/2 grid-cols-2 gap-6 p-8">
+    <div>
+      <h3 class="text-2xl font-bold text-center mb-6 text-white">Editing profile</h3>
+    </div>
 
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+
+    <div>
+
+      <%= render "form", user: @user %>
+    </div>
+
+
+
+    <div>
+      <%= link_to "Back to profile page", user_path(@user), class:'text-white' %>
+    </div>
+  </div>
+
 </div>
+
+<style>
+.form-container{
+  display:block;
+}
+</style>

@@ -9,6 +9,9 @@
     </div>
 
     <div class="flex bg-citizen-blue-dk rounded-lg flex-wrap gap-4 mb-4">
+
+    <%= link_to 'My profile', user_path(@current_user), class: 'btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+
     <% if current_user.user_level == "Regional Manager" || current_user.user_type < 1 %>
     <%= link_to 'Create Discord', new_discord_path, class: 'btn hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
     <%= link_to 'Region Page', region_path(current_user.region), class: 'btn text-white font-bold py-2 px-4 rounded' %>

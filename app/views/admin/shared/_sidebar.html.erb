@@ -86,13 +86,7 @@
 
           <!-- Menu Item Profile -->
           <li>
-            <a
-            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium hover:bg-gray-700 hover:text-white duration-300 ease-in-out"
-                href="profile.html"
-              @click="selected = (selected === 'Profile' ? '':'Profile')"
-              :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Profile') && (page === 'profile') }"
-              :class="page === 'profile' && 'bg-graydark'"
-            >
+          <%= link_to admin_profile_path, class: 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium hover:bg-gray-700 hover:text-white duration-300 ease-in-out' do %>
               <svg
                 class="fill-current"
                 width="18"
@@ -112,7 +106,7 @@
               </svg>
 
               Profile
-            </a>
+            <% end %>
           </li>
           <!-- Menu Item Profile -->
 

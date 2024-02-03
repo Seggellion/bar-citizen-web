@@ -1,0 +1,28 @@
+<div class="py-6 px-4 flex justify-center">
+  <div class="grid bg-gray-800 border border-gray-700 rounded-lg w-full md:w-1/2 grid-cols-5 gap-6 p-8">
+    <!-- Full-width title in the grid -->
+    <div class="col-span-5">
+      <h3 class="text-2xl font-bold text-center mb-6 text-white">Past Events of <%= @user.username %></h3>
+    </div>
+
+    <!-- Column for Regions (20%) -->
+    <div class="col-span-1">
+      <h2 class="font-bold text-white mb-4">Region</h2>
+      <% @user.past_events.each do |event| %>
+        <div class="mb-3">
+          <%= link_to event.region.name, region_path(event.region), class: "text-white" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Column for Last Events (80%) -->
+    <div class="col-span-4">
+      <h2 class="font-bold text-white mb-4">Last Event</h2>
+      <% @user.past_events.each do |event| %>
+        <div class="mb-3">
+          <%= link_to event.title, event_path(event), class: "text-white" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

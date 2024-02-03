@@ -3,7 +3,10 @@
 module Admin
     class UsersController < ApplicationController
       before_action :authenticate_admin!
+
       layout 'admin'
+     
+
       def index
         @users = User.all.order(Arel.sql("last_login IS NULL, last_login DESC"))
       end
@@ -20,8 +23,10 @@ module Admin
         end
       end
     
+      def show
 
-      # ... other CRUD actions ...
+      end
+
 
       def trash
         

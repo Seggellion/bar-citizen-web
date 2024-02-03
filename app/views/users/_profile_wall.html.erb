@@ -1,0 +1,52 @@
+<div class="py-6 my-10 bg-white">
+  <div class="flex justify-center">
+    <div class="w-full md:w-3/5 px-4 md:px-0">
+
+      <!-- Center-aligned Title -->
+      <h3 class="text-2xl font-bold text-center mb-4">My Wall - Leave a Comment</h3>
+
+      <!-- Comment Submission Form -->
+      <%= form_with model: WallComment.new, url: wall_comments_path, method: :post, class: 'mb-6' do |form| %>
+        <div class="border border-gray-300 rounded p-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <%= form.hidden_field :owner_id, value: @user.id %>
+            <%= form.text_area :content, class: 'w-full p-2 border border-gray-300 rounded resize-none', placeholder: 'Write your comment here...', rows: 3 %>
+            <%= form.submit 'Post Comment', class: 'md:self-end md:w-auto w-full h-12 px-6 py-2  citizen-grey-md text-white text-lg rounded hover:bg-blue-600 transition-colors' %>
+          </div>
+        </div>
+      <% end %>
+      
+      <div>
+  <% if @user.wall_comments.empty? %>
+    <p class="text-gray-600">No wall posts yet.</p>
+  <% else %>
+    <% @user.wall_comments.each do |comment| %>
+      <div class="grid grid-cols-12 border-b border-gray-300 mb-4 items-start">
+        <!-- Profile Image Column -->
+        <div class="col-span-2">
+          <%= image_tag comment.commenter.profile_image, class: "w-full h-auto rounded-full" %>
+        </div>
+
+        <!-- Comment Content Column -->
+        <div class="col-span-9 pl-4">
+          <p><strong><%= link_to comment.commenter.username, user_path(comment.commenter) %></strong></p>
+          <small><%= comment.created_at.strftime("%B %d, %Y") %></small>
+          <p><%= comment.content %></p>
+        </div>
+
+        <!-- Delete Button Column -->
+        <% if current_user == comment.commenter || current_user == @user %>
+          <div class="col-span-1 flex justify-center">
+            <%= button_to 'X', wall_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500 hover:text-red-700' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+    
+
+    </div>
+  </div>
+</div>

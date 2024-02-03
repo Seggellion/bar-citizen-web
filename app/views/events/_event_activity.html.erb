@@ -13,9 +13,11 @@
 
     <% @event.activities.each do | activity | %>
         <div class="flex  px-2 mb-4">
-          <img src="<%= activity.user.profile_image %>" alt="User Profile" class="w-1/8">
+            <%= link_to user_path(activity.user) do %>
+                <img src="<%= activity.user.profile_image %>" alt="User Profile" class="w-1/8">
+            <% end %>
           <div class="ml-4">
-            <p class="font-semibold"><%= activity.user.username %></p>
+            <p class="font-semibold"><%= link_to user_path(activity.user) do %><%= activity.user.username %><% end %></p>
             <p><%= activity.name %></p>
             <p><%= activity.created_at.in_time_zone(session[:user_timezone]).strftime("%b %e, %Y %l%p") %></p>
             <!-- Additional Activity Details Here -->
