@@ -62,22 +62,22 @@
     <!-- Register Now Button -->
     <div class=" flex flex-col items-center justify-center">
 
-    <% unless event.status&.include?("Closed") %>
-      <% if current_user %>
+    <% unless event.status&.include?("Closed") || event.end_datetime < Time.zone.now %>
+    <% if current_user %>
       <div class="text-center">
           <% if current_user && current_user.participating_in?(@current_event) %>
               <%= button_to 'Leave Event', event_event_participation_path(@current_event, current_user.event_participation_id_for(@current_event)), method: :delete, class: 'bg-yellow-400 text-blue-600 rounded-full px-6 py-2 font-bold' %>
           <% else %>
               
               <%= button_to 'Join Event', event_event_participations_path(@current_event), method: :post, params: { event_participation: { user_id: current_user.id, event_id: @current_event.id } }, class: 'bg-citizen-blue-highlight text-white rounded-full text-xl px-6 py-6 font-bold' %>
-
           <% end %>
       </div>
-      <% end %>
+    <% end %>
       <p class="text-sm mt-2">Limited Availability!</p>
-      <% else %>
-<strong style="color:red">Event is closed</strong>
-      <% end %>
+  <% else %>
+    <strong style="color:red">Event is closed</strong>
+  <% end %>
+  
     </div>
 
     <!-- Other Events -->

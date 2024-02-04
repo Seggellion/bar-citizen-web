@@ -7,5 +7,7 @@
 <%= render 'profile_history' %>
 <%= render 'profile_invite' %>
 <%= render 'profile_activity' %>
+<% if current_user %>
 <%= render 'profile_wall' %>
+<% end %>
 </div>
