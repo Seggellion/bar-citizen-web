@@ -52,7 +52,13 @@ module Types
       EventParticipation.exists?(user_id: user_id, event_id: event_id)
     end
 
+    field :user, Types::UserType, null: true do
+      argument :id, ID, required: true
+    end
 
+    def user(id:)
+      User.find(id)
+    end
 
    # Update the event field to accept eventId as an Integer
    field :event, Types::EventType, null: true do
