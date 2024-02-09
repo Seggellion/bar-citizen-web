@@ -4,6 +4,8 @@ module Mutations
       argument :id, ID, required: true
       argument :username, String, required: false
       argument :email, String, required: false
+      argument :location, String, required: false
+      argument :bio, String, required: false
       argument :profile_image, String, required: false
       # Add other arguments for fields you want to be able to update
   
