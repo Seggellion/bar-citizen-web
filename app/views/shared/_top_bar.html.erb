@@ -1,4 +1,4 @@
-<div class="bg-citizen-blue-dk  py-2 px-4 flex justify-between mx-2 mt-2 items-center space-x-4 text-gray-200 rounded-full">
+<div class="top-header bg-citizen-blue-dk  py-2 px-4 flex justify-between mx-2 mt-2 items-center space-x-4 text-gray-200 rounded-full">
 <div class="text-gray-200"></div>
   <!-- Social Links Here -->
  
@@ -30,7 +30,6 @@
       <option value="?locale=en" <%= 'selected' if I18n.locale == :en %>>English</option>
       <option value="?locale=fr" <%= 'selected' if I18n.locale == :fr %>>Francais</option>
       <option value="?locale=ja" <%= 'selected' if I18n.locale == :ja %>>日本語</option>
-    <!-- Add more options for other languages -->
     </select>
 
     <% end %>
@@ -38,7 +37,7 @@
     <!-- Language Selector Wrapper -->
 <div id="languageSelector" class="relative rounded-full bg-gray-900 ">
   <!-- Selected Language Display -->
-  <div class="cursor-pointer overflow-hidden rounded-full  w-8 h-8" id="selectedLanguage">
+  <div class="cursor-pointer overflow-hidden rounded-full mx-1  w-7 h-7" id="selectedLanguage">
     <% case I18n.locale %>
     <% when :en %>
       <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'england.svg')) %>
@@ -55,15 +54,15 @@
 
   <!-- Dropdown Menu -->
   <div id="languageDropdown" class="absolute rounded-br-full rounded-br-full bg-gray-900  hidden mt-1">
-    <a href="?locale=en" class="block overflow-hidden rounded-full w-8 h-8">
+    <a href="?locale=en" class="block overflow-hidden rounded-full w-7 h-7">
     <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'england.svg')) %>
       <!-- Replace with actual SVG code -->
     </a>
-    <a href="?locale=fr" class="block overflow-hidden rounded-full w-8 h-8">
+    <a href="?locale=fr" class="block overflow-hidden rounded-full w-7 h-7">
 
     <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'france.svg')) %>
     </a>
-    <a href="?locale=ja" class="block overflow-hidden rounded-full w-8 h-8">
+    <a href="?locale=ja" class="block overflow-hidden rounded-full w-7 h-7">
     <%= raw File.read(Rails.root.join('app', 'assets', 'svg', 'japan.svg')) %>
     </a>
     <!-- Add more flags for other languages -->
@@ -74,23 +73,14 @@
 
 
 <% unless current_user %>
-<%= button_to  '/auth/discord', method: :post, class: 'discord-login-button bg-citizen-blue p-1 mx-4 rounded-r-full',  data: { turbo: false } do %>
-  <%= render '/shared/icons/login' %>
+  <%= button_to  '/auth/discord', method: :post, class: 'discord-login-button bg-citizen-blue p-1 mx-4 rounded-r-full',  data: { turbo: false } do %>
+    <%= render '/shared/icons/login' %>
+  <% end %>
+<% else %>
+  <%= link_to dashboard_path do %>
+    <img src="<%= current_user.profile_image %>" alt="User Profile" class="rounded-full mx-1  w-7 h-7">
+  <% end %>
 <% end %>
-<% end %>
-
-<!-- Tailwind CSS for Styling -->
-<style>
-
-  #languageSelector{
-    z-index:9005;
-  }
-  .social-links a{
-    height: 32px;
-    display: flex;
-    width: 32px;    
-  }
-</style>
 
 <!-- JavaScript for Dropdown Toggle -->
 <script>

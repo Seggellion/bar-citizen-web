@@ -43,6 +43,16 @@ svg.citizen-grey{
     background-color:  var(--citizen-blue-highlight);
 }
 
+
+#languageSelector{
+  z-index:9005;
+}
+.social-links a{
+  height: 26px;
+  display: flex;
+  width: 26px;    
+}
+
 footer .social-links a{
     padding: 10px;
 }
@@ -51,8 +61,13 @@ footer .social-links svg{
     width:40px;
 }
 
+
+
+.top-header{
+  height:30px;
+}
 .logo-class{
-    top:-59px;
+    top:-9px;
     z-index:9001;
     width: 120px;
 }
@@ -122,3 +137,5 @@ color:white;
 }
 
 /* More customizations can be added as needed */
+
+

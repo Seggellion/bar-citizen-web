@@ -7,10 +7,10 @@ letter-spacing:3px;
 }
 </style>
 
-<div class="bg-citizen-blue-base drop-shadow-lg flex items-center p-2 text-white relative rounded-lg m-2" style="z-index:9001; min-height: 64px;">
+<div class="bg-citizen-blue-base drop-shadow-lg flex items-center p-2 text-white relative rounded-lg m-2" style="z-index:9001; min-height: 55px;">
   <div class="flex-grow">
     <%= link_to root_path do %>
-      <%= image_tag 'carcitizen-logo.png', alt: 'Car Citizen Logo', class: 'logo-class car-citizen-logo absolute h-auto' %>
+      <%= image_tag 'bar_citizen_logo_international.png', alt: 'Bar Citizen Logo', class: 'logo-class bar-citizen-logo absolute h-auto' %>
     <% end %>
   </div>
   <!-- Hamburger Button for Mobile -->
@@ -38,30 +38,21 @@ letter-spacing:3px;
   
   <!-- Main Menu for Desktop -->
   <nav id="main_menu" class="hidden md:flex flex-grow justify-between space-x-4">
-  <div class="relative">
-  <%= image_tag 'bmm.png', alt: 'Banu Merchantman', class: 'absolute bmm' %>
-  <% if current_user && current_user.user_type < 69 %>
-    <%= link_to t('menu.dashboard'), dashboard_path, class:'relative orb-font drop-shadow-xl' %>
-  <% else %>
-    <%= link_to t('menu.home'), root_path, class:'relative orb-font drop-shadow-xl' %>
-  <% end %>
-</div>
+
 <div class="relative">
-<%= image_tag '890.png', alt: 'Origin 890 Jump', class: 'absolute origin' %>
+
 <%= link_to t('menu.event_map'), map_path, class: "relative orb-font drop-shadow-xl" %>
 </div>
 <div class="relative">
-<%= image_tag 'carrack.png', alt: 'Anvil Carrack', class: 'absolute carrack' %>
+
 <%= link_to t('menu.event_list'), events_path, class: "relative orb-font drop-shadow-xl" %>
 </div>
 <div class="relative">
-<%= image_tag 'hullc.png', alt: 'MISC Hull-C', class: 'absolute hullc' %>
+
 <%= link_to t('menu.gallery'), gallery_path, class: "relative orb-font drop-shadow-xl" %>
 </div>
 
 <div class="relative">
-<%= image_tag 'starfarer.png', alt: 'MISC Starfarer', class: 'absolute starfarer' %>
-
   <%= link_to t('menu.about_us'), page_path('about'), class: "relative orb-font drop-shadow-xl" %>
   </div>
 </nav>

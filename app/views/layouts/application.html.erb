@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
-    <title>Car Citizen Earth</title>
+    <title>Bar Citizen Earth</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
   <% if @event %>
-  <meta property="og:title" content="Car Citizen test site - <%= @event.title %>">
+  <meta property="og:title" content="Bar Citizen International - <%= @event.title %>">
     <% if @event.banner.attached? %>
       <meta property="og:image" content="<%= url_for(@event.banner) %>">
     <% end %>
   <% elsif @photo %>
-  <meta property="og:title" content="Car Citizen test site - <%= @photo.title %>">
+  <meta property="og:title" content="Bar Citizen International - <%= @photo.title %>">
     <% if @photo.image.attached? %>
       <meta property="og:image" content="<%= url_for(@photo.image) %>">
     <% end %>s
