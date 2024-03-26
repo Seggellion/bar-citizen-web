@@ -1,0 +1,60 @@
+
+<!-- Hero Section --><% banner_url = url_for(page.banner) if page.banner.attached? %>
+
+
+<div class="relative bg-cover bg-center h-[18rem]"
+ style="background-image: url('<%= banner_url %>'); background-size: cover;">
+   
+  <div class="bg-black bg-opacity-50 h-full">
+    <div class="container mx-auto px-4 h-full flex flex-col justify-end">
+  <!-- Row 1: page Details aligned to bottom-left -->
+        <div class="text-white pb-10">
+
+          <h1 class="text-4xl font-bold"><%= page.title.upcase %></h1>
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- page Menu Section -->
+<div class="bg-gray-500">
+  <div class="container mx-auto px-4 py-4">
+    <nav class="flex flex-wrap space-x-2 md:space-x-4">
+      <a href="#overview" class="text-white hover:underline mb-2 md:mb-0">About Us</a>
+
+      <a href="#map" class="text-white hover:underline mb-2 md:mb-0">What is Bar citizen?</a>
+
+      <a href="#giveaways" class="text-white hover:underline mb-2 md:mb-0">FAQ's</a>
+      <a href="#photos" class="text-white hover:underline mb-2 md:mb-0">RCI Team</a>
+      <a href="#forums" class="text-white hover:underline mb-2 md:mb-0">Bar Citizen History</a>
+    </nav>
+  </div>
+</div>
+
+
+
+<style>
+
+/* Add this to your stylesheet */
+.clipboard-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.clipboard-notification.error {
+  background-color: #ffcccc;
+  color: #cc0000;
+}
+
+</style>

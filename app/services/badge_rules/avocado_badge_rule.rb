@@ -1,6 +1,10 @@
 # app/services/badge_rules/avocado_badge_rule.rb
 module BadgeRules
     class AvocadoBadgeRule < BadgeRule
+      def initialize(user)
+        @user = user
+      end
+
       def applicable?
 
         created_post? &&
@@ -16,7 +20,7 @@ module BadgeRules
         'Avocado'
       end
   
-      private
+
   
       def created_post?
         @user.posts.exists?

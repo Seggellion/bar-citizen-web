@@ -1,0 +1,56 @@
+<h1>Badge Progress: Avocado</h1>
+<ul>
+  <li>
+    <label  class="text-white">
+
+      <%= check_box_tag "created_post", "1", @avocado_badge_rule.created_post?, disabled: true %>
+      Created a post
+    </label>
+  </li>
+  <li>
+    <label class="text-white">
+      <%= check_box_tag "created_reply", "1", @avocado_badge_rule.created_reply?, disabled: true %>
+      Created a reply
+    </label>
+  <li>
+    <label  class="text-white">
+      <%= check_box_tag "created_message", "1", @avocado_badge_rule.created_message?, disabled: true %>
+      Created a message
+    </label>
+  </li>
+
+  <li>
+  <label  class="text-white">
+    <%= check_box_tag "created_photo", "1", @avocado_badge_rule.created_photo?, disabled: true %>
+    Created a Photo
+  </label>
+</li>
+
+<li>
+<label  class="text-white">
+  <%= check_box_tag "created_photo_comment", "1", @avocado_badge_rule.created_photo?, disabled: true %>
+  Created a Photo Comment
+</label>
+</li>
+
+<li>
+<label  class="text-white">
+  <%= check_box_tag "created_event", "1", @avocado_badge_rule.created_event?, disabled: true %>
+  Created an Event
+</label>
+</li>
+
+<li>
+<label  class="text-white">
+  <%= check_box_tag "created_discord", "1", @avocado_badge_rule.created_discord?, disabled: true %>
+  Created a Discord
+</label>
+</li>
+
+<li>
+<label  class="text-white">
+  <%= check_box_tag "created_message", "1", @avocado_badge_rule.created_message?, disabled: true %>
+  Created a message
+</label>
+</li>
+</ul>

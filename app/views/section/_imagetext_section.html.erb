@@ -1,0 +1,46 @@
+<section class="py-7">
+<% section.section.blocks.each_with_index do |block, index| %>
+<% translation = block.translations.find { |t| t.language == I18n.locale.to_s } %>
+
+<div class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 md:px-20 py-10">
+        <div class="grid md:grid-cols-2 gap-10">
+            <% if index.even? %>
+                <div class="flex justify-center items-center" style="height:100%;">
+                    <img src="<%= block.image.url %>" alt="Descriptive text for image" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">
+                    <% if translation %>
+                    <%= translation.title %>
+                    <% end %>
+                    </h2>
+                    <p class="text-lg">
+                    <% if translation %>
+                    <%= translation.description %>
+                    <% end %>
+                    </p>
+                </div>
+            <% else %>
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">
+                    <% if translation %>
+                    <%= translation.title %>
+                    <% end %>
+                    </h2>
+                    <p class="text-lg">
+                    <% if translation %>
+                    <%= translation.description %>
+                    <% end %>
+                    </p>
+                </div>
+                <div class="flex justify-center items-center" style="height:100%;">
+                    <img src="<%= block.image.url %>" alt="Descriptive text for image" class="w-full h-full object-cover">
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<% end %>
+</section>

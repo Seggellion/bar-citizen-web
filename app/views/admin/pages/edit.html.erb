@@ -61,6 +61,17 @@
     <% end %>
   </div>
 
+
+
+  <div class="mb-4">
+  <%= form.label :banner, 'Banner', class: 'text-gray-900 dark:text-white' %>
+      <%= form.file_field :banner, class:'shadow border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700' %>
+      <% if @page.errors.full_messages_for(:banner).any? %>
+      <p class="text-red-500 text-xs italic"><%= @page.errors.full_messages_for(:banner).join(', ') %></p>
+    <% end %>
+  </div>
+
+  
   <%= form.submit 'Update Page', class: "bg-citizen-blue-highlight text-white font-bold py-2 px-4 rounded" %>
 
 

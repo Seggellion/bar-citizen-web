@@ -64,7 +64,7 @@ module Admin
       private
 
       def page_params
-        params.require(:page).permit(:title, :description, :category, :slug)
+        params.require(:page).permit(:title, :description, :category, :slug, :banner)
       end
     end
   end

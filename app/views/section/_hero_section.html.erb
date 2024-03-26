@@ -12,7 +12,10 @@
 
     <!-- Content inside the image block for desktop -->
     <div class="hidden md:block md:absolute bottom-2 left-0 p-4">
-      <h1 class="text-white text-4xl font-bold w-3/5">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
+      <h1 class="text-white text-4xl font-bold w-3/5">
+      <% if block.title %>
+      <%= block.title %>
+      <% end %></h1>
     </div>
     <div class="hidden md:block md:absolute bottom-2 right-0 p-4">
       <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ATTEND EVENT</button>
@@ -21,7 +24,10 @@
   
     <!-- Content inside the image block for mobile -->
     <div class="md:hidden p-4 absolute bottom-2 w-full text-center">
-      <h1 class="text-white text-4xl font-bold mb-4">WORLD'S BIGGEST STAR CITIZEN EVENTS!</h1>
+    <h1 class="text-white text-4xl font-bold w-3/5">
+    <% if block.title %>
+    <%= block.title.upcase %>
+    <% end %></h1>
       <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full mb-4">ATTEND EVENT</button>
       <p class="text-yellow-300"><%= User.count %> MEMBERS AND GROWING!</p>
     </div>

@@ -4,12 +4,15 @@
 <% else %>
 <% block_image_url = "" %>
 <% end %>
-<div class="rounded-sm border mx-2 border-gray-300 shadow-md dark:border-gray-700 dark:bg-gray-800"   >
 
-<div class="flex p-10 bg-cover bg-center flex-col justify-center" style="background-image: url(<%= block_image_url %>);">
-<h1  class="text-5xl mb-4"><%= @page.title %></h1>
+<%= render '/pages/page_hero', page: @page %>
 
-<p class="text-white">
+<div class="rounded-sm border mx-2 border-gray-300 shadow-md dark:border-gray-700 dark:bg-gray-800 content-page"   >
+
+<div class="flex p-10 bg-cover bg-center flex-col justify-center" >
+<h1  class="text-5xl mb-4 text-center"><%= @page.title %></h1>
+<hr class="w-1/3 mx-auto">
+<p class="text-white text-center">
 <%= @page.description %>
 </p>
 
@@ -25,6 +28,8 @@
 
 <%= render '/pages/discord_list' %>
 
+<% elsif request.fullpath.include?('/avocado') %>
+<%= render '/pages/avocado' %>
 <% end %>
 
 </div>

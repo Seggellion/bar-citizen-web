@@ -78,6 +78,8 @@ module Admin
               HeroSection.new(attributes)
             when 'ThreeGridSection'
               ThreeGridSection.new(attributes)
+            when 'ImageText'
+              ImageTextSection.new(attributes)
             else
               nil # Unknown type
             end

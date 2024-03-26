@@ -3,7 +3,8 @@ class Page < ApplicationRecord
     belongs_to :user
     validates :title, presence: true
     before_validation :generate_slug
-
+    has_one_attached :banner
+    
     private
   
     def generate_slug

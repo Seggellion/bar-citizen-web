@@ -32,7 +32,8 @@ letter-spacing:3px;
       <%= link_to t('menu.event_map'), map_path, class: "text-white orb-font" %>
       <%= link_to t('menu.event_list'), events_path, class: "text-white orb-font" %>
       <%= link_to t('menu.gallery'), root_path, class: "text-white orb-font" %>
-      <%= link_to t('menu.about_us'), page_path('about'), class: "text-white orb-font" %>
+      <%= link_to t('menu.learn_more'), page_path('learn-more'), class: "text-white orb-font" %>
+      <%= link_to t('menu.coordinators'), page_path('coordinators'), class: "text-white orb-font" %>
     </nav>
   </div>
   
@@ -53,7 +54,10 @@ letter-spacing:3px;
 </div>
 
 <div class="relative">
-  <%= link_to t('menu.about_us'), page_path('about'), class: "relative orb-font drop-shadow-xl" %>
+  <%= link_to t('menu.learn_more'), page_path('learn-more'), class: "relative orb-font drop-shadow-xl" %>
+  </div>
+  <div class="relative">
+  <%= link_to t('menu.coordinators'), page_path('coordinators'), class: "relative orb-font drop-shadow-xl" %>
   </div>
 </nav>
 

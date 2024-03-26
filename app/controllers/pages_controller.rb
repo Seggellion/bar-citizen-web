@@ -2,6 +2,9 @@ class PagesController < ApplicationController
     # Action for standard pages
     def show
       @page = Page.find_by(slug: params[:title])
+      if current_user
+      @avocado_badge_rule = BadgeRules::AvocadoBadgeRule.new(current_user)
+      end
       # Handle page not found
       render_404 unless @page
     end
