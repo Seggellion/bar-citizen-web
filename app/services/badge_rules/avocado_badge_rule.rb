@@ -17,7 +17,7 @@ module BadgeRules
       end
   
       def badge_name
-        'Avocado'
+        'Avocados'
       end
   
 
@@ -40,7 +40,7 @@ module BadgeRules
       end
   
       def created_event?
-        @user.events.exists?
+        @user.created_events.exists?
       end
   
       def created_discord?

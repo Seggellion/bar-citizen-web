@@ -28,7 +28,7 @@
 
 <li>
 <label  class="text-white">
-  <%= check_box_tag "created_photo_comment", "1", @avocado_badge_rule.created_photo?, disabled: true %>
+  <%= check_box_tag "created_photo_comment", "1", @avocado_badge_rule.created_photo_comment?, disabled: true %>
   Created a Photo Comment
 </label>
 </li>
@@ -47,10 +47,4 @@
 </label>
 </li>
 
-<li>
-<label  class="text-white">
-  <%= check_box_tag "created_message", "1", @avocado_badge_rule.created_message?, disabled: true %>
-  Created a message
-</label>
-</li>
 </ul>

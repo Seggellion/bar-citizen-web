@@ -61,15 +61,25 @@ footer .social-links svg{
     width:40px;
 }
 
+[aria-label="Map"]{
+  background-color: black;
+}
 
+.map-toggle-buttons button{
+  display:flex;
+  min-width:210px;
+  justify-content: space-between;
+  padding: 8px 15px;
+}
 
 .top-header{
   height:30px;
 }
 .logo-class{
-    top:-9px;
-    z-index:9001;
-    width: 120px;
+  top: -39px;
+  z-index: 9001;
+  width: 160px;
+  left: -20px;
 }
 
 h1{

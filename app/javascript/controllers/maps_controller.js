@@ -112,7 +112,8 @@ export default class extends Controller {
       center: { lat: 48.4219215, lng: -123.3652339 },
       styles: darkModeStyles,
       mapTypeControl: false,
-      streetViewControl: false
+      streetViewControl: false,
+      fullscreenControl: false
     });
     this.loadMarkers();
     this.infoWindow = new google.maps.InfoWindow();

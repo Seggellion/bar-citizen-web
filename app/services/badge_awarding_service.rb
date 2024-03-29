@@ -5,9 +5,10 @@ class BadgeAwardingService
     end
   
     def call
+      
       rule_classes.each do |rule_class|
         rule = rule_class.new(@user)
-
+        
         if rule.applicable?
           award_badge(rule.badge_name)
         end
@@ -21,6 +22,7 @@ class BadgeAwardingService
     def award_badge(badge_name)
         
         badge = Badge.find_by(name: badge_name)
+        
         return unless badge
         Rails.logger.info "Badge processed: #{badge.inspect}" # Debugging statement
       
